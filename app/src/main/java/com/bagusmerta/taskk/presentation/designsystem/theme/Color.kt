@@ -19,3 +19,6 @@ val dBackground = Color(0xFF130E0F)
 val dItemBackground = Color(0xFF333333)
 val dOn = Color(0xFFF5F5F5)
 val dError = Color(0xFFFF1D3C)
+
+val commonGray = Color(0xFF919191)
+val gray20 = Color(0xFFC7C7C7)
