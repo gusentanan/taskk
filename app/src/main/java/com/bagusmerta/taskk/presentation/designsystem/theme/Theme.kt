@@ -16,6 +16,9 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
 
+/**
+ *  Dark Theme
+ * */
 private val DarkColorScheme = darkColorScheme(
     primary = dPrimary,
     primaryContainer = dPrimary,
@@ -34,6 +37,9 @@ private val DarkColorScheme = darkColorScheme(
 
 )
 
+/**
+ *  Light Theme
+ * */
 private val LightColorScheme = lightColorScheme(
     primary = lPrimary,
     primaryContainer = lPrimary,
@@ -52,6 +58,9 @@ private val LightColorScheme = lightColorScheme(
 
 )
 
+/**
+ *  App Theme adjustment
+ * */
 @Composable
 fun TaskkTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
