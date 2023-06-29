@@ -1,4 +1,4 @@
-package com.bagusmerta.taskk.ui.theme
+package com.bagusmerta.taskk.presentation.designsystem.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
