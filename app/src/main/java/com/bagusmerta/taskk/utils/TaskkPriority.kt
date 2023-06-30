@@ -1,6 +1,6 @@
 package com.bagusmerta.taskk.utils
 
-enum class TskPriority {
+enum class TaskkPriority {
     HARD,
     MEDIUM,
     EASY

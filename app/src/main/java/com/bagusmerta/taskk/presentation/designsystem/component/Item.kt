@@ -26,7 +26,7 @@ import androidx.compose.ui.unit.dp
 import com.bagusmerta.taskk.presentation.designsystem.icon.TaskkIcon
 import com.bagusmerta.taskk.presentation.designsystem.theme.commonGray
 import com.bagusmerta.taskk.presentation.designsystem.theme.gray20
-import com.bagusmerta.taskk.utils.TskPriority
+import com.bagusmerta.taskk.utils.TaskkPriority
 
 
 @Composable
@@ -37,7 +37,7 @@ fun TskItem(
     tskTitle: String,
     tskDueDate: String,
     tskCategory: String,
-    tskPriority: TskPriority,
+    taskkPriority: TaskkPriority,
     contentPadding: PaddingValues
 ){
     Surface(
@@ -69,7 +69,7 @@ fun TskItem(
                     ) {
                         TskTitle(text = tskTitle)
                         Spacer(Modifier.width(10.dp))
-                        TskPriority(priority = tskPriority)
+                        TskPriority(priority = taskkPriority)
                     }
                     Row( modifier = Modifier.fillMaxWidth(),) {
                         TskCategory(text = tskCategory)
@@ -98,7 +98,7 @@ fun previewTskItem(){
         tskTitle = "Do Leetcode Easy",
         tskDueDate = "Due ~ Fri, 27 June 2023",
         tskCategory = "More College",
-        tskPriority = TskPriority.EASY,
+        taskkPriority = TaskkPriority.EASY,
         contentPadding = PaddingValues(10.dp)
     )
 }
@@ -154,12 +154,12 @@ fun TskDueDate(
 @Composable
 fun TskPriority(
     modifier: Modifier = Modifier,
-    priority: TskPriority
+    priority: TaskkPriority
 ){
     val boxColor = when(priority){
-        TskPriority.EASY -> Color.Green
-        TskPriority.MEDIUM -> Color.Yellow
-        TskPriority.HARD -> Color.Red
+        TaskkPriority.EASY -> Color.Green
+        TaskkPriority.MEDIUM -> Color.Yellow
+        TaskkPriority.HARD -> Color.Red
     }
     Column(
         modifier = modifier.padding(top = 2.dp)
@@ -180,6 +180,6 @@ fun TskPriority(
 fun previewPriority(){
     TskPriority(
         modifier = Modifier,
-        priority = TskPriority.MEDIUM
+        priority = TaskkPriority.MEDIUM
     )
 }
