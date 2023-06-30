@@ -34,6 +34,7 @@ fun TskBackButton(
     TskIconButton(
         onClick = onClick,
         modifier = Modifier.size(20.dp),
+        shape = CircleShape,
         color = MaterialTheme.colorScheme.surface
     ) {
         TskIcon(imageIcon = imageVector)
@@ -48,6 +49,7 @@ fun TskSettingsButton(
     TskIconButton(
         onClick = onClick,
         modifier = Modifier.size(42.dp),
+        shape = CircleShape,
         color = MaterialTheme.colorScheme.surface
     ) {
         TskIcon(
@@ -62,10 +64,11 @@ fun TskIconButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
+    shape: Shape,
     color: Color = MaterialTheme.colorScheme.secondary,
     content: @Composable () -> Unit
 ){
-    val shape = CircleShape
+    val shape = shape
     IconButton(
         onClick = onClick,
         modifier = modifier
