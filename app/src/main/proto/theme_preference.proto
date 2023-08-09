@@ -1,0 +1,10 @@
+syntax = 'proto3';
+
+option java_package = "com.bagusmerta.taskk.model.preference";
+option java_multiple_files = true;
+
+enum ThemePreference{
+  SYSTEM = 0;
+  LIGHT = 1;
+  DARK = 2;
+}

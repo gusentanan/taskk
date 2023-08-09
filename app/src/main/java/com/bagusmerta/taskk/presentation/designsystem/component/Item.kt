@@ -62,7 +62,9 @@ fun TskItem(
                 }
 
                 Column(
-                    modifier = Modifier.padding(4.dp).weight(1F)
+                    modifier = Modifier
+                        .padding(4.dp)
+                        .weight(1F)
                 ) {
                     Row(
                         modifier = Modifier.fillMaxWidth(),
@@ -73,7 +75,9 @@ fun TskItem(
                     }
                     Row( modifier = Modifier.fillMaxWidth(),) {
                         TskCategory(text = tskCategory)
-                        Spacer(Modifier.width(4.dp))
+                        Spacer(Modifier.width(2.dp))
+                        Text(text = "~")
+                        Spacer(Modifier.width(2.dp))
                         TskDueDate(text = tskDueDate)
                     }
                 }
@@ -96,7 +100,7 @@ fun previewTskItem(){
         onCheckBoxClick = {  },
         color = MaterialTheme.colorScheme.primary,
         tskTitle = "Do Leetcode Easy",
-        tskDueDate = "Due ~ Fri, 27 June 2023",
+        tskDueDate = "Due, Fri 27 June 2023",
         tskCategory = "More College",
         taskkPriority = TaskkPriority.EASY,
         contentPadding = PaddingValues(10.dp)

@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.ksp)
     alias(libs.plugins.hilt)
     alias(libs.plugins.kapt)
+    alias(libs.plugins.protobuf)
 }
 
 android {
@@ -53,6 +54,29 @@ android {
     }
 }
 
+protobuf {
+    // Configures the Protobuf compilation and the protoc executable
+    protoc {
+        // Downloads from the repositories
+        artifact = "com.google.protobuf:protoc:3.14.0"
+    }
+
+    // Generates the java Protobuf-lite code for the Protobufs in this project
+    generateProtoTasks {
+        all().forEach { task ->
+            task.builtins {
+                // Configures the task output type
+                create("java") {
+                    // Java Lite has smaller code size and is recommended for Android
+                    option("lite")
+                }
+            }
+        }
+    }
+}
+
+
+
 dependencies {
     // App
     implementation(libs.androidx.core.ktx)
@@ -60,6 +84,8 @@ dependencies {
     implementation(libs.coroutines)
     implementation(libs.timber)
     implementation(libs.androidx.test.espresso.core)
+    implementation(libs.androidx.dataStore.core)
+    implementation(libs.google.protobuf)
 
     // Arch
     implementation(libs.room.runtime)
@@ -105,3 +131,4 @@ dependencies {
     androidTestImplementation(libs.androidx.test.espresso.core)
     androidTestImplementation(libs.androidx.compose.ui.test)
 }
+
