@@ -35,7 +35,7 @@ retrofitKotlinxSerializationJson = "1.0.0"
 room = "2.5.0"
 turbine = "0.12.1"
 
-material = "1.8.0"
+material = "1.9.0"
 androidxRoom = "2.5.0"
 androidxCoreKtx = "1.10.1"
 okHttp = "4.10.0"
@@ -63,6 +63,7 @@ shimmer = "0.5.0"
 lottie = "4.1.0"
 protobuf = "3.17.3"
 protobufPlugin = "0.9.3"
+accompanist = "0.30.1"
 
 [libraries]
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "androidGradlePlugin" }
@@ -95,6 +96,9 @@ androidx-lifecycle-runtimeCompose = { group = "androidx.lifecycle", name = "life
 androidx-lifecycle-viewModelCompose = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "androidxLifecycle" }
 androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "androidxNavigation" }
 androidx-navigation-testing = { group = "androidx.navigation", name = "navigation-testing", version.ref = "androidxNavigation" }
+google-accompanist-navigation = { group = "com.google.accompanist", name = "accompanist-navigation-material", version.ref = "accompanist" }
+google-accompanist-systemuicontroller = { group = "com.google.accompanist", name = "accompanist-systemuicontroller", version.ref = "accompanist" }
+google-material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 
 # Testing
 junit4 = { module = "junit:junit", version.ref = "junit4" }

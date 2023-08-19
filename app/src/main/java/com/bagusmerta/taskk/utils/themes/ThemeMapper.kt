@@ -18,4 +18,5 @@ fun ThemePreference.toTheme() = when (this) {
     ThemePreference.SYSTEM -> TaskkTheme.SYSTEM
     ThemePreference.LIGHT -> TaskkTheme.LIGHT
     ThemePreference.DARK -> TaskkTheme.DARK
+    ThemePreference.UNRECOGNIZED -> TODO()
 }

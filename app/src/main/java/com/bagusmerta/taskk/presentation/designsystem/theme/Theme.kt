@@ -2,19 +2,25 @@ package com.bagusmerta.taskk.presentation.designsystem.theme
 
 import android.app.Activity
 import android.os.Build
+import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.MaterialTheme.shapes
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
+import com.bagusmerta.taskk.R
+import com.bagusmerta.taskk.utils.themes.TaskkTheme
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 /**
  *  Dark Theme
@@ -63,30 +69,44 @@ private val LightColorScheme = lightColorScheme(
  * */
 @Composable
 fun TaskkTheme(
-    darkTheme: Boolean = isSystemInDarkTheme(),
-    // Dynamic color is available on Android 12+
-    dynamicColor: Boolean = true,
+    theme: TaskkTheme,
     content: @Composable () -> Unit
 ) {
-    val colorScheme = when {
-        dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
-            val context = LocalContext.current
-            if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
+    val colorScheme = when (theme) {
+        TaskkTheme.SYSTEM -> {
+            if(isSystemInDarkTheme()){
+                DarkColorScheme
+            } else {
+                LightColorScheme
+            }
+        }
+        TaskkTheme.DARK -> { DarkColorScheme }
+        TaskkTheme.LIGHT -> { LightColorScheme }
+
+    }
+
+    val darkIcons = colorScheme == LightColorScheme
+    val systemUiController = rememberSystemUiController()
+    
+    val activity = LocalContext.current as AppCompatActivity
+
+    SideEffect {
+            systemUiController.setSystemBarsColor(
+                color = Color.Transparent,
+                darkIcons = darkIcons,
+                isNavigationBarContrastEnforced = false
+            )
         }
 
-        darkTheme -> DarkColorScheme
-        else -> LightColorScheme
-    }
-    val view = LocalView.current
-    if (!view.isInEditMode) {
-        SideEffect {
-            val window = (view.context as Activity).window
-            window.statusBarColor = colorScheme.primary.toArgb()
-            WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = darkTheme
+    LaunchedEffect(colorScheme){
+        when(colorScheme){
+            DarkColorScheme -> activity.setTheme(R.style.Theme_Taskk_Dark)
+            LightColorScheme -> activity.setTheme(R.style.Theme_Taskk_Light)
         }
     }
 
     MaterialTheme(
+        shapes = Shapes,
         colorScheme = colorScheme,
         typography = Typography,
         content = content

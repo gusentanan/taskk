@@ -81,11 +81,15 @@ dependencies {
     // App
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.annotation)
+    implementation(libs.androidx.appcompat)
     implementation(libs.coroutines)
     implementation(libs.timber)
     implementation(libs.androidx.test.espresso.core)
     implementation(libs.androidx.dataStore.core)
+    implementation(libs.google.material)
     implementation(libs.google.protobuf)
+    implementation(libs.google.accompanist.navigation)
+    implementation(libs.google.accompanist.systemuicontroller)
 
     // Arch
     implementation(libs.room.runtime)

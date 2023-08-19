@@ -1,5 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <style name="Theme.Taskk" parent="android:Theme.Material.Light.NoActionBar" />
+
+    <style name="Theme.Taskk.Light" parent="Theme.Taskk">
+        <item name="colorPrimary">@color/light_primary</item>
+        <item name="colorPrimaryContainer">@color/light_primary</item>
+        <item name="colorSecondary">@color/light_item_background</item>
+        <item name="colorSecondaryContainer">@color/light_item_background</item>
+        <item name="backgroundColor">@color/light_background</item>
+        <item name="colorSurface">@color/light_background</item>
+        <item name="colorSurfaceVariant">@color/light_item_background</item>
+        <item name="colorError">@color/light_error</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+        <item name="colorOnPrimaryContainer">#FFFFFF</item>
+        <item name="colorOnSecondary">@color/light_on</item>
+        <item name="colorOnSecondaryContainer">@color/light_on</item>
+        <item name="colorOnBackground">@color/light_on</item>
+        <item name="colorOnSurface">@color/light_on</item>
+        <item name="colorOnSurfaceVariant">@color/light_on</item>
+        <item name="colorOnError">@color/light_error</item>
+    </style>
+
+    <style name="Theme.Taskk.Dark" parent="Theme.Taskk">
+        <item name="colorPrimary">@color/dark_primary</item>
+        <item name="colorPrimaryContainer">@color/dark_primary</item>
+        <item name="colorSecondary">@color/dark_item_background</item>
+        <item name="colorSecondaryContainer">@color/dark_item_background</item>
+        <item name="backgroundColor">@color/dark_background</item>
+        <item name="colorSurface">@color/dark_background</item>
+        <item name="colorSurfaceVariant">@color/dark_item_background</item>
+        <item name="colorError">@color/dark_error</item>
+        <item name="colorOnPrimary">@color/dark_on</item>
+        <item name="colorOnPrimaryContainer">@color/dark_on</item>
+        <item name="colorOnSecondary">@color/dark_on</item>
+        <item name="colorOnSecondaryContainer">@color/dark_on</item>
+        <item name="colorOnBackground">@color/dark_on</item>
+        <item name="colorOnSurface">@color/dark_on</item>
+        <item name="colorOnSurfaceVariant">@color/dark_on</item>
+        <item name="colorOnError">@color/dark_error</item>
+    </style>
+
 </resources>

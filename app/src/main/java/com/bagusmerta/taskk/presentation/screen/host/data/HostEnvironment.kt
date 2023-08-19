@@ -10,12 +10,11 @@ interface IHostEnvironment {
     fun getTheme(): Flow<TaskkTheme>
 }
 
-//class HostEnvironment @Inject constructor(
-//    private val themeProvider: ThemeProvider
-//) : IHostEnvironment {
-//
-//    override fun getTheme(): Flow<TaskkTheme> {
-//        return themeProvider.getTheme()
-//    }
-//
-//}
+class HostEnvironment @Inject constructor(
+    private val themeProvider: ThemeProvider
+) : IHostEnvironment {
+
+    override fun getTheme(): Flow<TaskkTheme> {
+        return themeProvider.getTheme()
+    }
+}
