@@ -1,4 +1,4 @@
-package com.bagusmerta.taskk.presentation.screen.splash
+package com.bagusmerta.taskk.navigation.splash
 
 sealed class SplashScreenEffect {
     object NavigateToMain: SplashScreenEffect()

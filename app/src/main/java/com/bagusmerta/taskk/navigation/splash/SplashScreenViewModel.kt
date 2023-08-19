@@ -1,4 +1,4 @@
-package com.bagusmerta.taskk.presentation.screen.splash
+package com.bagusmerta.taskk.navigation.splash
 
 import androidx.lifecycle.viewModelScope
 import com.bagusmerta.taskk.utils.vmutils.StateViewModel
