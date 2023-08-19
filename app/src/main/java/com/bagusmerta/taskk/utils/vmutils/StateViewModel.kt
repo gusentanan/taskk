@@ -33,7 +33,7 @@ abstract class StateViewModel<STATE, EFFECT, EVENT, ENV>(
 
     val effect: StateFlow<EFFECT?> = _effect.asStateFlow()
 
-    abstract fun dispatch(action: EVENT)
+    abstract fun dispatch(event: EVENT)
 
     protected fun setState(newState: STATE.() -> STATE) {
         _state.update(newState)
