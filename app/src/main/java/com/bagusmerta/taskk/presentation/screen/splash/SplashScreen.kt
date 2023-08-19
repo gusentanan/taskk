@@ -1,4 +1,4 @@
-package com.bagusmerta.taskk.navigation.splash
+package com.bagusmerta.taskk.presentation.screen.splash
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavController
