@@ -16,7 +16,6 @@ class SplashScreenViewModel: StateViewModel<Unit, SplashScreenEffect, SplashScre
                 }
             }
         }
-
     }
 
 }

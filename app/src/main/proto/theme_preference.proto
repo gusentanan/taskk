@@ -1,10 +1,11 @@
-syntax = 'proto3';
+syntax = "proto3";
 
-option java_package = "com.bagusmerta.taskk.model.preference";
-option java_multiple_files = true;
+package com.bagusmerta.taskk.model.preference;
+
 
 enum ThemePreference{
-  SYSTEM = 0;
-  LIGHT = 1;
-  DARK = 2;
+    SYSTEM = 0;
+    LIGHT = 1;
+    DARK = 2;
 }
+

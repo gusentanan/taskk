@@ -3,10 +3,10 @@ package com.bagusmerta.taskk.presentation.designsystem.component
 import android.content.res.Resources
 import com.bagusmerta.taskk.R
 import com.bagusmerta.taskk.data.model.TaskkToDo
-import com.bagusmerta.taskk.utils.formatDateTime
-import com.bagusmerta.taskk.utils.isSameDay
-import com.bagusmerta.taskk.utils.isTomorrow
-import com.bagusmerta.taskk.utils.isYesterday
+import com.bagusmerta.taskk.utils.extensions.formatDateTime
+import com.bagusmerta.taskk.utils.extensions.isSameDay
+import com.bagusmerta.taskk.utils.extensions.isTomorrow
+import com.bagusmerta.taskk.utils.extensions.isYesterday
 import java.time.LocalDateTime
 
 fun TaskkToDo.dueDateDisplayable(resources: Resources, currentDate: LocalDateTime = LocalDateTime.now()): String? {
