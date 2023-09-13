@@ -54,7 +54,7 @@ fun TaskkContent(
         state = listState
     ) {
         if (tasks.isEmpty()){
-            // TODO: add empty composable pages 
+            // TODO: add empty composable pages
         } else {
             // START ELSE
 

@@ -26,22 +26,22 @@ val Typography = Typography(
     headlineLarge = TextStyle(
         fontFamily = Lora,
         fontWeight = FontWeight.SemiBold,
-        fontSize = 20.sp
+        fontSize = 24.sp
     ),
     headlineMedium = TextStyle(
         fontFamily = Lora,
         fontWeight = FontWeight.SemiBold,
-        fontSize = 14.sp
+        fontSize = 16.sp
     ),
     titleLarge = TextStyle(
         fontFamily = Mukta,
         fontWeight = FontWeight.SemiBold,
-        fontSize = 14.sp
+        fontSize = 16.sp
     ),
     titleMedium = TextStyle(
         fontFamily = Mukta,
         fontWeight = FontWeight.SemiBold,
-        fontSize = 12.sp
+        fontSize = 14.sp
     ),
     bodyLarge = TextStyle(
         fontFamily = Mukta,

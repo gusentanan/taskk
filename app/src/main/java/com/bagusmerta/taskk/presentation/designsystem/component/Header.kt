@@ -70,7 +70,7 @@ fun HeaderWithSettingsButton(
         ){
             Column(
                 modifier = modifier
-                    .padding(start = 12.dp)
+                    .padding(start = 12.dp, top = 12.dp)
                     .weight(1F)
             ) {
                 TskModalTitleMain(text = dateNow)
@@ -85,7 +85,7 @@ fun HeaderWithSettingsButton(
         Divider(
             color = gray20,
             thickness = 1.dp,
-            modifier = Modifier.padding(16.dp)
+            modifier = Modifier.padding(start = 14.dp, end =14.dp, top = 10.dp)
         )
     }
 }
