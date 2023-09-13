@@ -78,11 +78,11 @@ fun TskItem(
                         Spacer(Modifier.width(10.dp))
                         TskPriority(priority = taskkPriority)
                     }
-                    Row( modifier = Modifier.fillMaxWidth(),) {
+                    Row(
+                        modifier = Modifier.fillMaxWidth()
+                    ) {
                         TskCategory(text = tskCategory)
-                        Spacer(Modifier.width(2.dp))
-                        Text(text = "~")
-                        Spacer(Modifier.width(2.dp))
+                        Text(text = " • ")
                         TskDueDate(text = tskDueDate)
                     }
                 }
@@ -172,7 +172,7 @@ fun TskPriority(
         TaskkPriority.HARD -> Color.Red
     }
     Column(
-        modifier = modifier.padding(top = 2.dp)
+        modifier = modifier.padding(top = 5.dp)
     ) {
         Box(modifier = modifier
             .width(60.dp)

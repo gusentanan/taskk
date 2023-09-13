@@ -31,7 +31,7 @@ val Typography = Typography(
     headlineMedium = TextStyle(
         fontFamily = Lora,
         fontWeight = FontWeight.SemiBold,
-        fontSize = 16.sp
+        fontSize = 20.sp
     ),
     titleLarge = TextStyle(
         fontFamily = Mukta,

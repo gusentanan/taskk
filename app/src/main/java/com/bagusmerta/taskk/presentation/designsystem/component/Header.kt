@@ -70,20 +70,20 @@ fun HeaderWithSettingsButton(
         ){
             Column(
                 modifier = modifier
-                    .padding(start = 12.dp, top = 12.dp)
+                    .padding(start = 20.dp, top = 12.dp)
                     .weight(1F)
             ) {
                 TskModalTitleMain(text = dateNow)
                 TskModalSubTitleMain(text = taskStatus)
             }
 
-            Box(modifier = modifier.padding(end = 12.dp, top = 2.dp)
+            Box(modifier = modifier.padding(end = 20.dp, top = 12.dp)
             ) {
                 TskSettingsButton(onClick = onClickSettings)
             }
         }
         Divider(
-            color = gray20,
+            color = commonGray,
             thickness = 1.dp,
             modifier = Modifier.padding(start = 14.dp, end =14.dp, top = 10.dp)
         )
