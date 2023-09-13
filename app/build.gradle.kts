@@ -87,24 +87,25 @@ dependencies {
     kapt(libs.hilt.compiler)
 
     // Jetpack Compose
-    implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.androidx.compose.ui)
+    implementation(libs.androidx.compose.widget)
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.compose.compiler)
     implementation(libs.androidx.compose.runtime)
     implementation(libs.androidx.lifecycle.runtimeCompose)
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.compose.material3)
+    implementation(libs.androidx.compose.material.iconsExtended)
+
 
     // Test
     // JVM tests - Hilt
     testImplementation(libs.hilt.android)
     kaptTest(libs.hilt.compiler)
 
-    debugImplementation(platform(libs.androidx.compose.bom))
     debugImplementation(libs.androidx.compose.ui.tooling.core)
     debugImplementation(libs.androidx.compose.ui.testManifest)
 
-    testImplementation(platform(libs.androidx.compose.bom))
     testImplementation(libs.junit4)
     testImplementation(libs.hilt.android.testing)
     testImplementation(libs.androidx.compose.ui.test)
@@ -113,7 +114,6 @@ dependencies {
     androidTestImplementation(libs.hilt.android.testing)
     kaptAndroidTest(libs.hilt.compiler)
 
-    androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.test.ext)
     androidTestImplementation(libs.androidx.test.espresso.core)
     androidTestImplementation(libs.androidx.compose.ui.test)

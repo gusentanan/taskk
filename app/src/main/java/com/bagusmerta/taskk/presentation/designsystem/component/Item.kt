@@ -11,6 +11,9 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.AccountBox
+import androidx.compose.material.icons.rounded.CheckCircle
 import androidx.compose.material3.Divider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -20,13 +23,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.bagusmerta.taskk.data.model.TaskkPriority
 import com.bagusmerta.taskk.presentation.designsystem.icon.TaskkIcon
 import com.bagusmerta.taskk.presentation.designsystem.theme.commonGray
 import com.bagusmerta.taskk.presentation.designsystem.theme.gray20
-import com.bagusmerta.taskk.utils.TaskkPriority
 
 
 @Composable
@@ -37,6 +41,7 @@ fun TskItem(
     tskTitle: String,
     tskDueDate: String,
     tskCategory: String,
+    leftIcon: ImageVector,
     taskkPriority: TaskkPriority,
     contentPadding: PaddingValues
 ){
@@ -56,7 +61,7 @@ fun TskItem(
                     color = Color.Transparent
                 ) {
                     TskIcon(
-                        imageIcon = TaskkIcon.Check,
+                        imageIcon = leftIcon,
                         tintColor = color
                     )
                 }
@@ -103,7 +108,8 @@ fun previewTskItem(){
         tskDueDate = "Due, Fri 27 June 2023",
         tskCategory = "More College",
         taskkPriority = TaskkPriority.EASY,
-        contentPadding = PaddingValues(10.dp)
+        contentPadding = PaddingValues(10.dp),
+        leftIcon = TaskkIcon.Check
     )
 }
 
@@ -162,7 +168,7 @@ fun TskPriority(
 ){
     val boxColor = when(priority){
         TaskkPriority.EASY -> Color.Green
-        TaskkPriority.MEDIUM -> Color.Yellow
+        TaskkPriority.MID -> Color.Yellow
         TaskkPriority.HARD -> Color.Red
     }
     Column(
@@ -184,6 +190,6 @@ fun TskPriority(
 fun previewPriority(){
     TskPriority(
         modifier = Modifier,
-        priority = TaskkPriority.MEDIUM
+        priority = TaskkPriority.MID
     )
 }

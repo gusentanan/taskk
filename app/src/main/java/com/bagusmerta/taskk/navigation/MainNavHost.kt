@@ -23,5 +23,6 @@ fun MainNavHost() {
         }
 
         // TODO: add other child host here.
+        HomeNavHost(navController)
     }
 }

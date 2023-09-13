@@ -8,10 +8,11 @@ ksp = "1.8.20-1.0.11"
 javaRelease = "8"
 jvmTarget = "1.8"
 androidxNavigation = "2.5.3"
-androidxActivity = "1.7.0"
-androidxAppCompat = "1.5.1"
+androidxActivity = "1.6.1"
+androidxAppCompat = "1.6.0"
 androidxBrowser = "1.4.0"
-androidxComposeBom = "2023.01.00"
+androidxCompose = "1.4.0-alpha04"
+composeWidget = "1.0.0-alpha05"
 androidxComposeCompiler = "1.4.5"
 androidxComposeMaterial3 = "1.1.0-alpha06"
 androidxComposeRuntimeTracing = "1.0.0-alpha01"
@@ -76,7 +77,8 @@ spotless-gradlePlugin = { group = "com.diffplug.spotless", name = "spotless-plug
 androidx-annotation = { group = "androidx.annotation", name = "annotation", version.ref = "annotation" }
 androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "androidxActivity" }
 androidx-browser = { group = "androidx.browser", name = "browser", version.ref = "androidxBrowser" }
-androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "androidxComposeBom" }
+androidx-compose-ui = { group = "androidx.compose.ui", name = "ui", version.ref = "androidxCompose" }
+androidx-compose-widget = { group = "androidx.glance", name = "glance", version.ref = "composeWidget" }
 androidx-compose-foundation = { group = "androidx.compose.foundation", name = "foundation" }
 androidx-compose-foundation-layout = { group = "androidx.compose.foundation", name = "foundation-layout" }
 androidx-compose-material-iconsExtended = { group = "androidx.compose.material", name = "material-icons-extended" }
@@ -100,6 +102,7 @@ androidx-navigation-testing = { group = "androidx.navigation", name = "navigatio
 google-accompanist-navigation = { group = "com.google.accompanist", name = "accompanist-navigation-material", version.ref = "accompanist" }
 google-accompanist-systemuicontroller = { group = "com.google.accompanist", name = "accompanist-systemuicontroller", version.ref = "accompanist" }
 google-material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+
 
 # Testing
 junit4 = { module = "junit:junit", version.ref = "junit4" }
@@ -182,3 +185,4 @@ ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
 protobuf = { id =    "com.google.protobuf", version.ref = "protobufPlugin" }
 squareup-wire = { id = "com.squareup.wire", version.ref = "protoWirePlugin" }
+jetbrains-kotlin-gradlePlugin = { id = "org.jetbrains.kotlin",  version.ref = "kotlin" }

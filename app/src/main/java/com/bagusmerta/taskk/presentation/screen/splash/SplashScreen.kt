@@ -5,6 +5,7 @@ import androidx.navigation.NavController
 import com.bagusmerta.taskk.navigation.HomeFlow
 import com.bagusmerta.taskk.navigation.MainFlow
 import com.bagusmerta.taskk.utils.vmutils.HandleEffect
+import timber.log.Timber
 
 @Composable
 fun SplashScreen(

@@ -19,6 +19,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
 import com.bagusmerta.taskk.R
+import com.bagusmerta.taskk.utils.extensions.getActivity
 import com.bagusmerta.taskk.utils.themes.TaskkTheme
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
@@ -87,8 +88,9 @@ fun TaskkTheme(
 
     val darkIcons = colorScheme == LightColorScheme
     val systemUiController = rememberSystemUiController()
-    
-    val activity = LocalContext.current as AppCompatActivity
+
+    val context = LocalContext.current
+    val activity = context.getActivity()
 
     SideEffect {
             systemUiController.setSystemBarsColor(
@@ -100,8 +102,8 @@ fun TaskkTheme(
 
     LaunchedEffect(colorScheme){
         when(colorScheme){
-            DarkColorScheme -> activity.setTheme(R.style.Theme_Taskk_Dark)
-            LightColorScheme -> activity.setTheme(R.style.Theme_Taskk_Light)
+            DarkColorScheme -> activity?.setTheme(R.style.Theme_Taskk_Dark)
+            LightColorScheme -> activity?.setTheme(R.style.Theme_Taskk_Light)
         }
     }
 
