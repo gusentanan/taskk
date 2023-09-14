@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package com.bagusmerta.taskk.model.preference;
+
+
+enum ThemePreference{
+    SYSTEM = 0;
+    LIGHT = 1;
+    DARK = 2;
+}
+

@@ -1,9 +1,9 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.ksp)
     alias(libs.plugins.hilt)
     alias(libs.plugins.kapt)
+    alias(libs.plugins.squareup.wire)
 }
 
 android {
@@ -31,6 +31,7 @@ android {
     }
 
     buildFeatures {
+        buildConfig = true
         compose = true
     }
 
@@ -52,18 +53,31 @@ android {
     }
 }
 
+wire {
+    kotlin {
+        android = true
+    }
+}
+
+
 dependencies {
     // App
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.annotation)
+    implementation(libs.androidx.appcompat)
     implementation(libs.coroutines)
     implementation(libs.timber)
     implementation(libs.androidx.test.espresso.core)
+    implementation(libs.androidx.dataStore.core)
+    implementation(libs.google.material)
+    implementation(libs.google.protobuf)
+    implementation(libs.google.accompanist.navigation)
+    implementation(libs.google.accompanist.systemuicontroller)
 
     // Arch
     implementation(libs.room.runtime)
     implementation(libs.room.ktx)
-    ksp(libs.room.compiler)
+    kapt(libs.room.compiler)
     implementation(libs.androidx.lifecycle.runtimeCompose)
     implementation(libs.androidx.lifecycle.viewModelCompose)
 
@@ -73,24 +87,25 @@ dependencies {
     kapt(libs.hilt.compiler)
 
     // Jetpack Compose
-    implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.androidx.compose.ui)
+    implementation(libs.androidx.compose.widget)
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.compose.compiler)
     implementation(libs.androidx.compose.runtime)
     implementation(libs.androidx.lifecycle.runtimeCompose)
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.compose.material3)
+    implementation(libs.androidx.compose.material.iconsExtended)
+
 
     // Test
     // JVM tests - Hilt
     testImplementation(libs.hilt.android)
     kaptTest(libs.hilt.compiler)
 
-    debugImplementation(platform(libs.androidx.compose.bom))
     debugImplementation(libs.androidx.compose.ui.tooling.core)
     debugImplementation(libs.androidx.compose.ui.testManifest)
 
-    testImplementation(platform(libs.androidx.compose.bom))
     testImplementation(libs.junit4)
     testImplementation(libs.hilt.android.testing)
     testImplementation(libs.androidx.compose.ui.test)
@@ -99,8 +114,8 @@ dependencies {
     androidTestImplementation(libs.hilt.android.testing)
     kaptAndroidTest(libs.hilt.compiler)
 
-    androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.test.ext)
     androidTestImplementation(libs.androidx.test.espresso.core)
     androidTestImplementation(libs.androidx.compose.ui.test)
 }
+

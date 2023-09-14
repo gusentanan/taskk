@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">taskk</string>
+    <string name="task_add_time">Select time\n</string>
+    <string name="task_cancel">Cancel</string>
+    <string name="taskk_due_date_today">Due today</string>
+    <string name="taskk_due_date_tomorrow">Due tomorrow</string>
+    <string name="taskk_due_date_yesterday">Due yesterday</string>
+    <string name="taskk_due_date">Due, %1$s</string>
+    <string name="task_complete_header">Completed</string>
 </resources>
