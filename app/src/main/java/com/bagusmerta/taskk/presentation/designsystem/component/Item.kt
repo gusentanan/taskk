@@ -85,7 +85,6 @@ fun TskItem(
                         modifier = Modifier.fillMaxWidth()
                     ) {
                         TskCategory(text = tskCategory)
-                        Text(text = " • ")
                         TskDueDate(text = tskDueDate)
                     }
                 }
