@@ -31,6 +31,9 @@ import com.bagusmerta.taskk.data.model.TaskkPriority
 import com.bagusmerta.taskk.presentation.designsystem.icon.TaskkIcon
 import com.bagusmerta.taskk.presentation.designsystem.theme.commonGray
 import com.bagusmerta.taskk.presentation.designsystem.theme.gray20
+import com.bagusmerta.taskk.presentation.designsystem.theme.softGreen
+import com.bagusmerta.taskk.presentation.designsystem.theme.softRed
+import com.bagusmerta.taskk.presentation.designsystem.theme.softYellow
 
 
 @Composable
@@ -167,9 +170,9 @@ fun TskPriority(
     priority: TaskkPriority
 ){
     val boxColor = when(priority){
-        TaskkPriority.EASY -> Color.Green
-        TaskkPriority.MID -> Color.Yellow
-        TaskkPriority.HARD -> Color.Red
+        TaskkPriority.EASY -> softGreen
+        TaskkPriority.MID -> softYellow
+        TaskkPriority.HARD -> softRed
     }
     Column(
         modifier = modifier.padding(top = 5.dp)

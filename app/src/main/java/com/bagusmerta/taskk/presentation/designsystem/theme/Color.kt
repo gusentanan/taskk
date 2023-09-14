@@ -22,3 +22,7 @@ val dError = Color(0xFFFF1D3C)
 
 val commonGray = Color(0xFF919191)
 val gray20 = Color(0xFFC7C7C7)
+
+val softGreen = Color(0xFF82D186)
+val softRed = Color(0xFFDA5256)
+val softYellow = Color(0xFFDACB4B)
