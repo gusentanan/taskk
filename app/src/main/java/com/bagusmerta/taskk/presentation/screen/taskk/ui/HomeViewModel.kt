@@ -39,9 +39,7 @@ class HomeViewModel @Inject constructor(
     }
 
     private fun HomeState.setAllState(list: TaskkList) = copy(
-        taskkList = list,
-        taskkCompleted = state.value.listTaskkDisplayable.taskkItem.filterIsInstance<TaskkItem.Complete>().size,
-        taskkIncomplete = state.value.listTaskkDisplayable.taskkItem.filterIsInstance<TaskkItem.InProgress>().size
+        taskkList = list
     )
 
     override fun dispatch(event: HomeEvent) {

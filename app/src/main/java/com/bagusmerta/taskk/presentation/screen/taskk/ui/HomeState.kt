@@ -12,16 +12,14 @@ import java.time.LocalDateTime
 @Immutable
 data class HomeState(
     // This variable act as initial state value
-    val taskkIncomplete: Int = 0,
-    val taskkCompleted: Int = 0,
     val taskkName: TextFieldValue = TextFieldValue(),
     val taskkList: TaskkList = TaskkList()
 ) {
     val todayDate = DateTimeProviderImpl().getNowDate()
     val listTaskkDisplayable = taskkList.toTaskkListState()
     val validTaskkName = taskkName.text.isNotBlank()
-    val validTaskkIncomplete = taskkIncomplete
-    val validTaskkCompleted =- taskkCompleted
+    val validTaskkIncomplete = listTaskkDisplayable.taskkItem.filterIsInstance<TaskkItem.Complete>().size
+    val validTaskkCompleted = listTaskkDisplayable.taskkItem.filterIsInstance<TaskkItem.InProgress>().size
 
 }
 
