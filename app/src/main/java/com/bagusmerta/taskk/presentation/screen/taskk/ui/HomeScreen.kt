@@ -3,16 +3,21 @@ package com.bagusmerta.taskk.presentation.screen.taskk.ui
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
 import androidx.glance.text.Text
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.bagusmerta.taskk.data.model.TaskkToDo
 import com.bagusmerta.taskk.presentation.designsystem.component.HeaderWithSettingsButton
+import com.bagusmerta.taskk.presentation.designsystem.component.PgModalLayout
+import com.bagusmerta.taskk.presentation.designsystem.component.TskButton
 import com.bagusmerta.taskk.presentation.designsystem.component.TskLayout
 import com.bagusmerta.taskk.utils.extensions.formatDateTime
 import java.time.LocalDateTime
@@ -41,7 +46,6 @@ fun HomeScreen(
         color = Color.Transparent,
         listState = listState
     )
-
 }
 
 @Composable
@@ -82,6 +86,20 @@ fun ListTaskkContent(
                 onClick = onClickTaskItem,
                 onCheckBoxClick = onCheckBoxClick,
                 listState = listState
+            )
+
+            PgModalLayout(
+                content = {
+                    item {
+                        TskButton(
+                            onClick = { /*TODO*/ },
+                            modifier = Modifier.fillMaxWidth()
+                                .padding(start = 80.dp, end = 80.dp),
+                        ) {
+                            androidx.compose.material3.Text(text = "Create New Task")
+                        }
+                    }
+                }
             )
             
         }
