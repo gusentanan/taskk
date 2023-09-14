@@ -16,9 +16,9 @@ import androidx.glance.text.Text
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.bagusmerta.taskk.data.model.TaskkToDo
 import com.bagusmerta.taskk.presentation.designsystem.component.HeaderWithSettingsButton
-import com.bagusmerta.taskk.presentation.designsystem.component.PgModalLayout
 import com.bagusmerta.taskk.presentation.designsystem.component.TskButton
 import com.bagusmerta.taskk.presentation.designsystem.component.TskLayout
+import com.bagusmerta.taskk.presentation.designsystem.component.TskModalLayout
 import com.bagusmerta.taskk.utils.extensions.formatDateTime
 import java.time.LocalDateTime
 
@@ -88,7 +88,7 @@ fun ListTaskkContent(
                 listState = listState
             )
 
-            PgModalLayout(
+            TskModalLayout(
                 content = {
                     item {
                         TskButton(

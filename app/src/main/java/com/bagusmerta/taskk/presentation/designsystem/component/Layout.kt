@@ -6,10 +6,13 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.navigationBarsPadding
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.material3.MaterialTheme
@@ -21,6 +24,7 @@ import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.bagusmerta.taskk.presentation.designsystem.theme.gray20
 
 @Composable
 fun TskLayout(
@@ -41,14 +45,24 @@ fun TskLayout(
 
 @Composable
 fun TskModalLayout(
-    title: @Composable () -> Unit,
     modifier: Modifier = Modifier,
     content: LazyListScope.() -> Unit
 ) {
-    TskLazyColumn(modifier) {
+    TskModalLazyColumn(modifier) {
         item {
-            Spacer(Modifier.height(24.dp))
-            title()
+            Column(
+                modifier = modifier.fillMaxWidth().padding(top = 8.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Box(modifier = modifier
+                    .width(80.dp)
+                    .height(8.dp)
+                    .background(
+                        color = gray20,
+                        shape = MaterialTheme.shapes.large
+                    )
+                )
+            }
             Spacer(Modifier.height(24.dp))
         }
 
@@ -61,7 +75,7 @@ fun TskModalLayout(
 }
 
 @Composable
-fun TskLazyColumn(
+fun TskModalLazyColumn(
     modifier: Modifier = Modifier,
     shape: Shape = RectangleShape,
     content: LazyListScope.() -> Unit
