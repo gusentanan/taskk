@@ -38,6 +38,7 @@ import com.bagusmerta.taskk.presentation.designsystem.theme.softYellow
 
 @Composable
 fun TskItem(
+    modifier: Modifier,
     onClick: () -> Unit,
     onCheckBoxClick: () -> Unit,
     color: Color,
@@ -103,6 +104,7 @@ fun TskItem(
 @Composable
 fun previewTskItem(){
     TskItem(
+        modifier = Modifier,
         onClick = { },
         onCheckBoxClick = {  },
         color = MaterialTheme.colorScheme.primary,

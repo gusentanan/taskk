@@ -18,8 +18,8 @@ data class HomeState(
     val todayDate = DateTimeProviderImpl().getNowDate()
     val listTaskkDisplayable = taskkList.toTaskkListState()
     val validTaskkName = taskkName.text.isNotBlank()
-    val validTaskkIncomplete = listTaskkDisplayable.taskkItem.filterIsInstance<TaskkItem.Complete>().size
-    val validTaskkCompleted = listTaskkDisplayable.taskkItem.filterIsInstance<TaskkItem.InProgress>().size
+    val validTaskkIncomplete = listTaskkDisplayable.taskkItem.filterIsInstance<TaskkItem.InProgress>().size
+    val validTaskkCompleted = listTaskkDisplayable.taskkItem.filterIsInstance<TaskkItem.Complete>().size
 
 }
 

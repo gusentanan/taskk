@@ -27,6 +27,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.bagusmerta.taskk.R
 import com.bagusmerta.taskk.data.model.TaskkToDo
+import com.bagusmerta.taskk.presentation.designsystem.component.TskEmpty
 import com.bagusmerta.taskk.presentation.designsystem.component.TskItem
 import com.bagusmerta.taskk.presentation.designsystem.icon.TaskkIcon
 import com.bagusmerta.taskk.utils.AlphaDisabled
@@ -47,14 +48,18 @@ fun TaskkContent(
     listState: LazyListState
 ) {
     val coroutineScope = rememberCoroutineScope()
-    val resources = LocalContext.current.resources
 
     LazyColumn(
         modifier = modifier.fillMaxSize(),
         state = listState
     ) {
         if (tasks.isEmpty()){
-            // TODO: add empty composable pages
+            item {
+                TskEmpty(text = "Add A New Task to Start!",
+                    modifier = Modifier.fillParentMaxHeight()
+                        .padding(bottom = 100.dp)
+                )
+            }
         } else {
             // START ELSE
 
@@ -81,6 +86,7 @@ fun TaskkContent(
                     }
                     is TaskkItem.Complete -> { 
                         TskItem(
+                            modifier = Modifier.animateItemPlacement(),
                             onClick = { onClick(it.taskk) },
                             onCheckBoxClick = { onCheckBoxClick(it.taskk) },
                             color = color.copy(alpha = AlphaDisabled),
@@ -97,6 +103,7 @@ fun TaskkContent(
                         var debounceJob: Job? by remember { mutableStateOf(null) }
 
                         TskItem(
+                            modifier = Modifier.animateItemPlacement(),
                             onClick = { onClick(it.taskk) },
                             onCheckBoxClick = {
                                 isChecked = !isChecked
