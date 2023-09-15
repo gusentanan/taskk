@@ -29,4 +29,21 @@ sealed class HomeFlow(val name: String){
     }
 }
 
+sealed class DetailFlow(val name: String){
+    object Root: DetailFlow("detail-root"){
+        val route = name
+    }
+
+    object DetailScreen: DetailFlow("detail-screen"){
+        val route = name
+        val arguments = listOf(
+            navArgument(ARG_TASKK_ID){
+                defaultValue = ""
+            }
+        )
+    }
+
+}
+
 const val ARG_LIST_ID = "listId"
+const val ARG_TASKK_ID = "taskkId"
