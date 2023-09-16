@@ -1,4 +1,4 @@
-package com.bagusmerta.taskk.data.model
+package com.bagusmerta.taskk.domain.model
 
 import java.time.LocalDateTime
 

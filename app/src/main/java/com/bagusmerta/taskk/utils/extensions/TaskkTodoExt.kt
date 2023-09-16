@@ -1,7 +1,7 @@
 package com.bagusmerta.taskk.utils.extensions
 
-import com.bagusmerta.taskk.data.model.TaskkList
-import com.bagusmerta.taskk.data.model.TaskkStatus
+import com.bagusmerta.taskk.domain.model.TaskkList
+import com.bagusmerta.taskk.domain.model.TaskkStatus
 import com.bagusmerta.taskk.presentation.screen.taskk.ui.TaskkItem
 import com.bagusmerta.taskk.presentation.screen.taskk.ui.TaskkListState
 

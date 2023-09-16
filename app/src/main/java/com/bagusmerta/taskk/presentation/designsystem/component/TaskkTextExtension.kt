@@ -2,7 +2,7 @@ package com.bagusmerta.taskk.presentation.designsystem.component
 
 import android.content.res.Resources
 import com.bagusmerta.taskk.R
-import com.bagusmerta.taskk.data.model.TaskkToDo
+import com.bagusmerta.taskk.domain.model.TaskkToDo
 import com.bagusmerta.taskk.utils.extensions.formatDateTime
 import com.bagusmerta.taskk.utils.extensions.isSameDay
 import com.bagusmerta.taskk.utils.extensions.isTomorrow

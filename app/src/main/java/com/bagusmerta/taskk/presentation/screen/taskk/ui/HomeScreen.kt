@@ -14,7 +14,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.glance.text.Text
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.bagusmerta.taskk.data.model.TaskkToDo
+import com.bagusmerta.taskk.domain.model.TaskkToDo
 import com.bagusmerta.taskk.presentation.designsystem.component.HeaderWithSettingsButton
 import com.bagusmerta.taskk.presentation.designsystem.component.TskButton
 import com.bagusmerta.taskk.presentation.designsystem.component.TskLayout
