@@ -27,7 +27,7 @@ fun HomeScreen(
     viewModel: HomeViewModel,
     onRelaunchScreen: (String) -> Unit,
     onAddTaskClick: () -> Unit,
-    onTaskItemClick: () -> Unit,
+    onTaskItemClick: (String, String) -> Unit,
 ){
     val state by viewModel.state.collectAsStateWithLifecycle()
     val listState = rememberLazyListState()
@@ -42,7 +42,7 @@ fun HomeScreen(
             )
         },
         onCheckBoxClick = {  } ,
-        onClickTaskItem = { } ,
+        onClickTaskItem = { onTaskItemClick(it.id, 1.toString()) } ,
         color = Color.Transparent,
         listState = listState
     )

@@ -27,7 +27,7 @@ class HomeViewModel @Inject constructor(
             if(listId.isNullOrBlank()){
                 setEffect(HomeEffect.ShowNewTaskInput)
             } else {
-                homeEnvironment.getListTaskk(listId)
+                environment.getListTaskk(listId)
                     .catch {  }
                     .collect {
                         setState {

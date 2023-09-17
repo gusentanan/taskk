@@ -31,14 +31,21 @@ sealed class HomeFlow(val name: String){
 
 sealed class DetailFlow(val name: String){
     object Root: DetailFlow("detail-root"){
-        val route = name
+        val route = "$name?$ARG_TASKK_ID={$ARG_TASKK_ID}&$ARG_LIST_ID={$ARG_LIST_ID}"
+
+        fun route(taskId: String, listId: String): String {
+            return "$name?$ARG_TASKK_ID=${taskId}&$ARG_LIST_ID=${listId}"
+        }
     }
 
     object DetailScreen: DetailFlow("detail-screen"){
-        val route = name
+        val route = "$name?$ARG_TASKK_ID={$ARG_TASKK_ID}&$ARG_LIST_ID={$ARG_LIST_ID}"
         val arguments = listOf(
             navArgument(ARG_TASKK_ID){
                 defaultValue = ""
+            },
+            navArgument(ARG_LIST_ID){
+                defaultValue = "1"
             }
         )
     }

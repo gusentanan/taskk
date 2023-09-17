@@ -75,6 +75,7 @@ fun TaskkContent(
                             modifier = Modifier
                                 .padding(horizontal = 16.dp)
                                 .fillMaxWidth()
+                                .fillMaxWidth()
                                 .height(32.dp)
                         ) {
                             Text(

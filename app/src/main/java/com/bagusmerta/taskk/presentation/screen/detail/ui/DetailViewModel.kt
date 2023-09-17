@@ -2,6 +2,7 @@ package com.bagusmerta.taskk.presentation.screen.detail.ui
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
+import com.bagusmerta.taskk.domain.model.TaskkToDo
 import com.bagusmerta.taskk.navigation.ARG_LIST_ID
 import com.bagusmerta.taskk.navigation.ARG_TASKK_ID
 import com.bagusmerta.taskk.presentation.screen.detail.data.IDetailEnvironment
@@ -16,20 +17,28 @@ class DetailViewModel @Inject constructor(
     detailEnvironment: IDetailEnvironment
 ): StateViewModel<DetailState, DetailEffect, DetailEvent, IDetailEnvironment>(DetailState(), detailEnvironment){
 
-    val taskkId = savedStateHandle.get<String>(ARG_TASKK_ID)
-    val listId = savedStateHandle.get<String>(ARG_LIST_ID)
+    private val taskkId = savedStateHandle.get<String>(ARG_TASKK_ID)
+    private val listId = savedStateHandle.get<String>(ARG_LIST_ID)
     init {
+        initTask()
+    }
+
+    private fun initTask(){
         viewModelScope.launch {
             if(taskkId != null && listId != null){
                 environment.getTaskkById(taskkId)
                     .collect {
                         setState {
-                            copy(taskk = taskk)
+                            setAllState(it)
                         }
                     }
             }
         }
     }
+
+    private fun DetailState.setAllState(data: TaskkToDo) = copy(
+        taskk = data
+    )
 
     override fun dispatch(event: DetailEvent) {
         TODO("Not yet implemented")

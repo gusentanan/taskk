@@ -1,9 +1,12 @@
 package com.bagusmerta.taskk.presentation.screen.detail.data
 
 import com.bagusmerta.taskk.domain.model.TaskkToDo
+import com.bagusmerta.taskk.utils.getMockListTask
+import com.bagusmerta.taskk.utils.getTaskkByIdMock
 import com.bagusmerta.taskk.utils.wrapper.DateTimeProvider
 import com.bagusmerta.taskk.utils.wrapper.IdTaskkProvider
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.collect
 import javax.inject.Inject
 
 class DetailEnvironmentImpl @Inject constructor(
@@ -11,7 +14,7 @@ class DetailEnvironmentImpl @Inject constructor(
     override val dateTimeProvider: DateTimeProvider
 ): IDetailEnvironment {
     override fun getTaskkById(taskkId: String): Flow<TaskkToDo> {
-        TODO("Not yet implemented")
+        return getTaskkByIdMock(taskkId)
     }
 
     override fun insertTaskkTitle(taskkId: String) {
