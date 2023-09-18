@@ -82,6 +82,7 @@ fun DetailScreen(
     onClickDueDate: () -> Unit,
     onClickTaskkPriority: () -> Unit,
     onClickTaskkCategory: () -> Unit,
+    onClickTaskkNote: () -> Unit,
     onClickTaskkStatus: () -> Unit,
     onClickTaskkDelete: () -> Unit
 ) {
@@ -120,7 +121,7 @@ fun DetailScreen(
         onClickTaskkCategory = { /*TODO*/ },
         onClickTaskkStatus = { /*TODO*/ },
         listState = listState,
-        onClickTaskkNote = { /*TODO*/ },
+        onClickTaskkNote =  onClickTaskkNote,
         onCheckedChangeDueDate = { /*TODO*/ }
     )
 

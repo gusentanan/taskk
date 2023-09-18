@@ -4,15 +4,37 @@ import androidx.compose.ui.text.input.TextFieldValue
 import java.time.LocalTime
 
 sealed class DetailEvent {
-    object OnClickSave: DetailEvent()
-    object OnShow: DetailEvent()
-    object OnToggleStatus: DetailEvent()
-    object Delete: DetailEvent()
 
-    data class ChangeTaskkTitle(val title: TextFieldValue): DetailEvent()
+    object Delete: DetailEvent()
+    object OnToggleStatus: DetailEvent()
     data class SelectDueDate(val date: LocalTime): DetailEvent()
-    data class SelectPriority(val priority: String): DetailEvent()
-    data class SelectCategory(val category: String): DetailEvent()
-    data class ChangeTaskkNote(val note: TextFieldValue): DetailEvent()
+    sealed class TaskkTitleEvent: DetailEvent() {
+        object OnClickSave: TaskkTitleEvent()
+        object OnShow: TaskkTitleEvent()
+        data class ChangeTaskkTitle(val title: TextFieldValue): TaskkTitleEvent()
+
+    }
+
+    sealed class TaskkCategoryEvent: DetailEvent() {
+        object OnClickSave: TaskkCategoryEvent()
+        object OnShow: TaskkCategoryEvent()
+        data class SelectCategory(val category: String): TaskkCategoryEvent()
+
+
+    }
+
+    sealed class TaskkPriorityEvent: DetailEvent() {
+        object OnClickSave: TaskkPriorityEvent()
+        object OnShow: TaskkPriorityEvent()
+        data class SelectPriority(val priority: String): TaskkPriorityEvent()
+
+    }
+
+    sealed class TaskkNoteEvent: DetailEvent() {
+        object OnClickSave: TaskkNoteEvent()
+        object OnShow: TaskkNoteEvent()
+        data class ChangeTaskkNote(val note: TextFieldValue): TaskkNoteEvent()
+
+    }
 
 }

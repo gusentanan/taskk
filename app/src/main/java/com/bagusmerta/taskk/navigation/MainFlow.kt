@@ -1,6 +1,7 @@
 package com.bagusmerta.taskk.navigation
 
 import androidx.navigation.navArgument
+import androidx.navigation.navDeepLink
 import com.bagusmerta.taskk.utils.themes.ThemeSerializer.defaultValue
 
 sealed class MainFlow(val name: String){
@@ -39,7 +40,6 @@ sealed class DetailFlow(val name: String){
     }
 
     object DetailScreen: DetailFlow("detail-screen"){
-        val route = "$name?$ARG_TASKK_ID={$ARG_TASKK_ID}&$ARG_LIST_ID={$ARG_LIST_ID}"
         val arguments = listOf(
             navArgument(ARG_TASKK_ID){
                 defaultValue = ""
@@ -48,9 +48,23 @@ sealed class DetailFlow(val name: String){
                 defaultValue = "1"
             }
         )
+
+        val route = "$name?$ARG_TASKK_ID={$ARG_TASKK_ID}&$ARG_LIST_ID={$ARG_LIST_ID}"
+
+        val deepLinks = listOf(navDeepLink { uriPattern = "$BASE_DEEPLINK/$route" })
+
+        fun deeplink(taskId: String, listId: String): String {
+            return "$BASE_DEEPLINK/$name?$ARG_TASKK_ID=${taskId}&$ARG_LIST_ID=${listId}"
+        }
+    }
+
+    object EditTaskkNote: DetailFlow("edit-note-screen"){
+        val route = name
     }
 
 }
 
+
+const val BASE_DEEPLINK = "taskk://com.bagusmerta"
 const val ARG_LIST_ID = "listId"
 const val ARG_TASKK_ID = "taskkId"

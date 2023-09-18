@@ -1,5 +1,6 @@
 package com.bagusmerta.taskk.presentation.screen.detail.ui
 
+import androidx.compose.ui.text.TextRange
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
 import com.bagusmerta.taskk.domain.model.TaskkToDo
@@ -41,7 +42,28 @@ class DetailViewModel @Inject constructor(
     )
 
     override fun dispatch(event: DetailEvent) {
-        TODO("Not yet implemented")
+       when(event){
+           is DetailEvent.TaskkNoteEvent -> handleTaskkNoteEvent(event)
+           is DetailEvent.TaskkPriorityEvent -> { }
+           is DetailEvent.TaskkCategoryEvent -> { }
+           is DetailEvent.TaskkTitleEvent -> { }
+
+           else -> {}
+       }
+    }
+
+    private fun handleTaskkNoteEvent(event: DetailEvent.TaskkNoteEvent) {
+        when(event){
+            is DetailEvent.TaskkNoteEvent.OnShow -> {
+                viewModelScope.launch {
+                    val note = state.value.taskk.note
+                    setState { copy(editTaskkNote = editTaskkNote.copy(text = note, selection = TextRange(note.length))) }
+                }
+            }
+            is DetailEvent.TaskkNoteEvent.ChangeTaskkNote -> { }
+            is DetailEvent.TaskkNoteEvent.OnClickSave -> { }
+
+        }
     }
 
 }
