@@ -63,7 +63,7 @@ fun DetailTaskkNoteScreen(
                           .fillMaxWidth()
                           .height(150.dp)
                           .focusRequester(focusRequest),
-                      textStyle = MaterialTheme.typography.bodyMedium.copy(color = MaterialTheme.colorScheme.onSurface),
+                      textStyle = MaterialTheme.typography.titleMedium.copy(color = MaterialTheme.colorScheme.onSurface),
                       cursorBrush = SolidColor(MaterialTheme.colorScheme.primary),
                       keyboardOptions = KeyboardOptions.Default.copy(capitalization = KeyboardCapitalization.Sentences)
                   )

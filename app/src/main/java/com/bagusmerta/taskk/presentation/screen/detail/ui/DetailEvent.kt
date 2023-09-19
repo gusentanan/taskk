@@ -1,13 +1,16 @@
 package com.bagusmerta.taskk.presentation.screen.detail.ui
 
 import androidx.compose.ui.text.input.TextFieldValue
+import java.time.LocalDate
 import java.time.LocalTime
 
 sealed class DetailEvent {
 
     object Delete: DetailEvent()
     object OnToggleStatus: DetailEvent()
-    data class SelectDueDate(val date: LocalTime): DetailEvent()
+
+    object ResetDueDate: DetailEvent()
+    data class SelectDueDate(val date: LocalDate): DetailEvent()
     sealed class TaskkTitleEvent: DetailEvent() {
         object OnClickSave: TaskkTitleEvent()
         object OnShow: TaskkTitleEvent()

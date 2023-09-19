@@ -1,6 +1,7 @@
 package com.bagusmerta.taskk.presentation.screen.detail.ui
 
 import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -74,6 +75,7 @@ import com.bagusmerta.taskk.utils.extensions.formatDateTime
 import com.bagusmerta.taskk.utils.extensions.getActivity
 import com.bagusmerta.taskk.utils.extensions.isDueDateSet
 import com.bagusmerta.taskk.utils.extensions.isExpired
+import com.bagusmerta.taskk.utils.extensions.showDatePicker
 import com.bagusmerta.taskk.utils.vmutils.HandleEffect
 import com.bagusmerta.taskk.utils.wrapper.DateTimeProviderImpl
 import kotlinx.coroutines.Job
@@ -97,7 +99,7 @@ fun DetailScreen(
     val state by viewModel.state.collectAsStateWithLifecycle()
     val activity  = LocalContext.current.getActivity()
     val listState = rememberLazyListState()
-    Log.d("DETAILL", state.toString())
+    Log.d("DETAILL", activity.toString())
 
     HandleEffect(viewModel = viewModel){
         when(it){
@@ -122,13 +124,28 @@ fun DetailScreen(
         //TODO: Might look at this later
         dueDateTitle = state.taskk.dueDate?.formatDateTime().toString(),
         onClickTaskkTitle = { onClickTaskkTitle() },
-        onClickDueDate = { /*TODO*/ },
+        onClickDueDate = {
+            val dueDateValue = state.taskk.dueDate?.toLocalDate()
+            if (dueDateValue != null) {
+                activity?.showDatePicker(dueDateValue) { selectedDate ->
+                    viewModel.dispatch(DetailEvent.SelectDueDate(selectedDate))
+                }
+            }
+        },
+        onCheckedChangeDueDate = { check ->
+            if (check) {
+                activity?.showDatePicker(DateTimeProviderImpl().getNowDate().toLocalDate()) { selectedDate ->
+                    viewModel.dispatch(DetailEvent.SelectDueDate(selectedDate))
+                }
+            } else {
+                viewModel.dispatch(DetailEvent.ResetDueDate)
+            }
+        },
         onClickTaskkPriority = { onClickTaskkPriority() },
         onClickTaskkCategory = { onClickTaskkCategory() },
         onClickTaskkStatus = { /*TODO*/ },
         listState = listState,
         onClickTaskkNote =  { onClickTaskkNote() },
-        onCheckedChangeDueDate = { /*TODO*/ },
         onClickTaskkDelete = { onClickTaskkDelete() }
     )
 

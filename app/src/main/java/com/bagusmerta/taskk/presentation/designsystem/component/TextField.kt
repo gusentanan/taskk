@@ -47,7 +47,7 @@ fun TskTextField(
     modifier: Modifier = Modifier,
     shape: Shape = MaterialTheme.shapes.large,
     textColor: Color = MaterialTheme.colorScheme.onSurface,
-    textStyle: TextStyle = MaterialTheme.typography.bodyMedium.copy(color = MaterialTheme.colorScheme.onSurface),
+    textStyle: TextStyle = MaterialTheme.typography.titleSmall.copy(color = MaterialTheme.colorScheme.onSurface),
     errorLabel: @Composable (() -> Unit)? = null
 ) {
         OutlinedTextField(
