@@ -6,9 +6,13 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
+import com.bagusmerta.taskk.presentation.screen.detail.ui.DetailEvent
 import com.bagusmerta.taskk.presentation.screen.detail.ui.DetailScreen
 import com.bagusmerta.taskk.presentation.screen.detail.ui.DetailViewModel
+import com.bagusmerta.taskk.presentation.screen.detail.ui.bottomsheet.DetailTaskkCategoryScreen
 import com.bagusmerta.taskk.presentation.screen.detail.ui.bottomsheet.DetailTaskkNoteScreen
+import com.bagusmerta.taskk.presentation.screen.detail.ui.bottomsheet.DetailTaskkPriorityScreen
+import com.bagusmerta.taskk.presentation.screen.detail.ui.bottomsheet.DetailTaskkTitleScreen
 import com.bagusmerta.taskk.utils.wrapper.BottomSheetConfiguration
 import com.bagusmerta.taskk.utils.wrapper.DefaultBottomSheet
 import com.google.accompanist.navigation.material.ExperimentalMaterialNavigationApi
@@ -58,6 +62,55 @@ fun NavGraphBuilder.DetailNavHost(
             DetailTaskkNoteScreen(
                 viewModel = viewModel,
                 onClickBack = { navController.navigateUp() }
+            )
+        }
+
+        bottomSheet(DetailFlow.EditTaskkTitle.route) {
+            val viewModel = if(navController.previousBackStackEntry != null){
+                hiltViewModel<DetailViewModel>(
+                    navController.previousBackStackEntry!!
+                )
+            } else {
+                hiltViewModel()
+            }
+
+            bottomSheetConfig.value = DefaultBottomSheet
+            DetailTaskkTitleScreen(
+                viewModel = viewModel ,
+                onCancelClick = { navController.navigateUp() },
+                onSaveClick = { navController.navigateUp() }
+            )
+        }
+
+        bottomSheet(DetailFlow.PickTaskkCategory.route){
+            val viewModel = if(navController.previousBackStackEntry != null){
+                hiltViewModel<DetailViewModel>(
+                    navController.previousBackStackEntry!!
+                )
+            } else {
+                hiltViewModel()
+            }
+
+            bottomSheetConfig.value = DefaultBottomSheet
+            DetailTaskkCategoryScreen(
+                viewModel = viewModel,
+                onItemClick = { navController.navigateUp() }
+            )
+        }
+
+        bottomSheet(DetailFlow.PickTaskkPriority.route){
+            val viewModel = if(navController.previousBackStackEntry != null){
+                hiltViewModel<DetailViewModel>(
+                    navController.previousBackStackEntry!!
+                )
+            } else {
+                hiltViewModel()
+            }
+
+            bottomSheetConfig.value = DefaultBottomSheet
+            DetailTaskkPriorityScreen(
+                viewModel = viewModel,
+                onItemClick = { navController.navigateUp() }
             )
         }
     }
