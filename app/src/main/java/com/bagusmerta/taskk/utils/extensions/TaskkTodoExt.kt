@@ -7,6 +7,7 @@ import com.bagusmerta.taskk.domain.model.TaskkStatus
 import com.bagusmerta.taskk.domain.model.TaskkToDo
 import com.bagusmerta.taskk.presentation.screen.taskk.ui.TaskkItem
 import com.bagusmerta.taskk.presentation.screen.taskk.ui.TaskkListState
+import com.bagusmerta.taskk.utils.wrapper.DateTimeProviderImpl
 import java.time.LocalDateTime
 
 
@@ -42,4 +43,9 @@ fun TaskkToDo.dueDateDisplayable(resources: Resources, currentDate: LocalDateTim
     } else {
         null
     }
+}
+
+fun TaskkToDo.isDueDateSet(): Boolean = this.dueDate != null
+fun TaskkToDo.isExpired(currentDate: LocalDateTime = DateTimeProviderImpl().getNowDate()): Boolean {
+    return dueDate?.isBefore(currentDate) ?: false
 }

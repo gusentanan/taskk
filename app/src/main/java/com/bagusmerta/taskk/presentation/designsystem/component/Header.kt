@@ -28,9 +28,9 @@ fun HeaderWithBackButton(
     onClickBack: () -> Unit,
     modifier: Modifier = Modifier
 ){
-    Row(modifier = modifier) {
+    Row(modifier = modifier.padding(top = 10.dp)) {
         Box(modifier = modifier
-            .padding(start = 16.dp, top = 4.dp)
+            .padding(start = 16.dp)
             .weight(0.2F)
             ){
                 TskBackButton(onClick = onClickBack)

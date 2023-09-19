@@ -36,12 +36,12 @@ val Typography = Typography(
     titleLarge = TextStyle(
         fontFamily = Mukta,
         fontWeight = FontWeight.SemiBold,
-        fontSize = 16.sp
+        fontSize = 20.sp
     ),
     titleMedium = TextStyle(
         fontFamily = Mukta,
         fontWeight = FontWeight.SemiBold,
-        fontSize = 14.sp
+        fontSize = 16.sp
     ),
     bodyLarge = TextStyle(
         fontFamily = Mukta,

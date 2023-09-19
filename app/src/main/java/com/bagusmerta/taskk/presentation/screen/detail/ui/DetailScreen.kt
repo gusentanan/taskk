@@ -62,11 +62,16 @@ import com.bagusmerta.taskk.presentation.designsystem.component.TskLayout
 import com.bagusmerta.taskk.presentation.designsystem.icon.TaskkIcon
 import com.bagusmerta.taskk.presentation.designsystem.theme.MediumRadius
 import com.bagusmerta.taskk.presentation.designsystem.theme.commonGray
+import com.bagusmerta.taskk.presentation.designsystem.theme.gray20
+import com.bagusmerta.taskk.presentation.designsystem.theme.softGreen
+import com.bagusmerta.taskk.presentation.designsystem.theme.softRed
 import com.bagusmerta.taskk.utils.AlphaDisabled
 import com.bagusmerta.taskk.utils.AlphaMedium
 import com.bagusmerta.taskk.utils.DividerAlpha
 import com.bagusmerta.taskk.utils.extensions.formatDateTime
 import com.bagusmerta.taskk.utils.extensions.getActivity
+import com.bagusmerta.taskk.utils.extensions.isDueDateSet
+import com.bagusmerta.taskk.utils.extensions.isExpired
 import com.bagusmerta.taskk.utils.vmutils.HandleEffect
 import com.bagusmerta.taskk.utils.wrapper.DateTimeProviderImpl
 import kotlinx.coroutines.Job
@@ -114,7 +119,6 @@ fun DetailScreen(
         note = state.taskk.note,
         //TODO: Might look at this later
         dueDateTitle = state.taskk.dueDate?.formatDateTime().toString(),
-        noteUpdatedAtTitle = state.taskk.noteUpdatedAt.toString(),
         onClickTaskkTitle = { onClickTaskkTitle() },
         onClickDueDate = { /*TODO*/ },
         onClickTaskkPriority = { onClickTaskkPriority() },
@@ -133,7 +137,6 @@ fun DetailTaskkScreen(
     taskk: TaskkToDo,
     note: String,
     dueDateTitle: String,
-    noteUpdatedAtTitle: String,
     onClickTaskkTitle: () -> Unit,
     onClickDueDate: () -> Unit,
     onCheckedChangeDueDate: (Boolean) -> Unit,
@@ -150,7 +153,7 @@ fun DetailTaskkScreen(
         header()
 
         LazyColumn(
-            modifier =  Modifier.fillMaxSize(),
+            modifier =  Modifier.fillMaxSize().padding(start = 10.dp, end = 10.dp),
             state = listState
         ){
             item {
@@ -163,14 +166,14 @@ fun DetailTaskkScreen(
                 )
             }
 
-            item { Spacer(Modifier.height(10.dp)) }
+            item { Spacer(Modifier.height(8.dp)) }
 
             item {
                 //TODO: priority section
                 ActionCell(
                     title = "Add Priority",
                     shape = RoundedCornerShape(size = MediumRadius),
-                    iconBgColor = commonGray,
+                    iconBgColor = gray20,
                     leftIcon = Icons.Rounded.PriorityHigh,
                     showDivider = false,
                     onClick = onClickTaskkPriority,
@@ -191,14 +194,14 @@ fun DetailTaskkScreen(
                 )
             }
 
-            item { Spacer(Modifier.height(10.dp)) }
+            item { Spacer(Modifier.height(8.dp)) }
 
             item {
                 //TODO: category section
                 ActionCell(
                     title = "Add Category",
                     shape = RoundedCornerShape(size = MediumRadius),
-                    iconBgColor = commonGray,
+                    iconBgColor = gray20,
                     leftIcon = Icons.Rounded.LibraryBooks,
                     showDivider = false,
                     onClick = onClickTaskkCategory,
@@ -219,7 +222,7 @@ fun DetailTaskkScreen(
                 )
             }
 
-            item { Spacer(Modifier.height(10.dp)) }
+            item { Spacer(Modifier.height(8.dp)) }
 
             item {
                 //TODO: due date section
@@ -229,7 +232,7 @@ fun DetailTaskkScreen(
                         topStart = MediumRadius,
                         topEnd = MediumRadius
                     ),
-                    iconBgColor = Color.Red,
+                    iconBgColor = softRed,
                     leftIcon = Icons.Rounded.Event,
                     showDivider =true,
                     onClick = if(taskk.isDueDateSet()){
@@ -283,7 +286,7 @@ fun DetailTaskkScreen(
                             Spacer(Modifier.size(8.dp))
 
                             Text(
-                                text = stringResource( R.string.taskk_add_note) + "・" + noteUpdatedAtTitle,
+                                text = stringResource( R.string.taskk_add_note),
                                 style = MaterialTheme.typography.labelMedium,
                                 color = MaterialTheme.colorScheme.onSurface.copy(alpha = AlphaMedium)
                             )
@@ -368,11 +371,11 @@ private fun ActionCell(
         Surface(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(horizontal = 16.dp)
+                .padding(horizontal = 4.dp)
                 .clip(shape)
                 .clickable(onClick = onClick),
             shape = shape,
-            color = MaterialTheme.colorScheme.secondary
+            color = MaterialTheme.colorScheme.surface
         ) {
             ActionContentCell(
                 title = title,
@@ -435,7 +438,7 @@ private fun ActionContentCell(
             Text(
                 text = title,
                 style = MaterialTheme.typography.titleSmall,
-                modifier = Modifier.weight(1f),
+                modifier = Modifier.padding(start = 10.dp).weight(1f),
                 color = titleColor
             )
             Spacer(Modifier.size(8.dp))
@@ -455,9 +458,4 @@ private fun ActionContentCell(
             }
         }
     }
-}
-
-fun TaskkToDo.isDueDateSet(): Boolean = this.dueDate != null
-fun TaskkToDo.isExpired(currentDate: LocalDateTime = DateTimeProviderImpl().getNowDate()): Boolean {
-    return dueDate?.isBefore(currentDate) ?: false
 }

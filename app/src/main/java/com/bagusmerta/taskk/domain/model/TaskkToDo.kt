@@ -10,7 +10,6 @@ data class TaskkToDo(
     val dueDate: LocalDateTime? = null,
     val isDueDateTimeSet: Boolean = false,
     val note: String = "",
-    val noteUpdatedAt: LocalDateTime? = null,
     val createdAt: LocalDateTime,
     val updatedAt: LocalDateTime,
     val taskkPriority: TaskkPriority = TaskkPriority.EASY,
