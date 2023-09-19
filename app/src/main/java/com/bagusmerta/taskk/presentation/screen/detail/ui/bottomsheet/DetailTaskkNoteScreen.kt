@@ -84,7 +84,6 @@ fun DetailTaskkNoteScreen(
                     onClick = onClickBack) {
                     Text(text = "Save", color = Color.White)
                 }
-
             }
         }
     }
