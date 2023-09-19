@@ -62,6 +62,18 @@ sealed class DetailFlow(val name: String){
         val route = name
     }
 
+    object EditTaskkTitle: DetailFlow("edit-title-screen"){
+        val route = name
+    }
+
+    object PickTaskkCategory: DetailFlow("edit-category-screen"){
+        val route = name
+    }
+
+    object PickTaskkPriority: DetailFlow("edit-priority-screen"){
+        val route = name
+    }
+
 }
 
 
