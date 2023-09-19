@@ -56,7 +56,7 @@ fun PriorityOptionsComponent(
         color = if(item.applied){
             MaterialTheme.colorScheme.primary
         } else {
-            MaterialTheme.colorScheme.surfaceVariant
+            MaterialTheme.colorScheme.secondary
         },
         rightIcon = if(item.applied){
             @Composable {
