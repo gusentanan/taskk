@@ -15,6 +15,7 @@ import androidx.compose.ui.unit.dp
 import androidx.glance.text.Text
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.bagusmerta.taskk.domain.model.TaskkToDo
+import com.bagusmerta.taskk.presentation.designsystem.component.FooterWithButton
 import com.bagusmerta.taskk.presentation.designsystem.component.HeaderWithSettingsButton
 import com.bagusmerta.taskk.presentation.designsystem.component.TskButton
 import com.bagusmerta.taskk.presentation.designsystem.component.TskLayout
@@ -88,18 +89,9 @@ fun ListTaskkContent(
                 listState = listState
             )
 
-            TskModalLayout(
-                content = {
-                    item {
-                        TskButton(
-                            onClick = { /*TODO*/ },
-                            modifier = Modifier.fillMaxWidth()
-                                .padding(start = 80.dp, end = 80.dp),
-                        ) {
-                            androidx.compose.material3.Text(text = "Create New Task")
-                        }
-                    }
-                }
+            FooterWithButton(
+                onClick = { /*TODO*/ },
+                textButton = "Create a new Task"
             )
             
         }

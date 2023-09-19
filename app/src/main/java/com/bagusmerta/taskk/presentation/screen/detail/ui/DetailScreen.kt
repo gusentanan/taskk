@@ -55,6 +55,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.bagusmerta.taskk.R
 import com.bagusmerta.taskk.domain.model.TaskkStatus
 import com.bagusmerta.taskk.domain.model.TaskkToDo
+import com.bagusmerta.taskk.presentation.designsystem.component.FooterWithIconBtn
 import com.bagusmerta.taskk.presentation.designsystem.component.HeaderWithBackButton
 import com.bagusmerta.taskk.presentation.designsystem.component.TskIcon
 import com.bagusmerta.taskk.presentation.designsystem.component.TskItem
@@ -68,6 +69,7 @@ import com.bagusmerta.taskk.presentation.designsystem.theme.softRed
 import com.bagusmerta.taskk.utils.AlphaDisabled
 import com.bagusmerta.taskk.utils.AlphaMedium
 import com.bagusmerta.taskk.utils.DividerAlpha
+import com.bagusmerta.taskk.utils.extensions.dueDateDisplayable
 import com.bagusmerta.taskk.utils.extensions.formatDateTime
 import com.bagusmerta.taskk.utils.extensions.getActivity
 import com.bagusmerta.taskk.utils.extensions.isDueDateSet
@@ -126,7 +128,8 @@ fun DetailScreen(
         onClickTaskkStatus = { /*TODO*/ },
         listState = listState,
         onClickTaskkNote =  { onClickTaskkNote() },
-        onCheckedChangeDueDate = { /*TODO*/ }
+        onCheckedChangeDueDate = { /*TODO*/ },
+        onClickTaskkDelete = { onClickTaskkDelete() }
     )
 
 }
@@ -144,6 +147,7 @@ fun DetailTaskkScreen(
     onClickTaskkCategory: () -> Unit,
     onClickTaskkStatus: () -> Unit,
     onClickTaskkNote: () -> Unit,
+    onClickTaskkDelete: () -> Unit,
     listState: LazyListState
 ){
 
@@ -153,7 +157,9 @@ fun DetailTaskkScreen(
         header()
 
         LazyColumn(
-            modifier =  Modifier.fillMaxSize().padding(start = 10.dp, end = 10.dp),
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(start = 10.dp, end = 10.dp).weight(1F),
             state = listState
         ){
             item {
@@ -294,8 +300,11 @@ fun DetailTaskkScreen(
                     }
                 }
             }
-
         }
+        FooterWithIconBtn(
+            onClickDelete = { onClickTaskkDelete() },
+            textFooter = taskk.dueDateDisplayable(LocalContext.current.resources).toString()
+        )
     }
 
 }
@@ -438,7 +447,9 @@ private fun ActionContentCell(
             Text(
                 text = title,
                 style = MaterialTheme.typography.titleSmall,
-                modifier = Modifier.padding(start = 10.dp).weight(1f),
+                modifier = Modifier
+                    .padding(start = 10.dp)
+                    .weight(1f),
                 color = titleColor
             )
             Spacer(Modifier.size(8.dp))

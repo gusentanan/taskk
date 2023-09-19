@@ -113,7 +113,7 @@ fun TskModalTitle(
     ) {
         Text(
             text = text,
-            style = MaterialTheme.typography.titleLarge.copy(textAlign = TextAlign.Center),
+            style = MaterialTheme.typography.headlineMedium.copy(textAlign = TextAlign.Center),
             color = textColor,
         )
     }
