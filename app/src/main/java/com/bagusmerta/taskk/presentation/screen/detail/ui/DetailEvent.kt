@@ -16,17 +16,15 @@ sealed class DetailEvent {
     }
 
     sealed class TaskkCategoryEvent: DetailEvent() {
-        object OnClickSave: TaskkCategoryEvent()
         object OnShow: TaskkCategoryEvent()
-        data class SelectCategory(val category: String): TaskkCategoryEvent()
+        data class SelectCategory(val category: CategoryItems): TaskkCategoryEvent()
 
 
     }
 
     sealed class TaskkPriorityEvent: DetailEvent() {
-        object OnClickSave: TaskkPriorityEvent()
         object OnShow: TaskkPriorityEvent()
-        data class SelectPriority(val priority: String): TaskkPriorityEvent()
+        data class SelectPriority(val priority: PriorityItems): TaskkPriorityEvent()
 
     }
 

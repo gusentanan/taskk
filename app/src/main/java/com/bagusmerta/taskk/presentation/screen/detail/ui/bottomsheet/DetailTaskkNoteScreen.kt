@@ -3,6 +3,7 @@ package com.bagusmerta.taskk.presentation.screen.detail.ui.bottomsheet
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -78,7 +79,9 @@ fun DetailTaskkNoteScreen(
 
                 Spacer(Modifier.size(16.dp))
 
-                TskButton(onClick = onClickBack) {
+                TskButton(
+                    modifier =Modifier.fillMaxSize(),
+                    onClick = onClickBack) {
                     Text(text = "Save", color = Color.White)
                 }
 
