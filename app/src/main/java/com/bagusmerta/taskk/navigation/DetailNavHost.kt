@@ -38,10 +38,10 @@ fun NavGraphBuilder.DetailNavHost(
             DetailScreen(
                 viewModel = viewModel,
                 onBackPress = { navController.navigateUp() },
-                onClickTaskkTitle = { },
+                onClickTaskkTitle = { navController.navigate(DetailFlow.EditTaskkTitle.route) },
                 onClickDueDate = { },
-                onClickTaskkPriority = { },
-                onClickTaskkCategory = { },
+                onClickTaskkPriority = { navController.navigate(DetailFlow.PickTaskkPriority.route) },
+                onClickTaskkCategory = { navController.navigate(DetailFlow.PickTaskkCategory.route) },
                 onClickTaskkNote = { navController.navigate(DetailFlow.EditTaskkNote.route) },
                 onClickTaskkStatus = { },
                 onClickTaskkDelete = { }

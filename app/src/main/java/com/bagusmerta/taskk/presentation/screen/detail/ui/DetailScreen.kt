@@ -115,13 +115,13 @@ fun DetailScreen(
         //TODO: Might look at this later
         dueDateTitle = state.taskk.dueDate?.formatDateTime().toString(),
         noteUpdatedAtTitle = state.taskk.noteUpdatedAt.toString(),
-        onClickTaskkTitle = { /*TODO*/ },
+        onClickTaskkTitle = { onClickTaskkTitle() },
         onClickDueDate = { /*TODO*/ },
-        onClickTaskkPriority = { /*TODO*/ },
-        onClickTaskkCategory = { /*TODO*/ },
+        onClickTaskkPriority = { onClickTaskkPriority() },
+        onClickTaskkCategory = { onClickTaskkCategory() },
         onClickTaskkStatus = { /*TODO*/ },
         listState = listState,
-        onClickTaskkNote =  onClickTaskkNote,
+        onClickTaskkNote =  { onClickTaskkNote() },
         onCheckedChangeDueDate = { /*TODO*/ }
     )
 
@@ -309,8 +309,8 @@ fun TskItemWrapper(
         TaskkStatus.COMPLETE -> {
             TskItem(
                 modifier = Modifier,
-                onClick = { onClick },
-                onCheckBoxClick = { onCheckBoxClick },
+                onClick = { onClick() },
+                onCheckBoxClick = { onCheckBoxClick() },
                 color = color.copy(alpha = AlphaDisabled),
                 tskTitle = item.name,
                 tskDueDate = item.dueDate?.formatDateTime().toString(),
@@ -326,7 +326,7 @@ fun TskItemWrapper(
 
             TskItem(
                 modifier = Modifier,
-                onClick = { onClick },
+                onClick = { onClick() },
                 onCheckBoxClick = {
                     isChecked = !isChecked
                     debounceJob?.cancel()
