@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Theme.Taskk" parent="android:Theme.Material.Light.NoActionBar" />
+    <style name="Theme.Taskk" parent="Theme.Material3.Light.NoActionBar" />
 
     <style name="Theme.Taskk.Light" parent="Theme.Taskk">
         <item name="colorPrimary">@color/light_primary</item>

@@ -2,6 +2,7 @@ package com.bagusmerta.taskk.presentation.designsystem.theme
 
 import android.app.Activity
 import android.os.Build
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
@@ -22,6 +23,7 @@ import com.bagusmerta.taskk.R
 import com.bagusmerta.taskk.utils.extensions.getActivity
 import com.bagusmerta.taskk.utils.themes.TaskkTheme
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
+import timber.log.Timber
 
 /**
  *  Dark Theme
@@ -75,35 +77,42 @@ fun TaskkTheme(
 ) {
     val colorScheme = when (theme) {
         TaskkTheme.SYSTEM -> {
-            if(isSystemInDarkTheme()){
+            if (isSystemInDarkTheme()) {
                 DarkColorScheme
             } else {
                 LightColorScheme
             }
         }
-        TaskkTheme.DARK -> { DarkColorScheme }
-        TaskkTheme.LIGHT -> { LightColorScheme }
+
+        TaskkTheme.DARK -> {
+            DarkColorScheme
+        }
+
+        TaskkTheme.LIGHT -> {
+            LightColorScheme
+        }
 
     }
 
     val darkIcons = colorScheme == LightColorScheme
     val systemUiController = rememberSystemUiController()
 
-    val context = LocalContext.current
-    val activity = context.getActivity()
+    val activity = LocalContext.current as AppCompatActivity
+    Timber.tag("THEMEE").d(activity.toString())
+
 
     SideEffect {
-            systemUiController.setSystemBarsColor(
-                color = Color.Transparent,
-                darkIcons = darkIcons,
-                isNavigationBarContrastEnforced = false
-            )
-        }
+        systemUiController.setSystemBarsColor(
+            color = Color.Transparent,
+            darkIcons = darkIcons,
+            isNavigationBarContrastEnforced = false
+        )
+    }
 
-    LaunchedEffect(colorScheme){
-        when(colorScheme){
-            DarkColorScheme -> activity?.setTheme(R.style.Theme_Taskk_Dark)
-            LightColorScheme -> activity?.setTheme(R.style.Theme_Taskk_Light)
+    LaunchedEffect(colorScheme) {
+        when (colorScheme) {
+            DarkColorScheme -> activity.setTheme(R.style.Theme_Taskk_Dark)
+            LightColorScheme -> activity.setTheme(R.style.Theme_Taskk_Light)
         }
     }
 

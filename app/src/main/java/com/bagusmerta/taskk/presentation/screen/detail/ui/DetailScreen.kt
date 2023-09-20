@@ -1,8 +1,7 @@
 package com.bagusmerta.taskk.presentation.screen.detail.ui
 
-import android.util.Log
+
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -34,12 +33,14 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
+import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -81,6 +82,7 @@ import com.bagusmerta.taskk.utils.wrapper.DateTimeProviderImpl
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import timber.log.Timber
 import java.time.LocalDateTime
 
 @Composable
@@ -97,12 +99,12 @@ fun DetailScreen(
 ) {
 
     val state by viewModel.state.collectAsStateWithLifecycle()
-    val activity  = LocalContext.current.getActivity()
+    val activity = LocalContext.current as AppCompatActivity
     val listState = rememberLazyListState()
-    Log.d("DETAILL", activity.toString())
+    Timber.tag("DETAILL").d(activity.toString())
 
-    HandleEffect(viewModel = viewModel){
-        when(it){
+    HandleEffect(viewModel = viewModel) {
+        when (it) {
             is DetailEffect.ScrollTo -> {
                 //TODO might cut this later
             }
@@ -114,8 +116,8 @@ fun DetailScreen(
             HeaderWithBackButton(
                 text = "Detail Taskk",
                 onClickBack =
-                    //TODO: pop out to previous route
-                    onBackPress
+                //TODO: pop out to previous route
+                onBackPress
 
             )
         },
@@ -127,14 +129,16 @@ fun DetailScreen(
         onClickDueDate = {
             val dueDateValue = state.taskk.dueDate?.toLocalDate()
             if (dueDateValue != null) {
-                activity?.showDatePicker(dueDateValue) { selectedDate ->
+                activity.showDatePicker(dueDateValue) { selectedDate ->
                     viewModel.dispatch(DetailEvent.SelectDueDate(selectedDate))
                 }
             }
         },
         onCheckedChangeDueDate = { check ->
             if (check) {
-                activity?.showDatePicker(DateTimeProviderImpl().getNowDate().toLocalDate()) { selectedDate ->
+                activity.showDatePicker(
+                    DateTimeProviderImpl().getNowDate().toLocalDate()
+                ) { selectedDate ->
                     viewModel.dispatch(DetailEvent.SelectDueDate(selectedDate))
                 }
             } else {
@@ -145,7 +149,7 @@ fun DetailScreen(
         onClickTaskkCategory = { onClickTaskkCategory() },
         onClickTaskkStatus = { /*TODO*/ },
         listState = listState,
-        onClickTaskkNote =  { onClickTaskkNote() },
+        onClickTaskkNote = { onClickTaskkNote() },
         onClickTaskkDelete = { onClickTaskkDelete() }
     )
 
@@ -176,7 +180,8 @@ fun DetailTaskkScreen(
         LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(start = 10.dp, end = 10.dp).weight(1F),
+                .padding(start = 8.dp, end = 8.dp)
+                .weight(1F),
             state = listState
         ){
             item {
@@ -325,6 +330,7 @@ fun DetailTaskkScreen(
     }
 
 }
+
 
 @Composable
 fun TskItemWrapper(
