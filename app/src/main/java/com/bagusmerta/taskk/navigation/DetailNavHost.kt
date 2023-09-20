@@ -39,7 +39,6 @@ fun NavGraphBuilder.DetailNavHost(
                 viewModel = viewModel,
                 onBackPress = { navController.navigateUp() },
                 onClickTaskkTitle = { navController.navigate(DetailFlow.EditTaskkTitle.route) },
-                onClickDueDate = { },
                 onClickTaskkPriority = { navController.navigate(DetailFlow.PickTaskkPriority.route) },
                 onClickTaskkCategory = { navController.navigate(DetailFlow.PickTaskkCategory.route) },
                 onClickTaskkNote = { navController.navigate(DetailFlow.EditTaskkNote.route) },

@@ -90,7 +90,6 @@ fun DetailScreen(
     viewModel: DetailViewModel,
     onBackPress: () -> Unit,
     onClickTaskkTitle: () -> Unit,
-    onClickDueDate: () -> Unit,
     onClickTaskkPriority: () -> Unit,
     onClickTaskkCategory: () -> Unit,
     onClickTaskkNote: () -> Unit,
