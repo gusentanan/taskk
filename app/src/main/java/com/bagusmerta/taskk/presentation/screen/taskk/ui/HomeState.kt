@@ -3,8 +3,8 @@ package com.bagusmerta.taskk.presentation.screen.taskk.ui
 import androidx.compose.runtime.Immutable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.TextFieldValue
-import com.bagusmerta.taskk.data.model.TaskkList
-import com.bagusmerta.taskk.data.model.TaskkToDo
+import com.bagusmerta.taskk.domain.model.TaskkList
+import com.bagusmerta.taskk.domain.model.TaskkToDo
 import com.bagusmerta.taskk.utils.extensions.toTaskkListState
 import com.bagusmerta.taskk.utils.wrapper.DateTimeProviderImpl
 import java.time.LocalDateTime

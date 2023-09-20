@@ -2,7 +2,7 @@ package com.bagusmerta.taskk.presentation.screen.taskk.ui
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
-import com.bagusmerta.taskk.data.model.TaskkList
+import com.bagusmerta.taskk.domain.model.TaskkList
 import com.bagusmerta.taskk.navigation.ARG_LIST_ID
 import com.bagusmerta.taskk.presentation.screen.taskk.data.IHomeEnvironment
 import com.bagusmerta.taskk.utils.vmutils.StateViewModel
@@ -27,7 +27,7 @@ class HomeViewModel @Inject constructor(
             if(listId.isNullOrBlank()){
                 setEffect(HomeEffect.ShowNewTaskInput)
             } else {
-                homeEnvironment.getListTaskk(listId)
+                environment.getListTaskk(listId)
                     .catch {  }
                     .collect {
                         setState {

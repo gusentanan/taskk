@@ -1,4 +1,4 @@
-package com.bagusmerta.taskk.data.model
+package com.bagusmerta.taskk.domain.model
 
 enum class TaskkCategory(val str: String) {
     WORK("Work  • "),
