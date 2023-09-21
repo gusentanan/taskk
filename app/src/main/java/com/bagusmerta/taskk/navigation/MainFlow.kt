@@ -28,7 +28,12 @@ sealed class HomeFlow(val name: String){
             }
         )
     }
+
+    object SettingScreen: HomeFlow("setting-screen"){
+        val route = name
+    }
 }
+
 
 sealed class DetailFlow(val name: String){
     object Root: DetailFlow("detail-root"){

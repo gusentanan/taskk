@@ -29,6 +29,7 @@ fun HomeScreen(
     onRelaunchScreen: (String) -> Unit,
     onAddTaskClick: () -> Unit,
     onTaskItemClick: (String, String) -> Unit,
+    onClickSettings: () -> Unit
 ){
     val state by viewModel.state.collectAsStateWithLifecycle()
     val listState = rememberLazyListState()
@@ -39,7 +40,8 @@ fun HomeScreen(
             HeaderHomeScreen(
                 dateNow = state.todayDate,
                 completedTaskkCounts = state.validTaskkCompleted,
-                inCompleteTaskkCounts = state.validTaskkIncomplete
+                inCompleteTaskkCounts = state.validTaskkIncomplete,
+                onClickSettings = onClickSettings
             )
         },
         onCheckBoxClick = {  } ,
@@ -53,14 +55,15 @@ fun HomeScreen(
 fun HeaderHomeScreen(
     dateNow: LocalDateTime,
     completedTaskkCounts: Int,
-    inCompleteTaskkCounts: Int
+    inCompleteTaskkCounts: Int,
+    onClickSettings: () -> Unit
 ){
     val taskStatusString: String = StringBuilder("$completedTaskkCounts Completed, $inCompleteTaskkCounts Incomplete").toString()
 
     HeaderWithSettingsButton(
         dateNow = dateNow.formatDateTime(),
         taskStatus = taskStatusString,
-        onClickSettings = { }
+        onClickSettings = { onClickSettings() }
     )
 }
 
