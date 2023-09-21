@@ -61,6 +61,7 @@ import com.bagusmerta.taskk.presentation.designsystem.component.FooterWithIconBt
 import com.bagusmerta.taskk.presentation.designsystem.component.HeaderWithBackButton
 import com.bagusmerta.taskk.presentation.designsystem.component.TskIcon
 import com.bagusmerta.taskk.presentation.designsystem.component.TskItem
+import com.bagusmerta.taskk.presentation.designsystem.component.TskItemDetail
 import com.bagusmerta.taskk.presentation.designsystem.component.TskLayout
 import com.bagusmerta.taskk.presentation.designsystem.icon.TaskkIcon
 import com.bagusmerta.taskk.presentation.designsystem.theme.MediumRadius
@@ -71,6 +72,7 @@ import com.bagusmerta.taskk.presentation.designsystem.theme.softRed
 import com.bagusmerta.taskk.utils.AlphaDisabled
 import com.bagusmerta.taskk.utils.AlphaMedium
 import com.bagusmerta.taskk.utils.DividerAlpha
+import com.bagusmerta.taskk.utils.extensions.displayable
 import com.bagusmerta.taskk.utils.extensions.dueDateDisplayable
 import com.bagusmerta.taskk.utils.extensions.formatDateTime
 import com.bagusmerta.taskk.utils.extensions.getActivity
@@ -202,7 +204,7 @@ fun DetailTaskkScreen(
                     shape = RoundedCornerShape(size = MediumRadius),
                     iconBgColor = gray20,
                     leftIcon = Icons.Rounded.PriorityHigh,
-                    showDivider = false,
+                    showDivider = true,
                     onClick = onClickTaskkPriority,
                     trailing = {
                         Row {
@@ -230,12 +232,12 @@ fun DetailTaskkScreen(
                     shape = RoundedCornerShape(size = MediumRadius),
                     iconBgColor = gray20,
                     leftIcon = Icons.Rounded.LibraryBooks,
-                    showDivider = false,
+                    showDivider = true,
                     onClick = onClickTaskkCategory,
                     trailing = {
                         Row {
                             Text(
-                                text = taskk.taskkCategory.str,
+                                text = taskk.taskkCategory.displayable(),
                                 style = MaterialTheme.typography.titleSmall.copy(fontWeight = FontWeight.Normal),
                                 color = MaterialTheme.colorScheme.onSurface.copy(alpha = AlphaDisabled)
                             )
@@ -255,13 +257,10 @@ fun DetailTaskkScreen(
                 //TODO: due date section
                 ActionCell(
                     title = dueDateTitle,
-                    shape = RoundedCornerShape(
-                        topStart = MediumRadius,
-                        topEnd = MediumRadius
-                    ),
+                    shape = RoundedCornerShape(size = MediumRadius),
                     iconBgColor = softRed,
                     leftIcon = Icons.Rounded.Event,
-                    showDivider =true,
+                    showDivider = true,
                     onClick = if(taskk.isDueDateSet()){
                         onClickDueDate
                     } else { null
@@ -326,6 +325,8 @@ fun DetailTaskkScreen(
             onClickDelete = { onClickTaskkDelete() },
             textFooter = taskk.dueDateDisplayable(LocalContext.current.resources).toString()
         )
+
+        Spacer(Modifier.height(10.dp))
     }
 
 }
@@ -341,14 +342,12 @@ fun TskItemWrapper(
     val coroutineScope = rememberCoroutineScope()
     when(item.status){
         TaskkStatus.COMPLETE -> {
-            TskItem(
+            TskItemDetail(
                 modifier = Modifier,
                 onClick = { onClick() },
                 onCheckBoxClick = { onCheckBoxClick() },
                 color = color.copy(alpha = AlphaDisabled),
                 tskTitle = item.name,
-                tskDueDate = item.dueDate?.formatDateTime().toString(),
-                tskCategory = item.taskkCategory.str,
                 taskkPriority = item.taskkPriority,
                 contentPadding = PaddingValues(all = 8.dp),
                 leftIcon = TaskkIcon.Check
@@ -358,7 +357,7 @@ fun TskItemWrapper(
             var isChecked by remember { mutableStateOf(false) }
             var debounceJob: Job? by remember { mutableStateOf(null) }
 
-            TskItem(
+            TskItemDetail(
                 modifier = Modifier,
                 onClick = { onClick() },
                 onCheckBoxClick = {
@@ -373,8 +372,6 @@ fun TskItemWrapper(
                 },
                 color = Color.Black,
                 tskTitle = item.name,
-                tskDueDate = item.dueDate?.formatDateTime().toString(),
-                tskCategory = item.taskkCategory.str,
                 leftIcon = if(isChecked) {
                     TaskkIcon.Check
                 } else {

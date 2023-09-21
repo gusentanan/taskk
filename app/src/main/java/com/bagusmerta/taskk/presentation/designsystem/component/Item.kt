@@ -171,11 +171,59 @@ fun TskItem(
             Divider(
                 color = gray20,
                 thickness = 1.dp,
-                modifier = Modifier.padding(start = 16.dp, end = 16.dp, bottom = 16.dp)
+                modifier = Modifier.padding(start = 16.dp, end = 16.dp, bottom = 10.dp)
             )
         }
     }
 }
+
+@Composable
+fun TskItemDetail(
+    modifier: Modifier,
+    onClick: () -> Unit,
+    onCheckBoxClick: () -> Unit,
+    color: Color,
+    tskTitle: String,
+    leftIcon: ImageVector,
+    taskkPriority: TaskkPriority,
+    contentPadding: PaddingValues
+){
+    Surface(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clickable(onClick = onClick),
+    ) {
+        Column {
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier.padding(contentPadding)
+            ){
+                TskIconButton(
+                    onClick = onCheckBoxClick,
+                    shape = RectangleShape,
+                    color = Color.Transparent
+                ) {
+                    TskIcon(
+                        imageIcon = leftIcon,
+                        tintColor = color
+                    )
+                }
+
+                TskTitle(text = tskTitle)
+
+                Spacer(Modifier.width(10.dp))
+
+                TskPriority(priority = taskkPriority)
+            }
+            Divider(
+                color = gray20,
+                thickness = 1.dp,
+                modifier = Modifier.padding(start = 16.dp, end = 16.dp, bottom = 10.dp)
+            )
+        }
+    }
+}
+
 
 
 @Preview
@@ -189,6 +237,21 @@ fun previewTskItem(){
         tskTitle = "Do Leetcode Easy",
         tskDueDate = "Due, Fri 27 June 2023",
         tskCategory = "More College",
+        taskkPriority = TaskkPriority.EASY,
+        contentPadding = PaddingValues(10.dp),
+        leftIcon = TaskkIcon.Check
+    )
+}
+
+@Preview
+@Composable
+fun previewTskItemDetail(){
+    TskItemDetail(
+        modifier = Modifier,
+        onClick = { },
+        onCheckBoxClick = {  },
+        color = MaterialTheme.colorScheme.primary,
+        tskTitle = "Do Leetcode Easy",
         taskkPriority = TaskkPriority.EASY,
         contentPadding = PaddingValues(10.dp),
         leftIcon = TaskkIcon.Check
