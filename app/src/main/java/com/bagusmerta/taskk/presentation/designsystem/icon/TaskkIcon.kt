@@ -19,6 +19,7 @@ object TaskkIcon {
     val ArrowBack = Icons.Rounded.ArrowBack
     val Settings = Icons.Rounded.Settings
     val Check = Icons.Rounded.CheckBox
+    val RoundedCheck = Icons.Rounded.CheckCircle
     val UnChecked = Icons.Rounded.CheckBoxOutlineBlank
     val Trash = Icons.Rounded.DeleteForever
 }

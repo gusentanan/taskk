@@ -50,7 +50,7 @@ fun SettingThemeComponent(
         },
         rightIcon = if(item.applied){
             @Composable {
-                TskIcon(imageIcon = TaskkIcon.Check)
+                TskIcon(imageIcon = TaskkIcon.RoundedCheck)
             }
         } else {
             null
