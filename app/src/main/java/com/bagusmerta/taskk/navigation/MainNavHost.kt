@@ -56,7 +56,7 @@ fun MainScreen(
         }
 
         // TODO: add other child host here.
-        HomeNavHost(navController)
+        HomeNavHost(navController, bottomSheetConfig)
         DetailNavHost(navController, bottomSheetConfig)
     }
 }

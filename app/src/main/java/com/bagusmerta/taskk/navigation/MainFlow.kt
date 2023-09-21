@@ -28,18 +28,12 @@ sealed class HomeFlow(val name: String){
             }
         )
     }
-}
 
-sealed class SettingFlow(val name: String){
-
-    object Root: SettingFlow("setting-root"){
-        val route = name
-    }
-
-    object SettingScreen: SettingFlow("setting-screen"){
+    object SettingScreen: HomeFlow("setting-screen"){
         val route = name
     }
 }
+
 
 sealed class DetailFlow(val name: String){
     object Root: DetailFlow("detail-root"){

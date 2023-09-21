@@ -17,7 +17,7 @@ import com.bagusmerta.taskk.presentation.designsystem.icon.TaskkIcon
 @Composable
 fun SettingScreen(
     viewModel: SettingViewModel,
-    onItemClick: () -> Unit,
+    onClickBack: () -> Unit,
 ){
     val state by viewModel.state.collectAsStateWithLifecycle()
 
@@ -25,7 +25,8 @@ fun SettingScreen(
         items(state.settingItems) {item ->
             SettingThemeComponent(
                 onClick = {
-                    onItemClick()
+                    viewModel.dispatch(SettingEvent.SelectedTheme(item))
+                    onClickBack()
                 },
                 item = item
             )
