@@ -31,8 +31,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.bagusmerta.taskk.domain.model.TaskkPriority
 import com.bagusmerta.taskk.presentation.designsystem.icon.TaskkIcon
 import com.bagusmerta.taskk.presentation.designsystem.theme.commonGray
@@ -134,8 +136,9 @@ fun TskItem(
     ) {
         Column {
             Row(
-               verticalAlignment = Alignment.Top,
-                modifier = Modifier.padding(contentPadding)
+                verticalAlignment = Alignment.Top,
+                modifier = Modifier.padding(contentPadding),
+                horizontalArrangement = Arrangement.SpaceBetween,
             ){
                 TskIconButton(
                     onClick = onCheckBoxClick,
@@ -157,8 +160,6 @@ fun TskItem(
                         modifier = Modifier.fillMaxWidth(),
                     ) {
                         TskTitle(text = tskTitle)
-                        Spacer(Modifier.width(10.dp))
-                        TskPriority(priority = taskkPriority)
                     }
                     Row(
                         modifier = Modifier.fillMaxWidth()
@@ -167,6 +168,9 @@ fun TskItem(
                         TskDueDate(text = tskDueDate)
                     }
                 }
+
+                Spacer(Modifier.width(10.dp))
+                TskPriority(priority = taskkPriority)
             }
             Divider(
                 color = gray20,
@@ -196,7 +200,8 @@ fun TskItemDetail(
         Column {
             Row(
                 verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier.padding(contentPadding)
+                modifier = Modifier.padding(contentPadding),
+                horizontalArrangement = Arrangement.SpaceBetween
             ){
                 TskIconButton(
                     onClick = onCheckBoxClick,
@@ -209,10 +214,13 @@ fun TskItemDetail(
                     )
                 }
 
-                TskTitle(text = tskTitle)
+                Column(modifier = Modifier
+                    .padding(4.dp)
+                    .weight(1F)) {
+                    TskTitle(text = tskTitle)
+                }
 
                 Spacer(Modifier.width(10.dp))
-
                 TskPriority(priority = taskkPriority)
             }
             Divider(
@@ -234,7 +242,7 @@ fun previewTskItem(){
         onClick = { },
         onCheckBoxClick = {  },
         color = MaterialTheme.colorScheme.primary,
-        tskTitle = "Do Leetcode Easy",
+        tskTitle = "do a coding job and interview a candidate for SWE junior position, do a coding job and interview a candidate for SWE junior position, and interview a candidate for SWE junior position, ",
         tskDueDate = "Due, Fri 27 June 2023",
         tskCategory = "More College",
         taskkPriority = TaskkPriority.EASY,
@@ -263,13 +271,13 @@ fun TskTitle(
     text: String,
     textColor: Color = Color.Unspecified
 ){
-    Column(
-        horizontalAlignment = Alignment.Start,
-    ) {
+    Column {
         Text(
             text = text,
-            style = MaterialTheme.typography.titleMedium.copy(textAlign = TextAlign.Center),
-            color = textColor
+            style = MaterialTheme.typography.titleMedium.copy(textAlign = TextAlign.Justify),
+            color = textColor,
+            maxLines = 4,
+            lineHeight = 20.sp
         )
     }
 }
@@ -317,7 +325,7 @@ fun TskPriority(
         TaskkPriority.HARD -> softRed
     }
     Column(
-        modifier = modifier.padding(top = 5.dp)
+        modifier = modifier.padding(all = 10.dp)
     ) {
         Box(modifier = modifier
             .width(60.dp)
