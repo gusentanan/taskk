@@ -42,7 +42,6 @@ import kotlinx.coroutines.launch
 fun TaskkContent(
     modifier: Modifier,
     tasks: List<TaskkItem>,
-    color: Color,
     onClick: (TaskkToDo) -> Unit,
     onCheckBoxClick: (TaskkToDo) -> Unit,
     listState: LazyListState
@@ -81,7 +80,7 @@ fun TaskkContent(
                             Text(
                                 text = stringResource(R.string.task_complete_header),
                                 style = MaterialTheme.typography.titleSmall,
-                                color = Color.Black
+                                color = MaterialTheme.colorScheme.onBackground
                             )
                         }
                     }
@@ -90,7 +89,7 @@ fun TaskkContent(
                             modifier = Modifier.animateItemPlacement(),
                             onClick = { onClick(it.taskk) },
                             onCheckBoxClick = { onCheckBoxClick(it.taskk) },
-                            color = color.copy(alpha = AlphaDisabled),
+                            color = MaterialTheme.colorScheme.onBackground.copy(alpha = AlphaDisabled),
                             tskTitle = it.taskk.name,
                             tskDueDate = it.taskk.dueDate?.formatDateTime().toString(),
                             tskCategory = it.taskk.taskkCategory.str,
@@ -116,7 +115,7 @@ fun TaskkContent(
                                     }
                                 }
                             },
-                            color = Color.Black,
+                            color = MaterialTheme.colorScheme.onBackground,
                             tskTitle = it.taskk.name,
                             tskDueDate = it.taskk.dueDate?.formatDateTime().toString(),
                             tskCategory = it.taskk.taskkCategory.str,

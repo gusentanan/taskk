@@ -7,6 +7,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.bagusmerta.taskk.presentation.designsystem.component.TskIcon
@@ -49,6 +50,7 @@ fun CategoryOptionsComponent(
     TskModalCell(
         onClick = { onClick() },
         text = item.category.displayable(),
+        textColor = Color.White,
         color = if(item.applied){
             MaterialTheme.colorScheme.primary
         } else {
@@ -56,7 +58,10 @@ fun CategoryOptionsComponent(
         },
         rightIcon = if(item.applied){
             @Composable {
-                TskIcon(imageIcon = TaskkIcon.RoundedCheck)
+                TskIcon(
+                    imageIcon = TaskkIcon.RoundedCheck,
+                    tintColor = Color.White
+                )
             }
         } else {
             null

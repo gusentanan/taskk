@@ -84,6 +84,7 @@ fun DetailTaskkNoteScreen(
                     onClick = onClickBack) {
                     Text(text = "Save", color = Color.White)
                 }
+                Spacer(Modifier.height(10.dp))
             }
         }
     }

@@ -68,7 +68,10 @@ fun FooterWithButton(
                     modifier = Modifier.fillMaxWidth()
                         .padding(start = 80.dp, end = 80.dp),
                 ) {
-                    androidx.compose.material3.Text(text = textButton)
+                    Text(
+                        text = textButton,
+                        color = Color.White
+                    )
                 }
             }
         }

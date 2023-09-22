@@ -103,10 +103,11 @@ fun TaskkTheme(
 
     SideEffect {
         systemUiController.setSystemBarsColor(
-            color = Color.Transparent,
+            color = colorScheme.background,
             darkIcons = darkIcons,
             isNavigationBarContrastEnforced = false
         )
+
     }
 
     LaunchedEffect(colorScheme) {

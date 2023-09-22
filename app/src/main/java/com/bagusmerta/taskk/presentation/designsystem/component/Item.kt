@@ -99,7 +99,7 @@ fun TskModalCell(
 
             Text(
                 text = text,
-                style = MaterialTheme.typography.titleSmall,
+                style = MaterialTheme.typography.titleMedium,
                 color = textColor
             )
 
@@ -175,7 +175,7 @@ fun TskItem(
             Divider(
                 color = gray20,
                 thickness = 1.dp,
-                modifier = Modifier.padding(start = 16.dp, end = 16.dp, bottom = 10.dp)
+                modifier = Modifier.padding(start = 16.dp, end = 16.dp)
             )
         }
     }

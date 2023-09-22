@@ -10,6 +10,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -53,6 +54,7 @@ fun PriorityOptionsComponent(
     TskModalCell(
         onClick = { onClick() },
         text = item.priority.displayable(),
+        textColor = Color.White,
         color = if(item.applied){
             MaterialTheme.colorScheme.primary
         } else {
@@ -60,7 +62,10 @@ fun PriorityOptionsComponent(
         },
         rightIcon = if(item.applied){
             @Composable {
-                TskIcon(imageIcon = TaskkIcon.RoundedCheck)
+                TskIcon(
+                    imageIcon = TaskkIcon.RoundedCheck,
+                    tintColor = Color.White
+                )
             }
         } else {
             null

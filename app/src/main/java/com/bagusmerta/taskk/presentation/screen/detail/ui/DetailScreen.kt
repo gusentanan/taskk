@@ -189,7 +189,6 @@ fun DetailTaskkScreen(
                 // Taskk Item that show current item status (title, priority, etc)
                 TskItemWrapper(
                     item = taskk,
-                    color = Color.Transparent,
                     onClick =  onClickTaskkTitle,
                     onCheckBoxClick = onClickTaskkStatus
                 )
@@ -335,7 +334,6 @@ fun DetailTaskkScreen(
 @Composable
 fun TskItemWrapper(
     item: TaskkToDo,
-    color: Color,
     onClick: () -> Unit,
     onCheckBoxClick: () -> Unit,
 ){
@@ -346,7 +344,7 @@ fun TskItemWrapper(
                 modifier = Modifier,
                 onClick = { onClick() },
                 onCheckBoxClick = { onCheckBoxClick() },
-                color = color.copy(alpha = AlphaDisabled),
+                color = MaterialTheme.colorScheme.onBackground.copy(alpha = AlphaDisabled),
                 tskTitle = item.name,
                 taskkPriority = item.taskkPriority,
                 contentPadding = PaddingValues(all = 8.dp),
@@ -370,7 +368,7 @@ fun TskItemWrapper(
                         }
                     }
                 },
-                color = Color.Black,
+                color = MaterialTheme.colorScheme.onBackground,
                 tskTitle = item.name,
                 leftIcon = if(isChecked) {
                     TaskkIcon.Check

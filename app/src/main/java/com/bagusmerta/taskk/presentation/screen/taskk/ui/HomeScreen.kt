@@ -2,8 +2,10 @@ package com.bagusmerta.taskk.presentation.screen.taskk.ui
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.rememberLazyListState
@@ -86,7 +88,6 @@ fun ListTaskkContent(
             TaskkContent(
                 modifier = Modifier.weight(1F),
                 tasks = tasks,
-                color = color,
                 onClick = onClickTaskItem,
                 onCheckBoxClick = onCheckBoxClick,
                 listState = listState
@@ -96,7 +97,7 @@ fun ListTaskkContent(
                 onClick = { /*TODO*/ },
                 textButton = "Create a new Task"
             )
-            
+            Spacer(Modifier.height(10.dp))
         }
 
     }
