@@ -1,7 +1,10 @@
 package com.bagusmerta.taskk.presentation.designsystem.component
 
+import androidx.compose.foundation.LocalIndication
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -10,6 +13,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.AccountBox
@@ -19,22 +23,98 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.bagusmerta.taskk.data.model.TaskkPriority
+import androidx.compose.ui.unit.sp
+import com.bagusmerta.taskk.domain.model.TaskkPriority
 import com.bagusmerta.taskk.presentation.designsystem.icon.TaskkIcon
 import com.bagusmerta.taskk.presentation.designsystem.theme.commonGray
 import com.bagusmerta.taskk.presentation.designsystem.theme.gray20
 import com.bagusmerta.taskk.presentation.designsystem.theme.softGreen
 import com.bagusmerta.taskk.presentation.designsystem.theme.softRed
 import com.bagusmerta.taskk.presentation.designsystem.theme.softYellow
+import com.bagusmerta.taskk.utils.AlphaDisabled
+import com.bagusmerta.taskk.utils.AlphaHigh
 
+@Composable
+fun TskModalCell(
+    onClick: () -> Unit,
+    text: String,
+    color: Color = MaterialTheme.colorScheme.surfaceVariant,
+    textColor: Color = Color.Unspecified,
+    enabled: Boolean = true,
+    leftIcon: @Composable (() -> Unit)? = null,
+    rightIcon: @Composable (() -> Unit)? = null
+) {
+    val colorAlpha = if (enabled) {
+        AlphaHigh
+    } else {
+        AlphaDisabled
+    }
+    val onClickState = if (enabled) {
+        onClick
+    } else {
+        { }
+    }
+    val indication = if (enabled) {
+        LocalIndication.current
+    } else {
+        null
+    }
+
+    val shape = MaterialTheme.shapes.medium
+    Surface(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp)
+            .height(56.dp)
+            .clip(shape)
+            .clickable(
+                onClick = onClickState,
+                indication = indication,
+                interactionSource = remember { MutableInteractionSource() }
+            ),
+        shape = shape,
+        color = color.copy(alpha = colorAlpha),
+    ) {
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            if (leftIcon != null) {
+                Spacer(Modifier.width(8.dp))
+                leftIcon()
+                Spacer(Modifier.width(16.dp))
+            } else {
+                Spacer(Modifier.width(20.dp))
+            }
+
+            Text(
+                text = text,
+                style = MaterialTheme.typography.titleMedium,
+                color = textColor
+            )
+
+            if (rightIcon != null) {
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.End
+                ) {
+                    rightIcon()
+                    Spacer(Modifier.size(20.dp))
+                }
+            }
+        }
+    }
+}
 
 @Composable
 fun TskItem(
@@ -56,8 +136,9 @@ fun TskItem(
     ) {
         Column {
             Row(
-               verticalAlignment = Alignment.Top,
-                modifier = Modifier.padding(contentPadding)
+                verticalAlignment = Alignment.Top,
+                modifier = Modifier.padding(contentPadding),
+                horizontalArrangement = Arrangement.SpaceBetween,
             ){
                 TskIconButton(
                     onClick = onCheckBoxClick,
@@ -79,8 +160,6 @@ fun TskItem(
                         modifier = Modifier.fillMaxWidth(),
                     ) {
                         TskTitle(text = tskTitle)
-                        Spacer(Modifier.width(10.dp))
-                        TskPriority(priority = taskkPriority)
                     }
                     Row(
                         modifier = Modifier.fillMaxWidth()
@@ -89,15 +168,70 @@ fun TskItem(
                         TskDueDate(text = tskDueDate)
                     }
                 }
+
+                Spacer(Modifier.width(10.dp))
+                TskPriority(priority = taskkPriority)
             }
             Divider(
                 color = gray20,
                 thickness = 1.dp,
-                modifier = Modifier.padding(start = 16.dp, end = 16.dp, bottom = 16.dp)
+                modifier = Modifier.padding(start = 16.dp, end = 16.dp)
             )
         }
     }
 }
+
+@Composable
+fun TskItemDetail(
+    modifier: Modifier,
+    onClick: () -> Unit,
+    onCheckBoxClick: () -> Unit,
+    color: Color,
+    tskTitle: String,
+    leftIcon: ImageVector,
+    taskkPriority: TaskkPriority,
+    contentPadding: PaddingValues
+){
+    Surface(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clickable(onClick = onClick),
+    ) {
+        Column {
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier.padding(contentPadding),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ){
+                TskIconButton(
+                    onClick = onCheckBoxClick,
+                    shape = RectangleShape,
+                    color = Color.Transparent
+                ) {
+                    TskIcon(
+                        imageIcon = leftIcon,
+                        tintColor = color
+                    )
+                }
+
+                Column(modifier = Modifier
+                    .padding(4.dp)
+                    .weight(1F)) {
+                    TskTitle(text = tskTitle)
+                }
+
+                Spacer(Modifier.width(10.dp))
+                TskPriority(priority = taskkPriority)
+            }
+            Divider(
+                color = gray20,
+                thickness = 1.dp,
+                modifier = Modifier.padding(start = 16.dp, end = 16.dp, bottom = 10.dp)
+            )
+        }
+    }
+}
+
 
 
 @Preview
@@ -108,9 +242,24 @@ fun previewTskItem(){
         onClick = { },
         onCheckBoxClick = {  },
         color = MaterialTheme.colorScheme.primary,
-        tskTitle = "Do Leetcode Easy",
+        tskTitle = "do a coding job and interview a candidate for SWE junior position, do a coding job and interview a candidate for SWE junior position, and interview a candidate for SWE junior position, ",
         tskDueDate = "Due, Fri 27 June 2023",
         tskCategory = "More College",
+        taskkPriority = TaskkPriority.EASY,
+        contentPadding = PaddingValues(10.dp),
+        leftIcon = TaskkIcon.Check
+    )
+}
+
+@Preview
+@Composable
+fun previewTskItemDetail(){
+    TskItemDetail(
+        modifier = Modifier,
+        onClick = { },
+        onCheckBoxClick = {  },
+        color = MaterialTheme.colorScheme.primary,
+        tskTitle = "Do Leetcode Easy",
         taskkPriority = TaskkPriority.EASY,
         contentPadding = PaddingValues(10.dp),
         leftIcon = TaskkIcon.Check
@@ -122,13 +271,13 @@ fun TskTitle(
     text: String,
     textColor: Color = Color.Unspecified
 ){
-    Column(
-        horizontalAlignment = Alignment.Start,
-    ) {
+    Column {
         Text(
             text = text,
-            style = MaterialTheme.typography.titleMedium.copy(textAlign = TextAlign.Center),
-            color = textColor
+            style = MaterialTheme.typography.titleMedium.copy(textAlign = TextAlign.Justify),
+            color = textColor,
+            maxLines = 4,
+            lineHeight = 20.sp
         )
     }
 }
@@ -176,7 +325,7 @@ fun TskPriority(
         TaskkPriority.HARD -> softRed
     }
     Column(
-        modifier = modifier.padding(top = 5.dp)
+        modifier = modifier.padding(all = 10.dp)
     ) {
         Box(modifier = modifier
             .width(60.dp)

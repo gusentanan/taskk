@@ -3,6 +3,7 @@ package com.bagusmerta.taskk
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.material3.Surface
 import androidx.core.view.WindowCompat
 import com.bagusmerta.taskk.navigation.MainNavHost
@@ -11,7 +12,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
 @AndroidEntryPoint
-class MainActivity : ComponentActivity() {
+class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.Theme_Taskk_Light)
         super.onCreate(savedInstanceState)

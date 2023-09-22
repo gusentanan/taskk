@@ -1,7 +1,7 @@
 package com.bagusmerta.taskk.presentation.screen.taskk.ui
 
 import androidx.compose.ui.text.input.TextFieldValue
-import com.bagusmerta.taskk.data.model.TaskkToDo
+import com.bagusmerta.taskk.domain.model.TaskkToDo
 
 sealed class HomeEvent {
 

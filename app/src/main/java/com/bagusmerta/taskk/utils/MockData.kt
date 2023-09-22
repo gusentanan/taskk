@@ -1,14 +1,38 @@
 package com.bagusmerta.taskk.utils
 
-import com.bagusmerta.taskk.data.model.TaskkCategory
-import com.bagusmerta.taskk.data.model.TaskkList
-import com.bagusmerta.taskk.data.model.TaskkPriority
-import com.bagusmerta.taskk.data.model.TaskkStatus
-import com.bagusmerta.taskk.data.model.TaskkToDo
+import android.util.Log
+import com.bagusmerta.taskk.domain.model.TaskkCategory
+import com.bagusmerta.taskk.domain.model.TaskkList
+import com.bagusmerta.taskk.domain.model.TaskkPriority
+import com.bagusmerta.taskk.domain.model.TaskkStatus
+import com.bagusmerta.taskk.domain.model.TaskkToDo
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.asFlow
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.mapLatest
 import java.time.LocalDateTime
+
+fun getTaskkByIdMock(taskkId: String): Flow<TaskkToDo>  = flow {
+    val data = getMockListTask().first()
+    val dataMapped = mapTaskkListToTaskkTodo(data)
+
+    dataMapped.forEach{
+        if(it.id == taskkId){
+            Log.d("BagusMertaS", it.toString())
+            emit(it)
+        }
+    }
+}
+
+fun mapTaskkListToTaskkTodo(data: TaskkList): List<TaskkToDo> {
+    val res = mutableListOf<TaskkToDo>()
+    data.tasks.forEach {
+        res.add(it)
+    }
+    return res
+}
 
 
 fun getMockListTask(): Flow<TaskkList>  = flow {
@@ -21,10 +45,9 @@ fun getMockListTask(): Flow<TaskkList>  = flow {
                     name = "We go gym",
                     status = TaskkStatus.IN_PROGRESS,
                     completedAt = null,
-                    dueDate =  LocalDateTime.now(),
+                    dueDate =  null,
                     isDueDateTimeSet = false,
                     note = "For our health",
-                    noteUpdatedAt = null,
                     createdAt = LocalDateTime.now(),
                     updatedAt = LocalDateTime.MAX,
                     taskkCategory = TaskkCategory.SELF_HELP,
@@ -36,9 +59,8 @@ fun getMockListTask(): Flow<TaskkList>  = flow {
                     status = TaskkStatus.COMPLETE,
                     completedAt = null,
                     dueDate =  LocalDateTime.now(),
-                    isDueDateTimeSet = false,
+                    isDueDateTimeSet = true,
                     note = "For our Food",
-                    noteUpdatedAt = null,
                     createdAt = LocalDateTime.now(),
                     updatedAt = LocalDateTime.MAX,
                     taskkCategory = TaskkCategory.HOUSEHOLD,
@@ -46,13 +68,12 @@ fun getMockListTask(): Flow<TaskkList>  = flow {
                 ),
                 TaskkToDo(
                     id = "3",
-                    name = "Go to work",
+                    name = "Go to work, do a coding job and a coding job and",
                     status = TaskkStatus.COMPLETE,
                     completedAt = null,
                     dueDate =  LocalDateTime.now(),
                     isDueDateTimeSet = false,
-                    note = "For our Food",
-                    noteUpdatedAt = null,
+                    note = "do a coding job and interview a candidate for SWE junior position, do a coding job and interview a candidate for SWE junior position, and interview a candidate for SWE junior position, ",
                     createdAt = LocalDateTime.now(),
                     updatedAt = LocalDateTime.MAX,
                     taskkCategory = TaskkCategory.HOUSEHOLD,
@@ -66,7 +87,6 @@ fun getMockListTask(): Flow<TaskkList>  = flow {
                     dueDate =  LocalDateTime.now(),
                     isDueDateTimeSet = false,
                     note = "For our Food",
-                    noteUpdatedAt = null,
                     createdAt = LocalDateTime.now(),
                     updatedAt = LocalDateTime.MAX,
                     taskkCategory = TaskkCategory.HOUSEHOLD,
@@ -80,7 +100,6 @@ fun getMockListTask(): Flow<TaskkList>  = flow {
                     dueDate =  LocalDateTime.now(),
                     isDueDateTimeSet = false,
                     note = "For our Food",
-                    noteUpdatedAt = null,
                     createdAt = LocalDateTime.now(),
                     updatedAt = LocalDateTime.MAX,
                     taskkCategory = TaskkCategory.HOUSEHOLD,
@@ -94,7 +113,6 @@ fun getMockListTask(): Flow<TaskkList>  = flow {
                     dueDate =  LocalDateTime.now(),
                     isDueDateTimeSet = false,
                     note = "For our Food",
-                    noteUpdatedAt = null,
                     createdAt = LocalDateTime.now(),
                     updatedAt = LocalDateTime.MAX,
                     taskkCategory = TaskkCategory.HOUSEHOLD,
@@ -108,7 +126,6 @@ fun getMockListTask(): Flow<TaskkList>  = flow {
                     dueDate =  LocalDateTime.now(),
                     isDueDateTimeSet = false,
                     note = "For our Food",
-                    noteUpdatedAt = null,
                     createdAt = LocalDateTime.now(),
                     updatedAt = LocalDateTime.MAX,
                     taskkCategory = TaskkCategory.HOUSEHOLD,
@@ -122,7 +139,6 @@ fun getMockListTask(): Flow<TaskkList>  = flow {
                     dueDate =  LocalDateTime.now(),
                     isDueDateTimeSet = false,
                     note = "For our Food",
-                    noteUpdatedAt = null,
                     createdAt = LocalDateTime.now(),
                     updatedAt = LocalDateTime.MAX,
                     taskkCategory = TaskkCategory.HOUSEHOLD,
@@ -136,7 +152,6 @@ fun getMockListTask(): Flow<TaskkList>  = flow {
                     dueDate =  LocalDateTime.now(),
                     isDueDateTimeSet = false,
                     note = "For our Food",
-                    noteUpdatedAt = null,
                     createdAt = LocalDateTime.now(),
                     updatedAt = LocalDateTime.MAX,
                     taskkCategory = TaskkCategory.HOUSEHOLD,

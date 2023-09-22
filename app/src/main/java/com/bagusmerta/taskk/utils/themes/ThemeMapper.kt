@@ -1,6 +1,7 @@
 package com.bagusmerta.taskk.utils.themes
 
 import com.bagusmerta.taskk.model.preference.ThemePreference
+import com.bagusmerta.taskk.presentation.screen.setting.ui.TaskkThemeItems
 
 /*
 * Mapper to proto-datastore
@@ -18,4 +19,10 @@ fun ThemePreference.toTheme() = when (this) {
     ThemePreference.SYSTEM -> TaskkTheme.SYSTEM
     ThemePreference.LIGHT -> TaskkTheme.LIGHT
     ThemePreference.DARK -> TaskkTheme.DARK
+}
+
+    fun List<TaskkThemeItems>.selectTheme(theme: TaskkTheme): List<TaskkThemeItems> {
+    return map {
+        it.copy(applied = it.type == theme)
+    }
 }

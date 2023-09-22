@@ -48,7 +48,7 @@ fun TskBackButton(
 ){
     TskIconButton(
         onClick = onClick,
-        modifier = Modifier.size(20.dp),
+        modifier = Modifier.size(42.dp),
         shape = CircleShape,
         color = MaterialTheme.colorScheme.surface
     ) {

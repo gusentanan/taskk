@@ -5,6 +5,7 @@ import androidx.compose.runtime.getValue
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.bagusmerta.taskk.presentation.designsystem.theme.TaskkTheme
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 @Composable
 fun Host(content: @Composable () -> Unit) {

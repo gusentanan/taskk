@@ -8,6 +8,7 @@ import androidx.compose.material.icons.rounded.CheckBox
 import androidx.compose.material.icons.rounded.CheckBoxOutlineBlank
 import androidx.compose.material.icons.rounded.RadioButtonUnchecked
 import androidx.compose.material.icons.rounded.CheckCircle
+import androidx.compose.material.icons.rounded.DeleteForever
 import androidx.compose.material.icons.rounded.Settings
 
 /**
@@ -18,5 +19,7 @@ object TaskkIcon {
     val ArrowBack = Icons.Rounded.ArrowBack
     val Settings = Icons.Rounded.Settings
     val Check = Icons.Rounded.CheckBox
+    val RoundedCheck = Icons.Rounded.CheckCircle
     val UnChecked = Icons.Rounded.CheckBoxOutlineBlank
+    val Trash = Icons.Rounded.DeleteForever
 }

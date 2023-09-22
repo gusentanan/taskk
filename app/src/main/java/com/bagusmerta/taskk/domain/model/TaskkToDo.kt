@@ -1,4 +1,4 @@
-package com.bagusmerta.taskk.data.model
+package com.bagusmerta.taskk.domain.model
 
 import java.time.LocalDateTime
 
@@ -10,7 +10,6 @@ data class TaskkToDo(
     val dueDate: LocalDateTime? = null,
     val isDueDateTimeSet: Boolean = false,
     val note: String = "",
-    val noteUpdatedAt: LocalDateTime? = null,
     val createdAt: LocalDateTime,
     val updatedAt: LocalDateTime,
     val taskkPriority: TaskkPriority = TaskkPriority.EASY,
