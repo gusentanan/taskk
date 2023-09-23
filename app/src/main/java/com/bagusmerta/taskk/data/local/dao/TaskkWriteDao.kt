@@ -4,8 +4,10 @@ import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
+import com.bagusmerta.taskk.data.local.entity.TaskkTodoDb
 import com.bagusmerta.taskk.domain.model.TaskkCategory
 import com.bagusmerta.taskk.domain.model.TaskkPriority
+import com.bagusmerta.taskk.domain.model.TaskkToDo
 import java.time.LocalDate
 
 /**
@@ -19,7 +21,7 @@ import java.time.LocalDate
 interface TaskkWriteDao {
 
     @Insert
-    fun insertTaskk(taskkId: String)
+    fun insertTaskk(taskks: TaskkTodoDb)
 
     @Query("DELETE FROM TaskkTodoDb WHERE taskk_id = :taskkId")
     fun deleteTaskkById(taskkId: String)

@@ -26,7 +26,7 @@ data class TaskkTodoDb(
     val status: TaskkStatus = TaskkStatus.IN_PROGRESS,
 
     @ColumnInfo("comepleted_at")
-    val completedAt: LocalDateTime,
+    val completedAt: LocalDateTime? = null,
 
     @ColumnInfo("due_date")
     val dueDate: LocalDateTime? = null,
