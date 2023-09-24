@@ -46,9 +46,9 @@ fun HomeScreen(
                 onClickSettings = onClickSettings
             )
         },
-        onCheckBoxClick = {  } ,
+        onCheckBoxClick = { viewModel.dispatch(HomeEvent.TaskkEvent.OnToggleStatus(it)) } ,
         onClickTaskItem = { onTaskItemClick(it.id, 1.toString()) } ,
-        color = Color.Transparent,
+        onAddTaskClick = { onAddTaskClick() },
         listState = listState
     )
 }
@@ -75,7 +75,7 @@ fun ListTaskkContent(
     header: @Composable ColumnScope.() -> Unit,
     onCheckBoxClick: (TaskkToDo) -> Unit,
     onClickTaskItem: (TaskkToDo) -> Unit,
-    color: Color,
+    onAddTaskClick: () -> Unit,
     listState: LazyListState
 ){
     TskLayout {
@@ -94,7 +94,7 @@ fun ListTaskkContent(
             )
 
             FooterWithButton(
-                onClick = { /*TODO*/ },
+                onClick = { onAddTaskClick() },
                 textButton = "Create a new Task"
             )
             Spacer(Modifier.height(10.dp))

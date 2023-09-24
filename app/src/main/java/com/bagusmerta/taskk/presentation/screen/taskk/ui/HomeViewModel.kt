@@ -22,11 +22,8 @@ class HomeViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-//            environment.idProvider.generateId()
-
-            if(listId.isNullOrBlank()){
-                setEffect(HomeEffect.ShowNewTaskInput)
-            } else {
+            if (listId != null) {
+                environment.getOverallCountTaskk()
                 environment.getListTaskk(listId)
                     .catch {  }
                     .collect {
@@ -43,7 +40,27 @@ class HomeViewModel @Inject constructor(
     )
 
     override fun dispatch(event: HomeEvent) {
-        TODO("Not yet implemented")
+        when(event){
+            is HomeEvent.TaskkEvent -> {
+                handleTaskkEvent(event)
+            }
+        }
+    }
+
+    private fun handleTaskkEvent(event: HomeEvent){
+        when(event){
+            is HomeEvent.TaskkEvent.Delete -> {
+                viewModelScope.launch {
+                    environment.deleteTask(event.task)
+                }
+            }
+            is HomeEvent.TaskkEvent.OnToggleStatus -> {
+                viewModelScope.launch {
+                    environment.toggleTaskStatus(event.task)
+                }
+            }
+            else -> { }
+        }
     }
 
 }

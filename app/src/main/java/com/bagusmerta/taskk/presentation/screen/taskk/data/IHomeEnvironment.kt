@@ -1,6 +1,8 @@
 package com.bagusmerta.taskk.presentation.screen.taskk.data
 
 import com.bagusmerta.taskk.domain.model.TaskkList
+import com.bagusmerta.taskk.domain.model.TaskkOverallCount
+import com.bagusmerta.taskk.domain.model.TaskkStatus
 import com.bagusmerta.taskk.domain.model.TaskkToDo
 import com.bagusmerta.taskk.utils.wrapper.DateTimeProvider
 import com.bagusmerta.taskk.utils.wrapper.IdTaskkProvider
@@ -11,9 +13,10 @@ interface IHomeEnvironment {
     val dateTimeProvider: DateTimeProvider
 
     fun getListTaskk(listId: String): Flow<TaskkList>
-    suspend fun createTask(taskName: String, listId: String): Flow<TaskkToDo>
-    suspend fun toggleTaskStatus(toDoTask: TaskkToDo)
+
+    fun getOverallCountTaskk(): Flow<TaskkOverallCount>
+    suspend fun toggleTaskStatus(task: TaskkToDo)
     suspend fun deleteTask(task: TaskkToDo)
-    fun trackSaveListButtonClicked()
+
 }
 

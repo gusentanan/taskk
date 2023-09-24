@@ -5,6 +5,7 @@ import com.bagusmerta.taskk.data.local.dao.TaskkWriteDao
 import com.bagusmerta.taskk.domain.model.TaskkCategory
 import com.bagusmerta.taskk.domain.model.TaskkOverallCount
 import com.bagusmerta.taskk.domain.model.TaskkPriority
+import com.bagusmerta.taskk.domain.model.TaskkStatus
 import com.bagusmerta.taskk.domain.model.TaskkToDo
 import com.bagusmerta.taskk.utils.Dispatcher
 import com.bagusmerta.taskk.utils.mapper.toTaskkTodo
@@ -16,6 +17,7 @@ import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
 import java.time.LocalDate
+import java.time.LocalDateTime
 import javax.inject.Inject
 import javax.inject.Named
 
@@ -78,9 +80,15 @@ class LocalDataSource @Inject constructor(
         }
     }
 
-    suspend fun updateTaskkDueDate(id: String, dueDate: LocalDate) {
+    suspend fun updateTaskkDueDate(id: String, dueDate: LocalDateTime) {
         withContext(dispatcher){
             taskkWriteDao.updateTaskkDueDate(id, dueDate)
+        }
+    }
+
+    suspend fun updateTaskkStatus(id: String, taskkStatus: TaskkStatus){
+        withContext(dispatcher){
+            taskkWriteDao.updateTaskkStatus(taskkStatus, id)
         }
     }
 }

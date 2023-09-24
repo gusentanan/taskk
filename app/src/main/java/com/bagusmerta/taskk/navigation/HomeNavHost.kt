@@ -36,7 +36,7 @@ fun NavGraphBuilder.HomeNavHost(
             HomeScreen(
                 viewModel = viewModel,
                 onRelaunchScreen = { },
-                onAddTaskClick = { },
+                onAddTaskClick = { navController.navigate(DetailFlow.Root.route) },
                 onTaskItemClick = {
                     taskkId, listId ->
                     navController.navigate(DetailFlow.Root.route(taskkId, listId))

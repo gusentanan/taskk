@@ -16,6 +16,7 @@ fun TskEmpty (
     Box(modifier.fillMaxWidth()) {
         Text(
             text = text,
+            style = MaterialTheme.typography.headlineMedium,
             modifier = Modifier.align(Alignment.Center),
             color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.3F)
         )

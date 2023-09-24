@@ -4,6 +4,8 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverter
+import androidx.room.TypeConverters
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.bagusmerta.taskk.data.local.dao.TaskkReadDao
 import com.bagusmerta.taskk.data.local.dao.TaskkWriteDao
@@ -16,6 +18,7 @@ import kotlinx.coroutines.launch
 @Database(
     entities = [TaskkTodoDb::class], version = 1,
 )
+@TypeConverters(DateConverter::class)
 abstract class TaskkDatabase: RoomDatabase(){
     abstract fun taskkWriteDao(): TaskkWriteDao
     abstract fun taskkReadDao(): TaskkReadDao

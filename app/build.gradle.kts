@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.fir.expressions.FirEmptyArgumentList.arguments
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -21,6 +23,13 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
+
+        kapt {
+            arguments {
+                arg("room.schemaLocation", "$projectDir/room-schemas".toString())
+            }
+        }
+
     }
 
     buildTypes {
