@@ -22,7 +22,10 @@ import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.CalendarViewDay
+import androidx.compose.material.icons.rounded.CalendarViewMonth
 import androidx.compose.material.icons.rounded.ChevronRight
+import androidx.compose.material.icons.rounded.EditCalendar
 import androidx.compose.material.icons.rounded.Event
 import androidx.compose.material.icons.rounded.LibraryBooks
 import androidx.compose.material.icons.rounded.PriorityHigh
@@ -58,7 +61,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.bagusmerta.taskk.R
 import com.bagusmerta.taskk.domain.model.TaskkStatus
 import com.bagusmerta.taskk.domain.model.TaskkToDo
-import com.bagusmerta.taskk.presentation.designsystem.component.FooterWithIconBtn
+import com.bagusmerta.taskk.presentation.designsystem.component.FooterWithText
 import com.bagusmerta.taskk.presentation.designsystem.component.HeaderWithBackButton
 import com.bagusmerta.taskk.presentation.designsystem.component.TskIcon
 import com.bagusmerta.taskk.presentation.designsystem.component.TskItem
@@ -125,7 +128,11 @@ fun DetailScreen(
         header = {
             HeaderWithBackButton(
                 text = "Detail Taskk",
-                onClickBack = onBackPress
+                onClickBack = onBackPress,
+                onClickDelete = {
+                    viewModel.dispatch(DetailEvent.Delete(state.taskk))
+                    onClickTaskkDelete()
+                }
             )
         },
         taskk = state.taskk,
@@ -154,10 +161,6 @@ fun DetailScreen(
         onClickTaskkStatus = {
             viewModel.dispatch(DetailEvent.OnToggleStatus(state.taskk))
         },
-        onClickTaskkDelete = {
-            viewModel.dispatch(DetailEvent.Delete(state.taskk))
-            onClickTaskkDelete()
-        },
         onClickTaskkPriority = { onClickTaskkPriority() },
         onClickTaskkCategory = { onClickTaskkCategory() },
         listState = listState,
@@ -179,11 +182,11 @@ fun DetailTaskkScreen(
     onClickTaskkCategory: () -> Unit,
     onClickTaskkStatus: () -> Unit,
     onClickTaskkNote: () -> Unit,
-    onClickTaskkDelete: () -> Unit,
     listState: LazyListState
 ){
     TskLayout {
         header()
+        Spacer(Modifier.height(20.dp))
 
         LazyColumn(
             modifier = Modifier
@@ -208,7 +211,7 @@ fun DetailTaskkScreen(
                 ActionCell(
                     title = "Add Priority",
                     shape = RoundedCornerShape(size = MediumRadius),
-                    iconBgColor = gray20,
+                    iconBgColor = MaterialTheme.colorScheme.secondary,
                     leftIcon = Icons.Rounded.PriorityHigh,
                     showDivider = true,
                     onClick = onClickTaskkPriority,
@@ -236,7 +239,7 @@ fun DetailTaskkScreen(
                 ActionCell(
                     title = "Add Category",
                     shape = RoundedCornerShape(size = MediumRadius),
-                    iconBgColor = gray20,
+                    iconBgColor = MaterialTheme.colorScheme.secondary,
                     leftIcon = Icons.Rounded.LibraryBooks,
                     showDivider = true,
                     onClick = onClickTaskkCategory,
@@ -264,8 +267,8 @@ fun DetailTaskkScreen(
                 ActionCell(
                     title = dueDateTitle,
                     shape = RoundedCornerShape(size = MediumRadius),
-                    iconBgColor = softRed,
-                    leftIcon = Icons.Rounded.Event,
+                    iconBgColor = MaterialTheme.colorScheme.error,
+                    leftIcon = Icons.Rounded.EditCalendar,
                     showDivider = true,
                     onClick = if(taskk.isDueDateSet()){
                         onClickDueDate
@@ -327,9 +330,10 @@ fun DetailTaskkScreen(
                 }
             }
         }
-        FooterWithIconBtn(
-            onClickDelete = { onClickTaskkDelete() },
-            textFooter = taskk.dueDateDisplayable(LocalContext.current.resources).toString()
+        FooterWithText(
+            textFooter = taskk.dueDateDisplayable(LocalContext.current.resources) ?: stringResource(
+                R.string.taskk_add_due_date_footer_empty
+            )
         )
 
         Spacer(Modifier.height(10.dp))
@@ -423,10 +427,10 @@ private fun ActionCell(
         Surface(
             modifier = Modifier
                 .fillMaxWidth()
-                .clip(shape)
-                .padding(horizontal = 16.dp),
+                .padding(horizontal = 4.dp)
+                .clip(shape),
             shape = shape,
-            color = MaterialTheme.colorScheme.secondary
+            color = MaterialTheme.colorScheme.surface
         ) {
             ActionContentCell(
                 title = title,

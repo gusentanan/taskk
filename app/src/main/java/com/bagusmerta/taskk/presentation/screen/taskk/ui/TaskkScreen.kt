@@ -61,8 +61,6 @@ fun TaskkContent(
                 )
             }
         } else {
-            // START ELSE
-
             items(
                 items = tasks,
                 key = { item -> item.identifier() },
@@ -132,7 +130,6 @@ fun TaskkContent(
                 }
             }
 
-            // END ELSE
         }
 
         item {

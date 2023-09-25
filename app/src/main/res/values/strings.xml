@@ -5,9 +5,10 @@
     <string name="taskk_due_date_today">Due today</string>
     <string name="taskk_due_date_tomorrow">Due tomorrow</string>
     <string name="taskk_due_date_yesterday">Due yesterday</string>
-    <string name="taskk_due_date">Due, %1$s</string>
+    <string name="taskk_due_date">Due ~ %1$s</string>
     <string name="task_complete_header">Completed</string>
     <string name="taskk_add_note">Taskk Note</string>
     <string name="taskk_add_due_date">Add Due Date</string>
     <string name="taskk_add_due_date_empty"> </string>
+    <string name="taskk_add_due_date_footer_empty">No due date</string>
 </resources>

@@ -7,7 +7,7 @@ import androidx.compose.ui.graphics.Color
  * */
 val lPrimary =  Color(0xFF0067FF)
 val lBackground = Color(0xFFF5F5F5)
-val lItemBackground = Color(0xFFCACACA)
+val lItemBackground = Color(0xFFE2E2E2)
 val lOn = Color(0xFF130E0F)
 val lError = Color(0xFFEA6D7E)
 

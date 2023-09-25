@@ -18,8 +18,7 @@ import androidx.compose.ui.unit.dp
 import com.bagusmerta.taskk.presentation.designsystem.icon.TaskkIcon
 
 @Composable
-fun FooterWithIconBtn(
-    onClickDelete: () -> Unit,
+fun FooterWithText(
     textFooter: String
 ) {
     Box(
@@ -29,28 +28,9 @@ fun FooterWithIconBtn(
     ) {
         Text(
             text = textFooter,
-            style = MaterialTheme.typography.headlineMedium,
+            style = MaterialTheme.typography.headlineSmall,
             modifier = Modifier.align(Alignment.Center)
         )
-
-        Row(
-            modifier = Modifier
-                .align(Alignment.CenterEnd)
-        ) {
-            TskIconButton(
-                onClick = onClickDelete,
-                color = Color.Transparent,
-                modifier = Modifier
-                    .size(42.dp),
-                shape = CircleShape
-            ) {
-                TskIcon(
-                    imageIcon = TaskkIcon.Trash,
-                    modifier = Modifier.size(30.dp)
-                )
-            }
-            Spacer(modifier = Modifier.padding(end = 12.dp))
-        }
     }
 }
 
