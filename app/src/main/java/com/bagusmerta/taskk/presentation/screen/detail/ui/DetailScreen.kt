@@ -44,6 +44,7 @@ import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -129,7 +130,7 @@ fun DetailScreen(
         },
         taskk = state.taskk,
         note = state.taskk.note,
-        dueDateTitle = state.taskk.dueDate?.formatDateTime().toString(),
+        dueDateTitle = state.taskk.dueDate?.formatDateTime() ?: stringResource(R.string.taskk_add_due_date),
         onClickTaskkTitle = { onClickTaskkTitle() },
         onClickDueDate = {
             val dueDateValue = state.taskk.dueDate?.toLocalDate()
@@ -422,6 +423,7 @@ private fun ActionCell(
         Surface(
             modifier = Modifier
                 .fillMaxWidth()
+                .clip(shape)
                 .padding(horizontal = 16.dp),
             shape = shape,
             color = MaterialTheme.colorScheme.secondary
