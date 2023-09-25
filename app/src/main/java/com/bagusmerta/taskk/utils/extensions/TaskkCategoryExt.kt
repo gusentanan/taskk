@@ -5,6 +5,12 @@ import com.bagusmerta.taskk.domain.model.TaskkPriority
 import com.bagusmerta.taskk.presentation.screen.detail.ui.CategoryItems
 import com.bagusmerta.taskk.presentation.screen.detail.ui.PriorityItems
 
+fun List<CategoryItems>.select(item: TaskkCategory): List<CategoryItems> {
+    return map {
+        it.copy(applied = it.category == item)
+    }
+}
+
 fun TaskkCategory.displayable(): String {
     return when (this) {
         TaskkCategory.STUDY -> TaskCategoryDisplayableOnDetail.STUDY.title

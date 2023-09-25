@@ -35,7 +35,7 @@ data class DetailState(
                     TaskkCategory.HOUSEHOLD, false
                 ),
                 CategoryItems(
-                    TaskkCategory.SELF_HELP, false
+                    TaskkCategory.SELF_HELP, true
                 ),
                 CategoryItems(
                     TaskkCategory.STUDY, false
@@ -46,7 +46,7 @@ data class DetailState(
         private fun initPriorityItems(): List<PriorityItems> {
             return listOf(
                 PriorityItems(
-                    TaskkPriority.EASY, false
+                    TaskkPriority.EASY, true
                 ),
                 PriorityItems(
                     TaskkPriority.HARD, false

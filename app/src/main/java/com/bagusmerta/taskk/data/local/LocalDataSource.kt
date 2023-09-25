@@ -56,39 +56,45 @@ class LocalDataSource @Inject constructor(
         }
     }
 
-    suspend fun updateTaskkTitle(id: String, title: String) {
+    suspend fun updateTaskkTitle(id: String, title: String, updateAt: LocalDateTime) {
         withContext(dispatcher){
-            taskkWriteDao.updateTaskkTitle(id, title)
+            taskkWriteDao.updateTaskkTitle(id, title, updateAt)
         }
     }
 
-    suspend fun updateTaskkCategory(id: String, category: TaskkCategory) {
+    suspend fun updateTaskkCategory(id: String, category: TaskkCategory, updateAt: LocalDateTime) {
         withContext(dispatcher){
-            taskkWriteDao.updateTaskkCategory(id, category)
+            taskkWriteDao.updateTaskkCategory(id, category, updateAt)
         }
     }
 
-    suspend fun updateTaskkPriority(id: String, priority: TaskkPriority) {
+    suspend fun updateTaskkPriority(id: String, priority: TaskkPriority, updateAt: LocalDateTime) {
         withContext(dispatcher){
-            taskkWriteDao.updateTaskkPriority(id, priority)
+            taskkWriteDao.updateTaskkPriority(id, priority, updateAt)
         }
     }
 
-    suspend fun updateTaskkNote(id: String, note: String){
+    suspend fun updateTaskkNote(id: String, note: String,  updateAt: LocalDateTime){
         withContext(dispatcher){
-            taskkWriteDao.updateTaskkNote(id, note)
+            taskkWriteDao.updateTaskkNote(id, note, updateAt)
         }
     }
 
-    suspend fun updateTaskkDueDate(id: String, dueDate: LocalDateTime) {
+    suspend fun updateTaskkDueDate(id: String, dueDate: LocalDateTime,  updateAt: LocalDateTime, isDueDateSet: Boolean) {
         withContext(dispatcher){
-            taskkWriteDao.updateTaskkDueDate(id, dueDate)
+            taskkWriteDao.updateTaskkDueDate(id, dueDate, updateAt, isDueDateSet)
         }
     }
 
-    suspend fun updateTaskkStatus(id: String, taskkStatus: TaskkStatus){
+    suspend fun resetTaskkDueDate(id: String,  updateAt: LocalDateTime) {
         withContext(dispatcher){
-            taskkWriteDao.updateTaskkStatus(taskkStatus, id)
+            taskkWriteDao.updateTaskkDueDate(id, null, updateAt, false)
+        }
+    }
+
+    suspend fun updateTaskkStatus(id: String, taskkStatus: TaskkStatus,  updateAt: LocalDateTime){
+        withContext(dispatcher){
+            taskkWriteDao.updateTaskkStatus(taskkStatus, id, updateAt)
         }
     }
 }

@@ -33,6 +33,47 @@ import androidx.compose.ui.unit.dp
 
 const val MAX_TEXT_FIELD_CHAR =  225
 
+@Composable
+fun TskTextField(
+    valueText: String,
+    onValueTextChange: (String) -> Unit,
+    placeHolderValue: String,
+    isError: Boolean = false,
+    visualTransformation: VisualTransformation = VisualTransformation.None,
+    keyboardOptions: KeyboardOptions = KeyboardOptions.Default.copy(capitalization = KeyboardCapitalization.Sentences),
+    keyboardActions: KeyboardActions = KeyboardActions.Default,
+    modifier: Modifier = Modifier,
+    shape: Shape = MaterialTheme.shapes.large,
+    textColor: Color = MaterialTheme.colorScheme.onSurface,
+    textStyle: TextStyle = MaterialTheme.typography.titleSmall.copy(color = MaterialTheme.colorScheme.onSurface),
+    errorLabel: @Composable (() -> Unit)? = null
+) {
+
+    var textFieldValueState by remember { mutableStateOf(TextFieldValue(text = valueText)) }
+    val textFieldValue = textFieldValueState.copy(text = valueText)
+
+    TskTextField(
+        valueText = textFieldValue,
+        onValueTextChange = {
+            textFieldValueState = it
+            if(valueText != it.text){
+                onValueTextChange(it.text)
+            }
+        },
+        placeHolderValue = placeHolderValue,
+        isError = isError,
+        visualTransformation = visualTransformation,
+        keyboardOptions = keyboardOptions,
+        keyboardActions = keyboardActions,
+        modifier = modifier,
+        shape = shape,
+        textColor = textColor,
+        textStyle = textStyle,
+        errorLabel = errorLabel
+
+    )
+
+}
 
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)

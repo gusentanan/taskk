@@ -91,11 +91,13 @@ import java.time.LocalDateTime
 fun DetailScreen(
     viewModel: DetailViewModel,
     onBackPress: () -> Unit,
+    onRefreshScreen: (String, String) -> Unit,
+    onClosePage: () -> Unit,
+    showCreateTaskkName: () -> Unit,
     onClickTaskkTitle: () -> Unit,
     onClickTaskkPriority: () -> Unit,
     onClickTaskkCategory: () -> Unit,
     onClickTaskkNote: () -> Unit,
-    onClickTaskkStatus: () -> Unit,
     onClickTaskkDelete: () -> Unit
 ) {
 
@@ -106,8 +108,14 @@ fun DetailScreen(
 
     HandleEffect(viewModel = viewModel) {
         when (it) {
-            is DetailEffect.ScrollTo -> {
-                //TODO might cut this later
+            is DetailEffect.ShowCreateTaskkNameInput -> {
+                showCreateTaskkName()
+            }
+            is DetailEffect.RefreshScreen -> {
+                onRefreshScreen(it.taskkId, 1.toString())
+            }
+            is DetailEffect.OnClosePage -> {
+                onClosePage()
             }
         }
     }
@@ -116,15 +124,11 @@ fun DetailScreen(
         header = {
             HeaderWithBackButton(
                 text = "Detail Taskk",
-                onClickBack =
-                //TODO: pop out to previous route
-                onBackPress
-
+                onClickBack = onBackPress
             )
         },
         taskk = state.taskk,
         note = state.taskk.note,
-        //TODO: Might look at this later
         dueDateTitle = state.taskk.dueDate?.formatDateTime().toString(),
         onClickTaskkTitle = { onClickTaskkTitle() },
         onClickDueDate = {
@@ -146,12 +150,17 @@ fun DetailScreen(
                 viewModel.dispatch(DetailEvent.ResetDueDate)
             }
         },
+        onClickTaskkStatus = {
+            viewModel.dispatch(DetailEvent.OnToggleStatus(state.taskk))
+        },
+        onClickTaskkDelete = {
+            viewModel.dispatch(DetailEvent.Delete(state.taskk))
+            onClickTaskkDelete()
+        },
         onClickTaskkPriority = { onClickTaskkPriority() },
         onClickTaskkCategory = { onClickTaskkCategory() },
-        onClickTaskkStatus = { /*TODO*/ },
         listState = listState,
-        onClickTaskkNote = { onClickTaskkNote() },
-        onClickTaskkDelete = { onClickTaskkDelete() }
+        onClickTaskkNote = { onClickTaskkNote() }
     )
 
 }
@@ -172,9 +181,6 @@ fun DetailTaskkScreen(
     onClickTaskkDelete: () -> Unit,
     listState: LazyListState
 ){
-
-    val resources = LocalContext.current.resources
-
     TskLayout {
         header()
 
@@ -197,7 +203,7 @@ fun DetailTaskkScreen(
             item { Spacer(Modifier.height(8.dp)) }
 
             item {
-                //TODO: priority section
+                // Taskk Priority section
                 ActionCell(
                     title = "Add Priority",
                     shape = RoundedCornerShape(size = MediumRadius),
@@ -225,7 +231,7 @@ fun DetailTaskkScreen(
             item { Spacer(Modifier.height(8.dp)) }
 
             item {
-                //TODO: category section
+                //Taskk Category section
                 ActionCell(
                     title = "Add Category",
                     shape = RoundedCornerShape(size = MediumRadius),
@@ -253,7 +259,7 @@ fun DetailTaskkScreen(
             item { Spacer(Modifier.height(8.dp)) }
 
             item {
-                //TODO: due date section
+                // Due Date section
                 ActionCell(
                     title = dueDateTitle,
                     shape = RoundedCornerShape(size = MediumRadius),
@@ -281,7 +287,7 @@ fun DetailTaskkScreen(
             item { Spacer(Modifier.height(10.dp)) }
 
             item {
-                //TODO: note section
+                // Taskk Note section
                 val shape = RoundedCornerShape(size = MediumRadius)
                 Surface(
                     modifier = Modifier

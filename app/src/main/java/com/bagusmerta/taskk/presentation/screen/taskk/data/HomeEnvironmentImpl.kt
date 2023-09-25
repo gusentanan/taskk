@@ -40,7 +40,7 @@ class HomeEnvironmentImpl @Inject constructor(
             TaskkStatus.IN_PROGRESS -> { TaskkStatus.COMPLETE }
             TaskkStatus.COMPLETE -> { TaskkStatus.IN_PROGRESS }
         }
-        localDataSource.updateTaskkStatus(task.id, taskkStatus)
+        localDataSource.updateTaskkStatus(task.id, taskkStatus, dateTimeProvider.getNowDate())
     }
 
 

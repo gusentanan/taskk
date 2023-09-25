@@ -36,7 +36,7 @@ import kotlinx.coroutines.launch
 @Composable
 fun DetailTaskkNoteScreen(
     viewModel: DetailViewModel,
-    onClickBack: () -> Unit
+    onClickSave: () -> Unit
 ){
     val state by viewModel.state.collectAsStateWithLifecycle()
     val focusRequest = remember {
@@ -57,7 +57,7 @@ fun DetailTaskkNoteScreen(
                   BasicTextField(
                       value = state.editTaskkNote,
                       onValueChange = {
-                        //TODO: dispatcher to viewmodel to emit changed value
+                        viewModel.dispatch(DetailEvent.TaskkNoteEvent.ChangeTaskkNote(it))
                       },
                       modifier = Modifier
                           .fillMaxWidth()
@@ -81,7 +81,11 @@ fun DetailTaskkNoteScreen(
 
                 TskButton(
                     modifier =Modifier.fillMaxSize(),
-                    onClick = onClickBack) {
+                    onClick = {
+                        viewModel.dispatch(DetailEvent.TaskkNoteEvent.OnClickSave)
+                        onClickSave()
+                    }
+                ) {
                     Text(text = "Save", color = Color.White)
                 }
                 Spacer(Modifier.height(10.dp))

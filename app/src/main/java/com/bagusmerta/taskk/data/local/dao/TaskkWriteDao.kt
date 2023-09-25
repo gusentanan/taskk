@@ -28,22 +28,25 @@ interface TaskkWriteDao {
     @Query("DELETE FROM TaskkTodoDb WHERE taskk_id = :taskkId")
     fun deleteTaskkById(taskkId: String)
 
-    @Query("UPDATE TaskkTodoDb SET taskk_name = :title AND updated_at = :updateAt WHERE taskk_id = :taskkId")
-    fun updateTaskkTitle(taskkId: String, title: String, updateAt: LocalDateTime = LocalDateTime.now())
+    @Query("UPDATE TaskkTodoDb SET taskk_name = :title,  updated_at = :updateAt WHERE taskk_id = :taskkId")
+    fun updateTaskkTitle(taskkId: String, title: String, updateAt: LocalDateTime)
 
-    @Query("UPDATE TaskkTodoDb SET taskk_note = :note AND updated_at = :updateAt WHERE taskk_id = :taskkId")
-    fun updateTaskkNote(taskkId: String, note: String, updateAt: LocalDateTime = LocalDateTime.now())
+    @Query("UPDATE TaskkTodoDb SET taskk_note = :note,  updated_at = :updateAt WHERE taskk_id = :taskkId")
+    fun updateTaskkNote(taskkId: String, note: String, updateAt: LocalDateTime)
 
-    @Query("UPDATE TaskkTodoDb SET due_date = :dueDate AND updated_at = :updateAt WHERE taskk_id = :taskkId")
-    fun updateTaskkDueDate(taskkId: String, dueDate: LocalDateTime?, updateAt: LocalDateTime = LocalDateTime.now())
+    @Query("UPDATE TaskkTodoDb SET due_date = :dueDate, updated_at = :updateAt, is_due_date_set = :isDueDateSet WHERE taskk_id = :taskkId")
+    fun updateTaskkDueDate(taskkId: String, dueDate: LocalDateTime?, updateAt: LocalDateTime, isDueDateSet: Boolean)
 
-    @Query("UPDATE TaskkTodoDb SET taskk_priority = :priority AND updated_at = :updateAt WHERE taskk_id = :taskkId")
-    fun updateTaskkPriority(taskkId: String, priority: TaskkPriority, updateAt: LocalDateTime = LocalDateTime.now())
+    @Query("UPDATE TaskkTodoDb SET due_date = :dueDate, updated_at = :updateAt, is_due_date_set = :isDueDateSet WHERE taskk_id = :taskkId")
+    fun resetTaskkDueDate(taskkId: String, dueDate: LocalDateTime?, updateAt: LocalDateTime, isDueDateSet: Boolean)
 
-    @Query("UPDATE TaskkTodoDb SET taskk_category = :category  AND updated_at = :updateAt WHERE taskk_id = :taskkId")
-    fun updateTaskkCategory(taskkId: String, category: TaskkCategory,  updateAt: LocalDateTime = LocalDateTime.now())
+    @Query("UPDATE TaskkTodoDb SET taskk_priority = :priority,  updated_at = :updateAt WHERE taskk_id = :taskkId")
+    fun updateTaskkPriority(taskkId: String, priority: TaskkPriority, updateAt: LocalDateTime)
 
-    @Query("UPDATE TaskkTodoDb SET taskk_status = :status AND updated_at = :updateAt WHERE taskk_id = :taskkId")
-    fun updateTaskkStatus(status: TaskkStatus, taskkId: String, updateAt: LocalDateTime = LocalDateTime.now())
+    @Query("UPDATE TaskkTodoDb SET taskk_category = :category, updated_at = :updateAt WHERE taskk_id = :taskkId")
+    fun updateTaskkCategory(taskkId: String, category: TaskkCategory,  updateAt: LocalDateTime)
+
+    @Query("UPDATE TaskkTodoDb SET taskk_status = :status, updated_at = :updateAt WHERE taskk_id = :taskkId")
+    fun updateTaskkStatus(status: TaskkStatus, taskkId: String, updateAt: LocalDateTime)
 
 }

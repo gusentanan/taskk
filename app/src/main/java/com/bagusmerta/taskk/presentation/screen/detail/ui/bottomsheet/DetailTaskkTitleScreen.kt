@@ -40,7 +40,11 @@ fun DetailTaskkTitleScreen(
         focusRequester = focusRequest,
         onTitleChange = { viewModel.dispatch(DetailEvent.TaskkTitleEvent.ChangeTaskkTitle(it)) },
         onSaveClick = {
-            viewModel.dispatch(DetailEvent.TaskkTitleEvent.OnClickSave)
+            if(state.taskk.name.isNotEmpty()){
+                viewModel.dispatch(DetailEvent.TaskkTitleEvent.OnClickSaveUpdate)
+            } else {
+                viewModel.dispatch(DetailEvent.TaskkTitleEvent.OnClickSaveCreate)
+            }
             onSaveClick()
         },
         onCancelClick = onCancelClick

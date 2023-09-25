@@ -38,12 +38,18 @@ fun NavGraphBuilder.DetailNavHost(
             DetailScreen(
                 viewModel = viewModel,
                 onBackPress = { navController.navigateUp() },
+                onRefreshScreen = { taskkId, listId ->
+                    navController.navigate(DetailFlow.Root.route(taskkId, listId)){
+                        popUpTo(HomeFlow.HomeScreen.route)
+                    }
+                },
+                showCreateTaskkName = { navController.navigate(DetailFlow.EditTaskkTitle.route) },
                 onClickTaskkTitle = { navController.navigate(DetailFlow.EditTaskkTitle.route) },
                 onClickTaskkPriority = { navController.navigate(DetailFlow.PickTaskkPriority.route) },
                 onClickTaskkCategory = { navController.navigate(DetailFlow.PickTaskkCategory.route) },
                 onClickTaskkNote = { navController.navigate(DetailFlow.EditTaskkNote.route) },
-                onClickTaskkStatus = { },
-                onClickTaskkDelete = { }
+                onClickTaskkDelete = { navController.navigateUp() },
+                onClosePage = { navController.navigateUp() }
             )
         }
 
@@ -60,7 +66,7 @@ fun NavGraphBuilder.DetailNavHost(
             bottomSheetConfig.value  = DefaultBottomSheet
             DetailTaskkNoteScreen(
                 viewModel = viewModel,
-                onClickBack = { navController.navigateUp() }
+                onClickSave = { navController.navigateUp() }
             )
         }
 
