@@ -117,6 +117,8 @@ dependencies {
     debugImplementation(libs.androidx.compose.ui.tooling.core)
     debugImplementation(libs.androidx.compose.ui.testManifest)
 
+    testImplementation(libs.test.turbine)
+    testImplementation(libs.robolectric)
     testImplementation(libs.junit4)
     testImplementation(libs.hilt.android.testing)
     testImplementation(libs.androidx.compose.ui.test)
@@ -128,5 +130,6 @@ dependencies {
     androidTestImplementation(libs.androidx.test.ext)
     androidTestImplementation(libs.androidx.test.espresso.core)
     androidTestImplementation(libs.androidx.compose.ui.test)
+
 }
 
