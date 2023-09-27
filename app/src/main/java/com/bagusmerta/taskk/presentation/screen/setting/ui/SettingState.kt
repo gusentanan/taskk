@@ -1,5 +1,6 @@
 package com.bagusmerta.taskk.presentation.screen.setting.ui
 
+import com.bagusmerta.taskk.R
 import com.bagusmerta.taskk.utils.themes.TaskkTheme
 
 data class SettingState(
@@ -9,13 +10,13 @@ data class SettingState(
     companion object {
         fun initial() = listOf(
                 TaskkThemeItems(
-                    TaskkTheme.SYSTEM, "System Theme", false
+                    TaskkTheme.SYSTEM, R.string.system_theme_text, false
                 ),
                 TaskkThemeItems(
-                    TaskkTheme.LIGHT, "Light Theme", false
+                    TaskkTheme.LIGHT, R.string.light_theme_text, false
                 ),
                 TaskkThemeItems(
-                    TaskkTheme.DARK, "Dark Theme", false
+                    TaskkTheme.DARK, R.string.dark_theme_text, false
                 )
             )
     }
@@ -23,6 +24,6 @@ data class SettingState(
 
 data class TaskkThemeItems(
     val type: TaskkTheme,
-    val title: String,
+    val title: Int,
     val applied: Boolean
 )

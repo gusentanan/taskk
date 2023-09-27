@@ -2,19 +2,12 @@ package com.bagusmerta.taskk.presentation.screen.detail.data
 
 import com.bagusmerta.taskk.domain.model.TaskkCategory
 import com.bagusmerta.taskk.domain.model.TaskkPriority
-import com.bagusmerta.taskk.domain.model.TaskkStatus
 import com.bagusmerta.taskk.domain.model.TaskkToDo
 import com.bagusmerta.taskk.utils.wrapper.DateTimeProvider
 import com.bagusmerta.taskk.utils.wrapper.IdTaskkProvider
 import kotlinx.coroutines.flow.Flow
 import java.time.LocalDateTime
 
-/*
- * Note.
- * Local transactions will proceed only if the Task Title is not null,
- * and each transaction will target only one specific change to each
- * data class property.
- */
 interface IDetailEnvironment {
     val idProvider: IdTaskkProvider
     val dateTimeProvider: DateTimeProvider

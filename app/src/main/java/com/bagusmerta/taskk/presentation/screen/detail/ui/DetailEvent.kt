@@ -3,8 +3,6 @@ package com.bagusmerta.taskk.presentation.screen.detail.ui
 import androidx.compose.ui.text.input.TextFieldValue
 import com.bagusmerta.taskk.domain.model.TaskkToDo
 import java.time.LocalDate
-import java.time.LocalDateTime
-import java.time.LocalTime
 
 sealed class DetailEvent {
 

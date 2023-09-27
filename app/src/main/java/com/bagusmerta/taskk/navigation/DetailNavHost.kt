@@ -6,7 +6,6 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
-import com.bagusmerta.taskk.presentation.screen.detail.ui.DetailEvent
 import com.bagusmerta.taskk.presentation.screen.detail.ui.DetailScreen
 import com.bagusmerta.taskk.presentation.screen.detail.ui.DetailViewModel
 import com.bagusmerta.taskk.presentation.screen.detail.ui.bottomsheet.DetailTaskkCategoryScreen
@@ -33,7 +32,6 @@ fun NavGraphBuilder.DetailNavHost(
             arguments = DetailFlow.DetailScreen.arguments,
             deepLinks = DetailFlow.DetailScreen.deepLinks
         ){
-            //TODO: add detail screen composable here!
             val viewModel = hiltViewModel<DetailViewModel>()
             DetailScreen(
                 viewModel = viewModel,
@@ -53,7 +51,6 @@ fun NavGraphBuilder.DetailNavHost(
             )
         }
 
-        //TODO: BottomSheet of Edit Taskk Note
         bottomSheet(DetailFlow.EditTaskkNote.route) {
             val viewModel = if(navController.previousBackStackEntry != null){
                 hiltViewModel<DetailViewModel>(

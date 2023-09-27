@@ -1,24 +1,18 @@
 package com.bagusmerta.taskk.presentation.screen.taskk.data
 
-import androidx.constraintlayout.utils.widget.MockView
 import com.bagusmerta.taskk.data.local.LocalDataSource
 import com.bagusmerta.taskk.domain.model.TaskkList
 import com.bagusmerta.taskk.domain.model.TaskkOverallCount
 import com.bagusmerta.taskk.domain.model.TaskkStatus
 import com.bagusmerta.taskk.domain.model.TaskkToDo
-import com.bagusmerta.taskk.utils.getMockListTask
 import com.bagusmerta.taskk.utils.wrapper.DateTimeProvider
 import com.bagusmerta.taskk.utils.wrapper.IdTaskkProvider
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.asFlow
-import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
-import java.time.LocalDateTime
 import javax.inject.Inject
 
 class HomeEnvironmentImpl @Inject constructor(
     private val localDataSource: LocalDataSource,
-    override val idProvider: IdTaskkProvider,
     override val dateTimeProvider: DateTimeProvider
 ): IHomeEnvironment {
 

@@ -2,13 +2,11 @@ package com.bagusmerta.taskk.navigation
 
 import androidx.navigation.navArgument
 import androidx.navigation.navDeepLink
-import com.bagusmerta.taskk.utils.themes.ThemeSerializer.defaultValue
 
 sealed class MainFlow(val name: String){
     object Root: MainFlow("main-root"){
         val route = name
     }
-
     object RootEmpty: MainFlow("root-empty"){
         val route = name
     }

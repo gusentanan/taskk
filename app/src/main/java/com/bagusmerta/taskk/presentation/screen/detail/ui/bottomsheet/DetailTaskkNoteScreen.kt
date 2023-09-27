@@ -21,11 +21,12 @@ import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.bagusmerta.taskk.R
 import com.bagusmerta.taskk.presentation.designsystem.component.TskButton
-import com.bagusmerta.taskk.presentation.designsystem.component.TskLayout
 import com.bagusmerta.taskk.presentation.designsystem.component.TskModalLayout
 import com.bagusmerta.taskk.presentation.screen.detail.ui.DetailEvent
 import com.bagusmerta.taskk.presentation.screen.detail.ui.DetailViewModel
@@ -70,7 +71,7 @@ fun DetailTaskkNoteScreen(
 
                     if(state.editTaskkNote.text.isBlank()){
                         Text(
-                            text = "Add note",
+                            text = stringResource(R.string.detail_note_placeholder_text),
                             style = MaterialTheme.typography.titleSmall,
                             color = MaterialTheme.colorScheme.onSurface.copy(alpha = AlphaDisabled)
                         )
@@ -86,7 +87,7 @@ fun DetailTaskkNoteScreen(
                         onClickSave()
                     }
                 ) {
-                    Text(text = "Save", color = Color.White)
+                    Text(text = stringResource(R.string.button_save_text), color = Color.White)
                 }
                 Spacer(Modifier.height(10.dp))
             }

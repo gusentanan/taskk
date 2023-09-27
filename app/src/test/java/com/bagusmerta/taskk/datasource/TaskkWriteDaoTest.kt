@@ -6,7 +6,6 @@ import com.bagusmerta.taskk.DateFactory
 import com.bagusmerta.taskk.data.local.dao.TaskkReadDao
 import com.bagusmerta.taskk.data.local.dao.TaskkWriteDao
 import com.bagusmerta.taskk.data.local.db.TaskkDatabase
-import com.bagusmerta.taskk.data.local.entity.TaskkTodoDb
 import com.bagusmerta.taskk.domain.model.TaskkCategory
 import com.bagusmerta.taskk.domain.model.TaskkPriority
 import com.bagusmerta.taskk.domain.model.TaskkStatus

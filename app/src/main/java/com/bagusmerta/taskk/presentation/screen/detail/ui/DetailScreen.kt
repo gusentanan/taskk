@@ -22,11 +22,8 @@ import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.CalendarViewDay
-import androidx.compose.material.icons.rounded.CalendarViewMonth
 import androidx.compose.material.icons.rounded.ChevronRight
 import androidx.compose.material.icons.rounded.EditCalendar
-import androidx.compose.material.icons.rounded.Event
 import androidx.compose.material.icons.rounded.LibraryBooks
 import androidx.compose.material.icons.rounded.PriorityHigh
 import androidx.compose.material3.Divider
@@ -36,22 +33,17 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
-import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.modifier.modifierLocalConsumer
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -64,22 +56,16 @@ import com.bagusmerta.taskk.domain.model.TaskkToDo
 import com.bagusmerta.taskk.presentation.designsystem.component.FooterWithText
 import com.bagusmerta.taskk.presentation.designsystem.component.HeaderWithBackButton
 import com.bagusmerta.taskk.presentation.designsystem.component.TskIcon
-import com.bagusmerta.taskk.presentation.designsystem.component.TskItem
 import com.bagusmerta.taskk.presentation.designsystem.component.TskItemDetail
 import com.bagusmerta.taskk.presentation.designsystem.component.TskLayout
 import com.bagusmerta.taskk.presentation.designsystem.icon.TaskkIcon
 import com.bagusmerta.taskk.presentation.designsystem.theme.MediumRadius
-import com.bagusmerta.taskk.presentation.designsystem.theme.commonGray
-import com.bagusmerta.taskk.presentation.designsystem.theme.gray20
-import com.bagusmerta.taskk.presentation.designsystem.theme.softGreen
-import com.bagusmerta.taskk.presentation.designsystem.theme.softRed
 import com.bagusmerta.taskk.utils.AlphaDisabled
 import com.bagusmerta.taskk.utils.AlphaMedium
 import com.bagusmerta.taskk.utils.DividerAlpha
 import com.bagusmerta.taskk.utils.extensions.displayable
 import com.bagusmerta.taskk.utils.extensions.dueDateDisplayable
 import com.bagusmerta.taskk.utils.extensions.formatDateTime
-import com.bagusmerta.taskk.utils.extensions.getActivity
 import com.bagusmerta.taskk.utils.extensions.isDueDateSet
 import com.bagusmerta.taskk.utils.extensions.isExpired
 import com.bagusmerta.taskk.utils.extensions.showDatePicker
@@ -89,7 +75,6 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import timber.log.Timber
-import java.time.LocalDateTime
 
 @Composable
 fun DetailScreen(
@@ -108,7 +93,6 @@ fun DetailScreen(
     val state by viewModel.state.collectAsStateWithLifecycle()
     val activity = LocalContext.current as AppCompatActivity
     val listState = rememberLazyListState()
-    Timber.tag("DETAILL").d(activity.toString())
 
     HandleEffect(viewModel = viewModel) {
         when (it) {
@@ -127,7 +111,7 @@ fun DetailScreen(
     DetailTaskkScreen(
         header = {
             HeaderWithBackButton(
-                text = "Detail Taskk",
+                text = stringResource(R.string.detail_taskk_header),
                 onClickBack = onBackPress,
                 onClickDelete = {
                     viewModel.dispatch(DetailEvent.Delete(state.taskk))
@@ -209,7 +193,7 @@ fun DetailTaskkScreen(
             item {
                 // Taskk Priority section
                 ActionCell(
-                    title = "Add Priority",
+                    title = stringResource(R.string.detail_taskk_add_priority_text),
                     shape = RoundedCornerShape(size = MediumRadius),
                     iconBgColor = MaterialTheme.colorScheme.secondary,
                     leftIcon = Icons.Rounded.PriorityHigh,
@@ -237,7 +221,7 @@ fun DetailTaskkScreen(
             item {
                 //Taskk Category section
                 ActionCell(
-                    title = "Add Category",
+                    title = stringResource(R.string.detail_taskk_add_category_text),
                     shape = RoundedCornerShape(size = MediumRadius),
                     iconBgColor = MaterialTheme.colorScheme.secondary,
                     leftIcon = Icons.Rounded.LibraryBooks,
@@ -246,7 +230,7 @@ fun DetailTaskkScreen(
                     trailing = {
                         Row {
                             Text(
-                                text = taskk.taskkCategory.displayable(),
+                                text = stringResource(taskk.taskkCategory.displayable()),
                                 style = MaterialTheme.typography.titleSmall.copy(fontWeight = FontWeight.Normal),
                                 color = MaterialTheme.colorScheme.onSurface.copy(alpha = AlphaDisabled)
                             )
@@ -307,7 +291,7 @@ fun DetailTaskkScreen(
                     ) {
                         if (note.isBlank()) {
                             Text(
-                                text = "Add note",
+                                text = stringResource(R.string.detail_taskk_add_note_text),
                                 style = MaterialTheme.typography.titleSmall,
                             )
                         } else {

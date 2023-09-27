@@ -4,16 +4,11 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import androidx.room.TypeConverter
 import androidx.room.TypeConverters
-import androidx.sqlite.db.SupportSQLiteDatabase
 import com.bagusmerta.taskk.data.local.dao.TaskkReadDao
 import com.bagusmerta.taskk.data.local.dao.TaskkWriteDao
 import com.bagusmerta.taskk.data.local.entity.TaskkTodoDb
 import kotlinx.coroutines.DelicateCoroutinesApi
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 
 @Database(
     entities = [TaskkTodoDb::class], version = 1,

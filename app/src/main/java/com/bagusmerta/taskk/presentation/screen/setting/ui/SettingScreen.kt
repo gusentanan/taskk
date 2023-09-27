@@ -8,6 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.bagusmerta.taskk.presentation.designsystem.component.TskIcon
@@ -43,7 +44,7 @@ fun SettingThemeComponent(
 ){
     TskModalCell(
         onClick = { onClick() },
-        text = item.title,
+        text = stringResource(item.title),
         textColor = Color.White,
         color = if(item.applied){
             MaterialTheme.colorScheme.primary
