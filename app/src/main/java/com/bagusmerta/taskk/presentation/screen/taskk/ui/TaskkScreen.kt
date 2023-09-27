@@ -21,8 +21,6 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.bagusmerta.taskk.R
@@ -54,14 +52,13 @@ fun TaskkContent(
     ) {
         if (tasks.isEmpty()){
             item {
-                TskEmpty(text = "Add A New Task to Start!",
-                    modifier = Modifier.fillParentMaxHeight()
+                TskEmpty(text = stringResource(R.string.taskk_empty_text),
+                    modifier = Modifier
+                        .fillParentMaxHeight()
                         .padding(bottom = 100.dp)
                 )
             }
         } else {
-            // START ELSE
-
             items(
                 items = tasks,
                 key = { item -> item.identifier() },
@@ -91,8 +88,8 @@ fun TaskkContent(
                             onCheckBoxClick = { onCheckBoxClick(it.taskk) },
                             color = MaterialTheme.colorScheme.onBackground.copy(alpha = AlphaDisabled),
                             tskTitle = it.taskk.name,
-                            tskDueDate = it.taskk.dueDate?.formatDateTime().toString(),
-                            tskCategory = it.taskk.taskkCategory.str,
+                            tskDueDate = it.taskk.dueDate?.formatDateTime() ?: stringResource(R.string.taskk_add_due_date_empty) ,
+                            tskCategory = stringResource(it.taskk.taskkCategory.str),
                             taskkPriority = it.taskk.taskkPriority,
                             contentPadding = PaddingValues(all = 8.dp),
                             leftIcon = TaskkIcon.Check
@@ -117,8 +114,8 @@ fun TaskkContent(
                             },
                             color = MaterialTheme.colorScheme.onBackground,
                             tskTitle = it.taskk.name,
-                            tskDueDate = it.taskk.dueDate?.formatDateTime().toString(),
-                            tskCategory = it.taskk.taskkCategory.str,
+                            tskDueDate = it.taskk.dueDate?.formatDateTime() ?: stringResource(R.string.taskk_add_due_date_empty),
+                            tskCategory = stringResource(it.taskk.taskkCategory.str),
                             leftIcon = if(isChecked) {
                                 TaskkIcon.Check
                             } else {
@@ -131,7 +128,6 @@ fun TaskkContent(
                 }
             }
 
-            // END ELSE
         }
 
         item {

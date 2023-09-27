@@ -1,13 +1,11 @@
 package com.bagusmerta.taskk.presentation.screen.taskk.ui
 
 import androidx.compose.runtime.Immutable
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.TextFieldValue
 import com.bagusmerta.taskk.domain.model.TaskkList
 import com.bagusmerta.taskk.domain.model.TaskkToDo
 import com.bagusmerta.taskk.utils.extensions.toTaskkListState
 import com.bagusmerta.taskk.utils.wrapper.DateTimeProviderImpl
-import java.time.LocalDateTime
 
 @Immutable
 data class HomeState(
@@ -17,7 +15,6 @@ data class HomeState(
 ) {
     val todayDate = DateTimeProviderImpl().getNowDate()
     val listTaskkDisplayable = taskkList.toTaskkListState()
-    val validTaskkName = taskkName.text.isNotBlank()
     val validTaskkIncomplete = listTaskkDisplayable.taskkItem.filterIsInstance<TaskkItem.InProgress>().size
     val validTaskkCompleted = listTaskkDisplayable.taskkItem.filterIsInstance<TaskkItem.Complete>().size
 

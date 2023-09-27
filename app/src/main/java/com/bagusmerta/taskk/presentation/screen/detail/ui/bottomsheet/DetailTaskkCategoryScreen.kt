@@ -8,6 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.bagusmerta.taskk.presentation.designsystem.component.TskIcon
@@ -17,7 +18,6 @@ import com.bagusmerta.taskk.presentation.designsystem.icon.TaskkIcon
 import com.bagusmerta.taskk.presentation.screen.detail.ui.CategoryItems
 import com.bagusmerta.taskk.presentation.screen.detail.ui.DetailEvent
 import com.bagusmerta.taskk.presentation.screen.detail.ui.DetailViewModel
-import com.bagusmerta.taskk.presentation.screen.detail.ui.PriorityItems
 import com.bagusmerta.taskk.utils.extensions.displayable
 
 @Composable
@@ -49,7 +49,7 @@ fun CategoryOptionsComponent(
 ){
     TskModalCell(
         onClick = { onClick() },
-        text = item.category.displayable(),
+        text = stringResource(item.category.displayable()),
         textColor = Color.White,
         color = if(item.applied){
             MaterialTheme.colorScheme.primary

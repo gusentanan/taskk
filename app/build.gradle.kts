@@ -4,29 +4,57 @@ plugins {
     alias(libs.plugins.hilt)
     alias(libs.plugins.kapt)
     alias(libs.plugins.squareup.wire)
+    jacoco
 }
 
 android {
+
     namespace = "com.bagusmerta.taskk"
     compileSdk = 33
+
+    signingConfigs {
+        create("release") {
+            keyAlias = project.properties["RELEASE_KEY_ALIAS"].toString()
+            keyPassword = project.properties["RELEASE_KEY_PASSWORD"].toString()
+            storeFile = file(project.properties["RELEASE_STORE_FILE"].toString())
+            storePassword = project.properties["RELEASE_STORE_PASSWORD"].toString()
+        }
+    }
 
     defaultConfig {
         applicationId = "com.bagusmerta.taskk"
         minSdk = 29
         targetSdk = 33
         versionCode = 1
-        versionName = "1.0"
+        versionName = "1.0.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
             useSupportLibrary = true
         }
+
+        kapt {
+            arguments {
+                arg("room.schemaLocation", "$projectDir/room-schemas")
+            }
+        }
+
     }
 
     buildTypes {
-        release {
-            isMinifyEnabled = false
+        getByName("release") {
+            manifestPlaceholders["appName"] = "@string/app_name"
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            signingConfig = signingConfigs.getByName("release")
+            isDebuggable = false
+            isMinifyEnabled = true
+            isShrinkResources = true
+        }
+        getByName("debug") {
+            applicationIdSuffix = ".debug"
+            manifestPlaceholders["appName"] = "@string/app_name_debug"
+            isDebuggable = true
+            enableUnitTestCoverage = true
         }
     }
 
@@ -58,6 +86,7 @@ wire {
         android = true
     }
 }
+
 
 
 dependencies {
@@ -108,6 +137,8 @@ dependencies {
     debugImplementation(libs.androidx.compose.ui.tooling.core)
     debugImplementation(libs.androidx.compose.ui.testManifest)
 
+    testImplementation(libs.test.turbine)
+    testImplementation(libs.robolectric)
     testImplementation(libs.junit4)
     testImplementation(libs.hilt.android.testing)
     testImplementation(libs.androidx.compose.ui.test)
@@ -121,3 +152,11 @@ dependencies {
     androidTestImplementation(libs.androidx.compose.ui.test)
 }
 
+// The Jacoco and Robolectric conflict caused an error during unit testing with coverage
+// The solution has not yet been implemented.
+tasks.withType<Test> {
+    configure<JacocoTaskExtension> {
+        isIncludeNoLocationClasses = true
+        excludes = listOf("jdk.internal.*", "**/*\$*$*")
+    }
+}

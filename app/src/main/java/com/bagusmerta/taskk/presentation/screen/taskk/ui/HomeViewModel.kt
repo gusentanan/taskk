@@ -8,7 +8,6 @@ import com.bagusmerta.taskk.presentation.screen.taskk.data.IHomeEnvironment
 import com.bagusmerta.taskk.utils.vmutils.StateViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -22,11 +21,8 @@ class HomeViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-//            environment.idProvider.generateId()
-
-            if(listId.isNullOrBlank()){
-                setEffect(HomeEffect.ShowNewTaskInput)
-            } else {
+            if (listId != null) {
+                environment.getOverallCountTaskk()
                 environment.getListTaskk(listId)
                     .catch {  }
                     .collect {
@@ -35,6 +31,7 @@ class HomeViewModel @Inject constructor(
                         }
                     }
             }
+
         }
     }
 
@@ -43,7 +40,27 @@ class HomeViewModel @Inject constructor(
     )
 
     override fun dispatch(event: HomeEvent) {
-        TODO("Not yet implemented")
+        when(event){
+            is HomeEvent.TaskkEvent -> {
+                handleTaskkEvent(event)
+            }
+        }
+    }
+
+    private fun handleTaskkEvent(event: HomeEvent){
+        when(event){
+            is HomeEvent.TaskkEvent.Delete -> {
+                viewModelScope.launch {
+                    environment.deleteTask(event.task)
+                }
+            }
+            is HomeEvent.TaskkEvent.OnToggleStatus -> {
+                viewModelScope.launch {
+                    environment.toggleTaskStatus(event.task)
+                }
+            }
+            else -> { }
+        }
     }
 
 }

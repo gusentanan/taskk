@@ -1,5 +1,7 @@
 package com.bagusmerta.taskk.presentation.screen.detail.ui
 
 sealed class DetailEffect {
-    data class ScrollTo(val position: Int): DetailEffect()
+    object ShowCreateTaskkNameInput : DetailEffect()
+    data class RefreshScreen(val taskkId: String) : DetailEffect()
+    object OnClosePage: DetailEffect()
 }

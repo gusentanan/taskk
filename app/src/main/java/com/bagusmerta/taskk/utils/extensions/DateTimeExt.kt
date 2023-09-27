@@ -17,33 +17,9 @@ fun LocalDateTime.isYesterday(dateTime: LocalDateTime): Boolean{
     return toLocalDate().isEqual(dateTime.toLocalDate().minusDays(1))
 }
 
-fun LocalDateTime.formatDateTimeSecond(): String {
-    val pattern = "dd MMM yyyy HH:mm:ss"
-    return format(pattern)
-}
-
-fun LocalDateTime.formatDateSecond(): String {
-    val pattern = "HH:mm:ss"
-    return format(pattern)
-}
-
-fun LocalDateTime.formatDateMinute(): String {
-    val pattern = "HH:mm"
-    return format(pattern)
-}
 
 fun LocalDateTime.formatDateTime(): String {
     val pattern = "EEE, dd MMM yyyy"
-    return format(pattern)
-}
-
-fun LocalDateTime.formatDate(): String {
-    val pattern = "dd MMM yyyy"
-    return format(pattern)
-}
-
-fun LocalDateTime.formatMonth(): String {
-    val pattern = "MMM yyyy"
     return format(pattern)
 }
 

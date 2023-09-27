@@ -4,7 +4,6 @@ import androidx.compose.ui.text.input.TextFieldValue
 import com.bagusmerta.taskk.domain.model.TaskkCategory
 import com.bagusmerta.taskk.domain.model.TaskkPriority
 import com.bagusmerta.taskk.domain.model.TaskkToDo
-import com.bagusmerta.taskk.utils.wrapper.DateTimeProvider
 import com.bagusmerta.taskk.utils.wrapper.DateTimeProviderImpl
 import javax.annotation.concurrent.Immutable
 
@@ -35,7 +34,7 @@ data class DetailState(
                     TaskkCategory.HOUSEHOLD, false
                 ),
                 CategoryItems(
-                    TaskkCategory.SELF_HELP, false
+                    TaskkCategory.SELF_HELP, true
                 ),
                 CategoryItems(
                     TaskkCategory.STUDY, false
@@ -46,7 +45,7 @@ data class DetailState(
         private fun initPriorityItems(): List<PriorityItems> {
             return listOf(
                 PriorityItems(
-                    TaskkPriority.EASY, false
+                    TaskkPriority.EASY, true
                 ),
                 PriorityItems(
                     TaskkPriority.HARD, false

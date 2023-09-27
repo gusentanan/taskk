@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.dataStore
 import com.bagusmerta.taskk.model.preference.ThemePreference
-import com.bagusmerta.taskk.utils.themes.ThemeSerializer
+import com.bagusmerta.taskk.data.preference.themes.ThemeSerializer
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

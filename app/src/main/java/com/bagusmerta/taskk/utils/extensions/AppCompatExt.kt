@@ -1,6 +1,5 @@
 package com.bagusmerta.taskk.utils.extensions
 
-import android.text.Selection.setSelection
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.datepicker.MaterialDatePicker
 import java.time.Instant

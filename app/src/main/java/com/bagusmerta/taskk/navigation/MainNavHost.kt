@@ -55,7 +55,6 @@ fun MainScreen(
             SplashScreen(navController, viewModel)
         }
 
-        // TODO: add other child host here.
         HomeNavHost(navController, bottomSheetConfig)
         DetailNavHost(navController, bottomSheetConfig)
     }

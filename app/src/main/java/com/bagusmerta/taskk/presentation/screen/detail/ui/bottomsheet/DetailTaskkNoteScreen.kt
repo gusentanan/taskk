@@ -21,11 +21,12 @@ import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.bagusmerta.taskk.R
 import com.bagusmerta.taskk.presentation.designsystem.component.TskButton
-import com.bagusmerta.taskk.presentation.designsystem.component.TskLayout
 import com.bagusmerta.taskk.presentation.designsystem.component.TskModalLayout
 import com.bagusmerta.taskk.presentation.screen.detail.ui.DetailEvent
 import com.bagusmerta.taskk.presentation.screen.detail.ui.DetailViewModel
@@ -36,7 +37,7 @@ import kotlinx.coroutines.launch
 @Composable
 fun DetailTaskkNoteScreen(
     viewModel: DetailViewModel,
-    onClickBack: () -> Unit
+    onClickSave: () -> Unit
 ){
     val state by viewModel.state.collectAsStateWithLifecycle()
     val focusRequest = remember {
@@ -57,7 +58,7 @@ fun DetailTaskkNoteScreen(
                   BasicTextField(
                       value = state.editTaskkNote,
                       onValueChange = {
-                        //TODO: dispatcher to viewmodel to emit changed value
+                        viewModel.dispatch(DetailEvent.TaskkNoteEvent.ChangeTaskkNote(it))
                       },
                       modifier = Modifier
                           .fillMaxWidth()
@@ -70,7 +71,7 @@ fun DetailTaskkNoteScreen(
 
                     if(state.editTaskkNote.text.isBlank()){
                         Text(
-                            text = "Add note",
+                            text = stringResource(R.string.detail_note_placeholder_text),
                             style = MaterialTheme.typography.titleSmall,
                             color = MaterialTheme.colorScheme.onSurface.copy(alpha = AlphaDisabled)
                         )
@@ -81,8 +82,12 @@ fun DetailTaskkNoteScreen(
 
                 TskButton(
                     modifier =Modifier.fillMaxSize(),
-                    onClick = onClickBack) {
-                    Text(text = "Save", color = Color.White)
+                    onClick = {
+                        viewModel.dispatch(DetailEvent.TaskkNoteEvent.OnClickSave)
+                        onClickSave()
+                    }
+                ) {
+                    Text(text = stringResource(R.string.button_save_text), color = Color.White)
                 }
                 Spacer(Modifier.height(10.dp))
             }

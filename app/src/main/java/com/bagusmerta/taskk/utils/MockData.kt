@@ -7,11 +7,8 @@ import com.bagusmerta.taskk.domain.model.TaskkPriority
 import com.bagusmerta.taskk.domain.model.TaskkStatus
 import com.bagusmerta.taskk.domain.model.TaskkToDo
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.asFlow
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.mapLatest
 import java.time.LocalDateTime
 
 fun getTaskkByIdMock(taskkId: String): Flow<TaskkToDo>  = flow {
@@ -20,7 +17,6 @@ fun getTaskkByIdMock(taskkId: String): Flow<TaskkToDo>  = flow {
 
     dataMapped.forEach{
         if(it.id == taskkId){
-            Log.d("BagusMertaS", it.toString())
             emit(it)
         }
     }

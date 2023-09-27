@@ -1,38 +1,45 @@
 package com.bagusmerta.taskk.presentation.screen.taskk.data
 
-import androidx.constraintlayout.utils.widget.MockView
+import com.bagusmerta.taskk.data.local.LocalDataSource
 import com.bagusmerta.taskk.domain.model.TaskkList
+import com.bagusmerta.taskk.domain.model.TaskkOverallCount
+import com.bagusmerta.taskk.domain.model.TaskkStatus
 import com.bagusmerta.taskk.domain.model.TaskkToDo
-import com.bagusmerta.taskk.utils.getMockListTask
 import com.bagusmerta.taskk.utils.wrapper.DateTimeProvider
 import com.bagusmerta.taskk.utils.wrapper.IdTaskkProvider
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.asFlow
-import java.time.LocalDateTime
+import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 class HomeEnvironmentImpl @Inject constructor(
-    override val idProvider: IdTaskkProvider,
+    private val localDataSource: LocalDataSource,
     override val dateTimeProvider: DateTimeProvider
 ): IHomeEnvironment {
 
     override fun getListTaskk(listId: String): Flow<TaskkList> {
-        return getMockListTask()
+        return localDataSource.getListTaskk().map {
+            TaskkList(
+                id = "1", // Set as 1 since for now we only expect one list of a task
+                tasks = it
+            )
+        }
     }
 
-    override suspend fun createTask(taskName: String, listId: String): Flow<TaskkToDo> {
-        TODO("Not yet implemented")
+    override fun getOverallCountTaskk(): Flow<TaskkOverallCount> {
+        return localDataSource.getOverallCountTaskk()
     }
 
-    override suspend fun toggleTaskStatus(toDoTask: TaskkToDo) {
-        TODO("Not yet implemented")
+    override suspend fun toggleTaskStatus(task: TaskkToDo) {
+        val taskkStatus = when(task.status){
+            TaskkStatus.IN_PROGRESS -> { TaskkStatus.COMPLETE }
+            TaskkStatus.COMPLETE -> { TaskkStatus.IN_PROGRESS }
+        }
+        localDataSource.updateTaskkStatus(task.id, taskkStatus, dateTimeProvider.getNowDate())
     }
+
 
     override suspend fun deleteTask(task: TaskkToDo) {
-        TODO("Not yet implemented")
+        localDataSource.deleteTaskkById(task.id)
     }
 
-    override fun trackSaveListButtonClicked() {
-        TODO("Not yet implemented")
-    }
 }

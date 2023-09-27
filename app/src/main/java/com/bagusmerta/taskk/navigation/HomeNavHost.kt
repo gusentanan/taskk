@@ -7,7 +7,6 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
-import com.bagusmerta.taskk.presentation.screen.detail.ui.DetailViewModel
 import com.bagusmerta.taskk.presentation.screen.setting.ui.SettingScreen
 import com.bagusmerta.taskk.presentation.screen.setting.ui.SettingViewModel
 import com.bagusmerta.taskk.presentation.screen.taskk.ui.HomeScreen
@@ -16,7 +15,6 @@ import com.bagusmerta.taskk.utils.wrapper.BottomSheetConfiguration
 import com.bagusmerta.taskk.utils.wrapper.DefaultBottomSheet
 import com.google.accompanist.navigation.material.ExperimentalMaterialNavigationApi
 import com.google.accompanist.navigation.material.bottomSheet
-import timber.log.Timber
 
 @OptIn(ExperimentalMaterialNavigationApi::class)
 fun NavGraphBuilder.HomeNavHost(
@@ -35,12 +33,10 @@ fun NavGraphBuilder.HomeNavHost(
 
             HomeScreen(
                 viewModel = viewModel,
-                onRelaunchScreen = { },
-                onAddTaskClick = { },
+                onAddTaskClick = { navController.navigate(DetailFlow.Root.route) },
                 onTaskItemClick = {
                     taskkId, listId ->
                     navController.navigate(DetailFlow.Root.route(taskkId, listId))
-                    Log.d("HOMEE", taskkId)
                 },
                 onClickSettings = { navController.navigate(HomeFlow.SettingScreen.route) }
             )

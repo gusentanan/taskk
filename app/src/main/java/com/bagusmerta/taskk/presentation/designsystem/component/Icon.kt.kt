@@ -6,6 +6,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringResource
+import com.bagusmerta.taskk.R
 
 @Composable
 fun TskIcon(
@@ -17,6 +19,6 @@ fun TskIcon(
         imageVector = imageIcon,
         tint = tintColor,
         modifier = modifier,
-        contentDescription = "TaskkIcon"
+        contentDescription = stringResource(R.string.content_desc_TskIcon)
     )
 }

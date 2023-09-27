@@ -1,6 +1,5 @@
 package com.bagusmerta.taskk.utils.extensions
 
-import android.app.Activity
 import android.content.Context
 import android.content.ContextWrapper
 import androidx.appcompat.app.AppCompatActivity

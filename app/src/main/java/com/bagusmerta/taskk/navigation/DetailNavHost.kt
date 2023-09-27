@@ -6,7 +6,6 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
-import com.bagusmerta.taskk.presentation.screen.detail.ui.DetailEvent
 import com.bagusmerta.taskk.presentation.screen.detail.ui.DetailScreen
 import com.bagusmerta.taskk.presentation.screen.detail.ui.DetailViewModel
 import com.bagusmerta.taskk.presentation.screen.detail.ui.bottomsheet.DetailTaskkCategoryScreen
@@ -33,21 +32,25 @@ fun NavGraphBuilder.DetailNavHost(
             arguments = DetailFlow.DetailScreen.arguments,
             deepLinks = DetailFlow.DetailScreen.deepLinks
         ){
-            //TODO: add detail screen composable here!
             val viewModel = hiltViewModel<DetailViewModel>()
             DetailScreen(
                 viewModel = viewModel,
                 onBackPress = { navController.navigateUp() },
+                onRefreshScreen = { taskkId, listId ->
+                    navController.navigate(DetailFlow.Root.route(taskkId, listId)){
+                        popUpTo(HomeFlow.HomeScreen.route)
+                    }
+                },
+                showCreateTaskkName = { navController.navigate(DetailFlow.EditTaskkTitle.route) },
                 onClickTaskkTitle = { navController.navigate(DetailFlow.EditTaskkTitle.route) },
                 onClickTaskkPriority = { navController.navigate(DetailFlow.PickTaskkPriority.route) },
                 onClickTaskkCategory = { navController.navigate(DetailFlow.PickTaskkCategory.route) },
                 onClickTaskkNote = { navController.navigate(DetailFlow.EditTaskkNote.route) },
-                onClickTaskkStatus = { },
-                onClickTaskkDelete = { }
+                onClickTaskkDelete = { navController.navigateUp() },
+                onClosePage = { navController.navigateUp() }
             )
         }
 
-        //TODO: BottomSheet of Edit Taskk Note
         bottomSheet(DetailFlow.EditTaskkNote.route) {
             val viewModel = if(navController.previousBackStackEntry != null){
                 hiltViewModel<DetailViewModel>(
@@ -60,7 +63,7 @@ fun NavGraphBuilder.DetailNavHost(
             bottomSheetConfig.value  = DefaultBottomSheet
             DetailTaskkNoteScreen(
                 viewModel = viewModel,
-                onClickBack = { navController.navigateUp() }
+                onClickSave = { navController.navigateUp() }
             )
         }
 

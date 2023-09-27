@@ -15,11 +15,18 @@ class HostViewModel @Inject constructor(hostEnvironment: IHostEnvironment):
         initTheme()
     }
 
-    override fun dispatch(action: Unit) {}
-
     private fun initTheme() {
         viewModelScope.launch {
-            environment.getTheme().collect { setState { copy(themeState = it) } }
+            environment.getTheme()
+                .collect {
+                    setState {
+                        copy(themeState = it)
+                    }
+                }
         }
+    }
+
+    override fun dispatch(event: Unit) {
+        TODO("Not yet implemented")
     }
 }

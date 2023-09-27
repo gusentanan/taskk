@@ -1,6 +1,5 @@
 package com.bagusmerta.taskk.presentation.designsystem.component
 
-import androidx.compose.runtime.remember
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -18,21 +17,64 @@ import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.input.VisualTransformation
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.bagusmerta.taskk.R
 
 const val MAX_TEXT_FIELD_CHAR =  225
 
+@Composable
+fun TskTextField(
+    valueText: String,
+    onValueTextChange: (String) -> Unit,
+    placeHolderValue: String,
+    isError: Boolean = false,
+    visualTransformation: VisualTransformation = VisualTransformation.None,
+    keyboardOptions: KeyboardOptions = KeyboardOptions.Default.copy(capitalization = KeyboardCapitalization.Sentences),
+    keyboardActions: KeyboardActions = KeyboardActions.Default,
+    modifier: Modifier = Modifier,
+    shape: Shape = MaterialTheme.shapes.large,
+    textColor: Color = MaterialTheme.colorScheme.onSurface,
+    textStyle: TextStyle = MaterialTheme.typography.titleSmall.copy(color = MaterialTheme.colorScheme.onSurface),
+    errorLabel: @Composable (() -> Unit)? = null
+) {
+
+    var textFieldValueState by remember { mutableStateOf(TextFieldValue(text = valueText)) }
+    val textFieldValue = textFieldValueState.copy(text = valueText)
+
+    TskTextField(
+        valueText = textFieldValue,
+        onValueTextChange = {
+            textFieldValueState = it
+            if(valueText != it.text){
+                onValueTextChange(it.text)
+            }
+        },
+        placeHolderValue = placeHolderValue,
+        isError = isError,
+        visualTransformation = visualTransformation,
+        keyboardOptions = keyboardOptions,
+        keyboardActions = keyboardActions,
+        modifier = modifier,
+        shape = shape,
+        textColor = textColor,
+        textStyle = textStyle,
+        errorLabel = errorLabel
+
+    )
+
+}
 
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)
@@ -120,7 +162,7 @@ fun TskInputText(
                         modifier = Modifier.weight(1F),
                         onClick = onCancelClick,
                     ) {
-                        Text(text = "Cancel", color = MaterialTheme.colorScheme.onSecondary)
+                        Text(text = stringResource(R.string.button_cancel_text), color = MaterialTheme.colorScheme.onSecondary)
                     }
 
                     Spacer(Modifier.width(16.dp))

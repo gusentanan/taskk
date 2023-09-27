@@ -8,8 +8,11 @@ import com.bagusmerta.taskk.domain.model.TaskkToDo
 import com.bagusmerta.taskk.presentation.screen.taskk.ui.TaskkItem
 import com.bagusmerta.taskk.presentation.screen.taskk.ui.TaskkListState
 import com.bagusmerta.taskk.utils.wrapper.DateTimeProviderImpl
+import java.time.LocalDate
 import java.time.LocalDateTime
+import java.time.LocalTime
 
+private val DEFAULT_TASK_LOCAL_TIME: LocalTime = LocalTime.of(23, 59)
 
 fun TaskkList.toTaskkListState(): TaskkListState{
     val tasks = tasks.map {
@@ -45,7 +48,11 @@ fun TaskkToDo.dueDateDisplayable(resources: Resources, currentDate: LocalDateTim
     }
 }
 
-fun TaskkToDo.isDueDateSet(): Boolean = this.dueDate != null
+fun TaskkToDo.isDueDateSet(): Boolean = this.isDueDateTimeSet
 fun TaskkToDo.isExpired(currentDate: LocalDateTime = DateTimeProviderImpl().getNowDate()): Boolean {
     return dueDate?.isBefore(currentDate) ?: false
+}
+fun TaskkToDo.updatedDateToLocalDateTime(newLocalDate: LocalDate): LocalDateTime {
+    val localTime = dueDate?.toLocalTime() ?: DEFAULT_TASK_LOCAL_TIME
+    return LocalDateTime.of(newLocalDate, localTime)
 }

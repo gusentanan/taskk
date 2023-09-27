@@ -1,11 +1,8 @@
 package com.bagusmerta.taskk.presentation.screen.detail.ui.bottomsheet
 
-import android.service.autofill.OnClickAction
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.Check
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -15,7 +12,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.bagusmerta.taskk.presentation.designsystem.component.TskIcon
-import com.bagusmerta.taskk.presentation.designsystem.component.TskLayout
 import com.bagusmerta.taskk.presentation.designsystem.component.TskModalCell
 import com.bagusmerta.taskk.presentation.designsystem.component.TskModalLayout
 import com.bagusmerta.taskk.presentation.designsystem.icon.TaskkIcon
@@ -53,7 +49,7 @@ fun PriorityOptionsComponent(
 ){
     TskModalCell(
         onClick = { onClick() },
-        text = item.priority.displayable(),
+        text = stringResource(item.priority.displayable()),
         textColor = Color.White,
         color = if(item.applied){
             MaterialTheme.colorScheme.primary

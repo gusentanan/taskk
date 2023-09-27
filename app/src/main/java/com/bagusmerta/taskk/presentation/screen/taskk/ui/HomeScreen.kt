@@ -4,31 +4,26 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import androidx.glance.text.Text
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.bagusmerta.taskk.R
 import com.bagusmerta.taskk.domain.model.TaskkToDo
 import com.bagusmerta.taskk.presentation.designsystem.component.FooterWithButton
 import com.bagusmerta.taskk.presentation.designsystem.component.HeaderWithSettingsButton
-import com.bagusmerta.taskk.presentation.designsystem.component.TskButton
 import com.bagusmerta.taskk.presentation.designsystem.component.TskLayout
-import com.bagusmerta.taskk.presentation.designsystem.component.TskModalLayout
 import com.bagusmerta.taskk.utils.extensions.formatDateTime
 import java.time.LocalDateTime
 
 @Composable
 fun HomeScreen(
     viewModel: HomeViewModel,
-    onRelaunchScreen: (String) -> Unit,
     onAddTaskClick: () -> Unit,
     onTaskItemClick: (String, String) -> Unit,
     onClickSettings: () -> Unit
@@ -46,9 +41,9 @@ fun HomeScreen(
                 onClickSettings = onClickSettings
             )
         },
-        onCheckBoxClick = {  } ,
+        onCheckBoxClick = { viewModel.dispatch(HomeEvent.TaskkEvent.OnToggleStatus(it)) } ,
         onClickTaskItem = { onTaskItemClick(it.id, 1.toString()) } ,
-        color = Color.Transparent,
+        onAddTaskClick = { onAddTaskClick() },
         listState = listState
     )
 }
@@ -75,7 +70,7 @@ fun ListTaskkContent(
     header: @Composable ColumnScope.() -> Unit,
     onCheckBoxClick: (TaskkToDo) -> Unit,
     onClickTaskItem: (TaskkToDo) -> Unit,
-    color: Color,
+    onAddTaskClick: () -> Unit,
     listState: LazyListState
 ){
     TskLayout {
@@ -94,8 +89,8 @@ fun ListTaskkContent(
             )
 
             FooterWithButton(
-                onClick = { /*TODO*/ },
-                textButton = "Create a new Task"
+                onClick = { onAddTaskClick() },
+                textButton = stringResource(R.string.create_new_taskk)
             )
             Spacer(Modifier.height(10.dp))
         }

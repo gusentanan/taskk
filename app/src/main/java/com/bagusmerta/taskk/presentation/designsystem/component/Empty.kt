@@ -7,7 +7,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 
 @Composable
 fun TskEmpty (
@@ -16,6 +15,7 @@ fun TskEmpty (
     Box(modifier.fillMaxWidth()) {
         Text(
             text = text,
+            style = MaterialTheme.typography.headlineMedium,
             modifier = Modifier.align(Alignment.Center),
             color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.3F)
         )
