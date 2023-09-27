@@ -1,4 +1,3 @@
-import org.jetbrains.kotlin.fir.expressions.FirEmptyArgumentList.arguments
 
 plugins {
     alias(libs.plugins.android.application)
@@ -6,9 +5,11 @@ plugins {
     alias(libs.plugins.hilt)
     alias(libs.plugins.kapt)
     alias(libs.plugins.squareup.wire)
+    jacoco
 }
 
 android {
+
     namespace = "com.bagusmerta.taskk"
     compileSdk = 33
 
@@ -36,6 +37,10 @@ android {
         release {
             isMinifyEnabled = false
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+        }
+        debug {
+            applicationIdSuffix = ".debug"
+            enableUnitTestCoverage = true
         }
     }
 
@@ -67,6 +72,7 @@ wire {
         android = true
     }
 }
+
 
 
 dependencies {
@@ -130,6 +136,13 @@ dependencies {
     androidTestImplementation(libs.androidx.test.ext)
     androidTestImplementation(libs.androidx.test.espresso.core)
     androidTestImplementation(libs.androidx.compose.ui.test)
-
 }
 
+// The Jacoco and Robolectric conflict caused an error during unit testing with coverage
+// The solution has not yet been implemented.
+tasks.withType<Test> {
+    configure<JacocoTaskExtension> {
+        isIncludeNoLocationClasses = true
+        excludes = listOf("jdk.internal.*", "**/*\$*$*")
+    }
+}
