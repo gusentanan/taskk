@@ -11,7 +11,7 @@ import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import com.bagusmerta.taskk.R
-import com.bagusmerta.taskk.utils.themes.TaskkTheme
+import com.bagusmerta.taskk.data.preference.themes.TaskkTheme
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import timber.log.Timber
 

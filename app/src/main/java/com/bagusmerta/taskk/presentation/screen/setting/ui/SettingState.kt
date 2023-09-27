@@ -1,7 +1,7 @@
 package com.bagusmerta.taskk.presentation.screen.setting.ui
 
 import com.bagusmerta.taskk.R
-import com.bagusmerta.taskk.utils.themes.TaskkTheme
+import com.bagusmerta.taskk.data.preference.themes.TaskkTheme
 
 data class SettingState(
     val settingItems: List<TaskkThemeItems> = initial()

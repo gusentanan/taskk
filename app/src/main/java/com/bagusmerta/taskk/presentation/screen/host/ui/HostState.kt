@@ -1,6 +1,6 @@
 package com.bagusmerta.taskk.presentation.screen.host.ui
 
-import com.bagusmerta.taskk.utils.themes.TaskkTheme
+import com.bagusmerta.taskk.data.preference.themes.TaskkTheme
 import javax.annotation.concurrent.Immutable
 
 @Immutable

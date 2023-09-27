@@ -1,4 +1,4 @@
-package com.bagusmerta.taskk.utils.themes
+package com.bagusmerta.taskk.data.preference.themes
 
 import androidx.datastore.core.CorruptionException
 import androidx.datastore.core.Serializer

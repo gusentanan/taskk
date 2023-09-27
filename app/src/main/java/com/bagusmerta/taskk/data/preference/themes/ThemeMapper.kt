@@ -1,4 +1,4 @@
-package com.bagusmerta.taskk.utils.themes
+package com.bagusmerta.taskk.data.preference.themes
 
 import com.bagusmerta.taskk.model.preference.ThemePreference
 import com.bagusmerta.taskk.presentation.screen.setting.ui.TaskkThemeItems

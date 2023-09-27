@@ -1,8 +1,8 @@
 package com.bagusmerta.taskk.presentation.screen.host.data
 
 
-import com.bagusmerta.taskk.utils.themes.TaskkTheme
-import com.bagusmerta.taskk.utils.themes.ThemeProvider
+import com.bagusmerta.taskk.data.preference.themes.TaskkTheme
+import com.bagusmerta.taskk.data.preference.themes.ThemeProvider
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
