@@ -59,7 +59,6 @@ class HomeViewModel @Inject constructor(
                     environment.toggleTaskStatus(event.task)
                 }
             }
-            else -> { }
         }
     }
 

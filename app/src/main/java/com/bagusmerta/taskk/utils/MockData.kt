@@ -1,6 +1,5 @@
 package com.bagusmerta.taskk.utils
 
-import android.util.Log
 import com.bagusmerta.taskk.domain.model.TaskkCategory
 import com.bagusmerta.taskk.domain.model.TaskkList
 import com.bagusmerta.taskk.domain.model.TaskkPriority

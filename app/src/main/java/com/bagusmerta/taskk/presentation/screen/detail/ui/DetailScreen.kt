@@ -74,7 +74,6 @@ import com.bagusmerta.taskk.utils.wrapper.DateTimeProviderImpl
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import timber.log.Timber
 
 @Composable
 fun DetailScreen(

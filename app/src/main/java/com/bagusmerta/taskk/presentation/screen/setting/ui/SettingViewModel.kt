@@ -1,10 +1,10 @@
 package com.bagusmerta.taskk.presentation.screen.setting.ui
 
 import androidx.lifecycle.viewModelScope
+import com.bagusmerta.taskk.data.preference.themes.selectTheme
 import com.bagusmerta.taskk.presentation.screen.setting.data.ISettingEnvironment
 import com.bagusmerta.taskk.presentation.screen.setting.data.SettingEnvironmentImpl
 import com.bagusmerta.taskk.presentation.screen.setting.ui.SettingState.Companion.initial
-import com.bagusmerta.taskk.data.preference.themes.selectTheme
 import com.bagusmerta.taskk.utils.vmutils.StateViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch

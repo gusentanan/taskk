@@ -1,6 +1,5 @@
 package com.bagusmerta.taskk.navigation
 
-import android.util.Log
 import androidx.compose.runtime.MutableState
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavGraphBuilder
@@ -9,7 +8,6 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import com.bagusmerta.taskk.presentation.screen.setting.ui.SettingScreen
 import com.bagusmerta.taskk.presentation.screen.setting.ui.SettingViewModel
-import com.bagusmerta.taskk.presentation.screen.taskk.ui.HomeEvent
 import com.bagusmerta.taskk.presentation.screen.taskk.ui.HomeScreen
 import com.bagusmerta.taskk.presentation.screen.taskk.ui.HomeViewModel
 import com.bagusmerta.taskk.utils.wrapper.BottomSheetConfiguration
