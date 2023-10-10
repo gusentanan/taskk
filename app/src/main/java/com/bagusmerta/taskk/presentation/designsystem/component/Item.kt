@@ -123,58 +123,66 @@ fun TskItem(
     tskCategory: String,
     leftIcon: ImageVector,
     taskkPriority: TaskkPriority,
-    contentPadding: PaddingValues
+    contentPadding: PaddingValues,
+    onSwipeDelete: () -> Unit
 ){
-    Surface(
-        modifier = Modifier
-            .fillMaxWidth()
-            .clickable(onClick = onClick),
-    ) {
-        Column {
-            Row(
-                verticalAlignment = Alignment.Top,
-                modifier = Modifier.padding(contentPadding),
-                horizontalArrangement = Arrangement.SpaceBetween,
-            ){
-                TskIconButton(
-                    onClick = onCheckBoxClick,
-                    shape = RectangleShape,
-                    color = Color.Transparent
-                ) {
-                    TskIcon(
-                        imageIcon = leftIcon,
-                        tintColor = color
+    TaskkSwipeToDismiss(
+        modifier = modifier,
+        backgroundModifier = Modifier.background(MaterialTheme.colorScheme.secondary),
+        content = {
+            Surface(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clickable(onClick = onClick),
+            ) {
+                Column {
+                    Row(
+                        verticalAlignment = Alignment.Top,
+                        modifier = Modifier.padding(contentPadding),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                    ){
+                        TskIconButton(
+                            onClick = onCheckBoxClick,
+                            shape = RectangleShape,
+                            color = Color.Transparent
+                        ) {
+                            TskIcon(
+                                imageIcon = leftIcon,
+                                tintColor = color
+                            )
+                        }
+
+                        Column(
+                            modifier = Modifier
+                                .padding(4.dp)
+                                .weight(1F)
+                        ) {
+                            Row(
+                                modifier = Modifier.fillMaxWidth(),
+                            ) {
+                                TskTitle(text = tskTitle)
+                            }
+                            Row(
+                                modifier = Modifier.fillMaxWidth()
+                            ) {
+                                TskCategory(text = tskCategory)
+                                TskDueDate(text = tskDueDate)
+                            }
+                        }
+
+                        Spacer(Modifier.width(10.dp))
+                        TskPriority(priority = taskkPriority)
+                    }
+                    Divider(
+                        color = gray20,
+                        thickness = 1.dp,
+                        modifier = Modifier.padding(start = 16.dp, end = 16.dp)
                     )
                 }
-
-                Column(
-                    modifier = Modifier
-                        .padding(4.dp)
-                        .weight(1F)
-                ) {
-                    Row(
-                        modifier = Modifier.fillMaxWidth(),
-                    ) {
-                        TskTitle(text = tskTitle)
-                    }
-                    Row(
-                        modifier = Modifier.fillMaxWidth()
-                    ) {
-                        TskCategory(text = tskCategory)
-                        TskDueDate(text = tskDueDate)
-                    }
-                }
-
-                Spacer(Modifier.width(10.dp))
-                TskPriority(priority = taskkPriority)
             }
-            Divider(
-                color = gray20,
-                thickness = 1.dp,
-                modifier = Modifier.padding(start = 16.dp, end = 16.dp)
-            )
-        }
-    }
+        },
+        onDismiss = { onSwipeDelete() }
+    )
 }
 
 @Composable
@@ -243,7 +251,8 @@ fun previewTskItem(){
         tskCategory = "More College",
         taskkPriority = TaskkPriority.EASY,
         contentPadding = PaddingValues(10.dp),
-        leftIcon = TaskkIcon.Check
+        leftIcon = TaskkIcon.Check,
+        onSwipeDelete = { }
     )
 }
 

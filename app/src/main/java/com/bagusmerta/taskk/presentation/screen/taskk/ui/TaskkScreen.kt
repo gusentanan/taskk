@@ -41,6 +41,7 @@ fun TaskkContent(
     modifier: Modifier,
     tasks: List<TaskkItem>,
     onClick: (TaskkToDo) -> Unit,
+    onSwipeDelete: (TaskkToDo) -> Unit,
     onCheckBoxClick: (TaskkToDo) -> Unit,
     listState: LazyListState
 ) {
@@ -92,7 +93,8 @@ fun TaskkContent(
                             tskCategory = stringResource(it.taskk.taskkCategory.str),
                             taskkPriority = it.taskk.taskkPriority,
                             contentPadding = PaddingValues(all = 8.dp),
-                            leftIcon = TaskkIcon.Check
+                            leftIcon = TaskkIcon.Check,
+                            onSwipeDelete = { onSwipeDelete(it.taskk) }
                         )
                     }
                     is TaskkItem.InProgress -> {
@@ -122,7 +124,8 @@ fun TaskkContent(
                                 TaskkIcon.UnChecked
                             },
                             taskkPriority = it.taskk.taskkPriority,
-                            contentPadding =  PaddingValues(all = 8.dp)
+                            contentPadding =  PaddingValues(all = 8.dp),
+                            onSwipeDelete = { onSwipeDelete(it.taskk) }
                         )
                     }
                 }

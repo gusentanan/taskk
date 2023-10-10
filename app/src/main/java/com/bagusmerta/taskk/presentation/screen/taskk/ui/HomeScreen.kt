@@ -26,7 +26,7 @@ fun HomeScreen(
     viewModel: HomeViewModel,
     onAddTaskClick: () -> Unit,
     onTaskItemClick: (String, String) -> Unit,
-    onClickSettings: () -> Unit
+    onClickSettings: () -> Unit,
 ){
     val state by viewModel.state.collectAsStateWithLifecycle()
     val listState = rememberLazyListState()
@@ -44,7 +44,8 @@ fun HomeScreen(
         onCheckBoxClick = { viewModel.dispatch(HomeEvent.TaskkEvent.OnToggleStatus(it)) } ,
         onClickTaskItem = { onTaskItemClick(it.id, 1.toString()) } ,
         onAddTaskClick = { onAddTaskClick() },
-        listState = listState
+        listState = listState,
+        onSwipeDelete = { viewModel.dispatch(HomeEvent.TaskkEvent.Delete(it)) }
     )
 }
 
@@ -71,7 +72,8 @@ fun ListTaskkContent(
     onCheckBoxClick: (TaskkToDo) -> Unit,
     onClickTaskItem: (TaskkToDo) -> Unit,
     onAddTaskClick: () -> Unit,
-    listState: LazyListState
+    listState: LazyListState,
+    onSwipeDelete: (TaskkToDo) -> Unit
 ){
     TskLayout {
         header()
@@ -85,7 +87,8 @@ fun ListTaskkContent(
                 tasks = tasks,
                 onClick = onClickTaskItem,
                 onCheckBoxClick = onCheckBoxClick,
-                listState = listState
+                listState = listState,
+                onSwipeDelete = onSwipeDelete
             )
 
             FooterWithButton(

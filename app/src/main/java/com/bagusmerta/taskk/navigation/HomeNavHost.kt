@@ -9,6 +9,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import com.bagusmerta.taskk.presentation.screen.setting.ui.SettingScreen
 import com.bagusmerta.taskk.presentation.screen.setting.ui.SettingViewModel
+import com.bagusmerta.taskk.presentation.screen.taskk.ui.HomeEvent
 import com.bagusmerta.taskk.presentation.screen.taskk.ui.HomeScreen
 import com.bagusmerta.taskk.presentation.screen.taskk.ui.HomeViewModel
 import com.bagusmerta.taskk.utils.wrapper.BottomSheetConfiguration
@@ -38,7 +39,7 @@ fun NavGraphBuilder.HomeNavHost(
                     taskkId, listId ->
                     navController.navigate(DetailFlow.Root.route(taskkId, listId))
                 },
-                onClickSettings = { navController.navigate(HomeFlow.SettingScreen.route) }
+                onClickSettings = { navController.navigate(HomeFlow.SettingScreen.route) },
             )
         }
 
