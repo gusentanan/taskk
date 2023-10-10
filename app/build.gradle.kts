@@ -12,14 +12,14 @@ android {
     namespace = "com.bagusmerta.taskk"
     compileSdk = 33
 
-    signingConfigs {
-        create("release") {
-            keyAlias = project.properties["RELEASE_KEY_ALIAS"].toString()
-            keyPassword = project.properties["RELEASE_KEY_PASSWORD"].toString()
-            storeFile = file(project.properties["RELEASE_STORE_FILE"].toString())
-            storePassword = project.properties["RELEASE_STORE_PASSWORD"].toString()
-        }
-    }
+//    signingConfigs {
+//        create("release") {
+//            keyAlias = project.properties["RELEASE_KEY_ALIAS"].toString()
+//            keyPassword = project.properties["RELEASE_KEY_PASSWORD"].toString()
+//            storeFile = file(project.properties["RELEASE_STORE_FILE"].toString())
+//            storePassword = project.properties["RELEASE_STORE_PASSWORD"].toString()
+//        }
+//    }
 
     defaultConfig {
         applicationId = "com.bagusmerta.taskk"
@@ -45,7 +45,7 @@ android {
         getByName("release") {
             manifestPlaceholders["appName"] = "@string/app_name"
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
-            signingConfig = signingConfigs.getByName("release")
+//            signingConfig = signingConfigs.getByName("release")
             isDebuggable = false
             isMinifyEnabled = true
             isShrinkResources = true
