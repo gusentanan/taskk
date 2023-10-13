@@ -1,6 +1,5 @@
 package com.bagusmerta.taskk.navigation
 
-import android.util.Log
 import androidx.compose.runtime.MutableState
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavGraphBuilder
@@ -38,7 +37,7 @@ fun NavGraphBuilder.HomeNavHost(
                     taskkId, listId ->
                     navController.navigate(DetailFlow.Root.route(taskkId, listId))
                 },
-                onClickSettings = { navController.navigate(HomeFlow.SettingScreen.route) }
+                onClickSettings = { navController.navigate(HomeFlow.SettingScreen.route) },
             )
         }
 

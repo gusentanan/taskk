@@ -1,7 +1,6 @@
 package com.bagusmerta.taskk.presentation.screen.taskk.ui
 
 import androidx.compose.runtime.Immutable
-import androidx.compose.ui.text.input.TextFieldValue
 import com.bagusmerta.taskk.domain.model.TaskkList
 import com.bagusmerta.taskk.domain.model.TaskkToDo
 import com.bagusmerta.taskk.utils.extensions.toTaskkListState
@@ -10,7 +9,6 @@ import com.bagusmerta.taskk.utils.wrapper.DateTimeProviderImpl
 @Immutable
 data class HomeState(
     // This variable act as initial state value
-    val taskkName: TextFieldValue = TextFieldValue(),
     val taskkList: TaskkList = TaskkList()
 ) {
     val todayDate = DateTimeProviderImpl().getNowDate()

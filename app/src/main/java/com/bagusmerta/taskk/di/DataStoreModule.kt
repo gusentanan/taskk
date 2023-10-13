@@ -3,8 +3,8 @@ package com.bagusmerta.taskk.di
 import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.dataStore
-import com.bagusmerta.taskk.model.preference.ThemePreference
 import com.bagusmerta.taskk.data.preference.themes.ThemeSerializer
+import com.bagusmerta.taskk.model.preference.ThemePreference
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

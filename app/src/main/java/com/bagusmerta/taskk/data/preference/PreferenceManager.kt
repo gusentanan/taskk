@@ -2,10 +2,10 @@ package com.bagusmerta.taskk.data.preference
 
 
 import androidx.datastore.core.DataStore
-import com.bagusmerta.taskk.model.preference.ThemePreference
 import com.bagusmerta.taskk.data.preference.themes.TaskkTheme
 import com.bagusmerta.taskk.data.preference.themes.toTheme
 import com.bagusmerta.taskk.data.preference.themes.toThemePref
+import com.bagusmerta.taskk.model.preference.ThemePreference
 import com.bagusmerta.taskk.utils.Dispatcher
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
