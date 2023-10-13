@@ -14,7 +14,8 @@
 
 ## More About
 100% build using Jetpack Compose 
-- You can see the dependencies that i used [here](https://github.com/gusentanan/taskk/blob/main/app/build.gradle.kts) 
+- You can see the App preview [here](https://github.com/gusentanan/taskk/blob/main/arts/taskk_preview.md)
+- You can see the dependencies that I used [here](https://github.com/gusentanan/taskk/blob/main/app/build.gradle.kts)
 ```
 I haven't programmed this app to collect any personal information. All data,
 including app preferences (such as themes), is stored solely on your device and
