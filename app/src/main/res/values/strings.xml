@@ -40,4 +40,5 @@
     <string name="taskk_priority_displayable_easy">Easy</string>
     <string name="taskk_priority_displayable_mid">Medium</string>
     <string name="taskk_priority_displayable_hard">Hard</string>
+    <string name="taskk_add_due_time">Add Due Time</string>
 </resources>

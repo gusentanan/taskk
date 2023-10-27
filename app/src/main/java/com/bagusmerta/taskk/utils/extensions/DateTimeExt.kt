@@ -2,9 +2,11 @@ package com.bagusmerta.taskk.utils.extensions
 
 import java.text.SimpleDateFormat
 import java.time.LocalDateTime
+import java.time.LocalTime
 import java.time.ZoneId
 import java.util.Locale
 
+val DEFAULT_TASKK_LOCAL_TIME: LocalTime = LocalTime.of(23, 59)
 fun LocalDateTime.isSameDay(dateTime: LocalDateTime): Boolean{
     return toLocalDate().isEqual(dateTime.toLocalDate())
 }

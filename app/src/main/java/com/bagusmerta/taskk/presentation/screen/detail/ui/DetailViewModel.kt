@@ -8,12 +8,15 @@ import com.bagusmerta.taskk.domain.model.TaskkToDo
 import com.bagusmerta.taskk.navigation.ARG_LIST_ID
 import com.bagusmerta.taskk.navigation.ARG_TASKK_ID
 import com.bagusmerta.taskk.presentation.screen.detail.data.IDetailEnvironment
+import com.bagusmerta.taskk.utils.extensions.DEFAULT_TASKK_LOCAL_TIME
 import com.bagusmerta.taskk.utils.extensions.select
+import com.bagusmerta.taskk.utils.extensions.updateTimeOnLocalDate
 import com.bagusmerta.taskk.utils.extensions.updatedDateToLocalDateTime
 import com.bagusmerta.taskk.utils.vmutils.StateViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch
+import java.time.LocalTime
 import javax.inject.Inject
 
 @HiltViewModel
@@ -74,10 +77,22 @@ class DetailViewModel @Inject constructor(
                     environment.resetTaskkDueDate(state.value.taskk.id)
                 }
            }
+           is DetailEvent.ResetDueTime -> {
+                viewModelScope.launch {
+                    val newDateTime = state.value.taskk.updateTimeOnLocalDate(environment.dateTimeProvider.getNowDate().toLocalDate(), DEFAULT_TASKK_LOCAL_TIME)
+                    environment.resetTaskkDueTime(state.value.taskk.id, newDateTime)
+                }
+           }
            is DetailEvent.SelectDueDate -> {
                 viewModelScope.launch {
                     val newDate = state.value.taskk.updatedDateToLocalDateTime(event.date)
                     environment.updateTaskkDueDate(state.value.taskk.id, newDate)
+                }
+           }
+           is DetailEvent.SelectDueTime -> {
+                viewModelScope.launch {
+                    val newDateTime = state.value.taskk.updateTimeOnLocalDate(environment.dateTimeProvider.getNowDate().toLocalDate(), event.time)
+                    environment.updateTaskkDueDate(state.value.taskk.id, newDateTime)
                 }
            }
        }

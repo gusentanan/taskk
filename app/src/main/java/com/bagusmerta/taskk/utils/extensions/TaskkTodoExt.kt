@@ -56,3 +56,11 @@ fun TaskkToDo.updatedDateToLocalDateTime(newLocalDate: LocalDate): LocalDateTime
     val localTime = dueDate?.toLocalTime() ?: DEFAULT_TASK_LOCAL_TIME
     return LocalDateTime.of(newLocalDate, localTime)
 }
+fun TaskkToDo.updateTimeOnLocalDate(defaultDate: LocalDate, newLocalTime: LocalTime): LocalDateTime {
+    val localDate = dueDate?.toLocalDate() ?: defaultDate
+    return LocalDateTime.of(localDate, newLocalTime)
+}
+
+fun TaskkToDo.displayTime(): String? {
+    return if (isDueDateTimeSet) dueDate?.toLocalTime().toString() else  null
+}

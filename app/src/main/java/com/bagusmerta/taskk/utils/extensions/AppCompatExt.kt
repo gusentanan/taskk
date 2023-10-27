@@ -2,12 +2,17 @@ package com.bagusmerta.taskk.utils.extensions
 
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.datepicker.MaterialDatePicker
+import com.google.android.material.timepicker.MaterialTimePicker
+import com.google.android.material.timepicker.MaterialTimePicker.INPUT_MODE_KEYBOARD
+import com.google.android.material.timepicker.TimeFormat
 import java.time.Instant
 import java.time.LocalDate
+import java.time.LocalTime
 import java.time.ZoneId
 import java.time.ZoneOffset
 
 private const val DATE_PICKER_TAG = "date_picker"
+private const val TIME_PICKER_TAG = "time_picker"
 
 fun AppCompatActivity.showDatePicker(
     selection: LocalDate? = null,
@@ -32,5 +37,29 @@ fun AppCompatActivity.showDatePicker(
                 .atZone(zoneId)
                 .toLocalDate()
         )
+    }
+}
+
+fun AppCompatActivity.showTimePicker(
+    time: LocalTime? = null,
+    selectedTime: (LocalTime) -> Unit
+) {
+    val picker = MaterialTimePicker
+        .Builder()
+        .setInputMode(INPUT_MODE_KEYBOARD)
+        .setTimeFormat(TimeFormat.CLOCK_12H)
+        .apply {
+            if (time != null) {
+                setHour(time.hour)
+                setMinute(time.minute)
+            } else {
+                setHour(9)
+            }
+        }
+        .build()
+
+    picker.show(supportFragmentManager, TIME_PICKER_TAG)
+    picker.addOnPositiveButtonClickListener {
+        selectedTime(LocalTime.of(picker.hour, picker.minute))
     }
 }

@@ -33,6 +33,7 @@ private val DarkColorScheme = darkColorScheme(
     onSurface = dOn,
     error = dError,
     onError = Color.White,
+    tertiaryContainer = dTertiary
 
 )
 
@@ -53,7 +54,8 @@ private val LightColorScheme = lightColorScheme(
     surface = lBackground,
     onSurface = lOn,
     error = lError,
-    onError = Color.White
+    onError = Color.White,
+    tertiaryContainer = lTertiary
 
 )
 

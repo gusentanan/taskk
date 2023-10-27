@@ -26,6 +26,7 @@ import androidx.compose.material.icons.rounded.ChevronRight
 import androidx.compose.material.icons.rounded.EditCalendar
 import androidx.compose.material.icons.rounded.LibraryBooks
 import androidx.compose.material.icons.rounded.PriorityHigh
+import androidx.compose.material.icons.rounded.Schedule
 import androidx.compose.material3.Divider
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.MaterialTheme
@@ -60,20 +61,24 @@ import com.bagusmerta.taskk.presentation.designsystem.component.TskItemDetail
 import com.bagusmerta.taskk.presentation.designsystem.component.TskLayout
 import com.bagusmerta.taskk.presentation.designsystem.icon.TaskkIcon
 import com.bagusmerta.taskk.presentation.designsystem.theme.MediumRadius
+import com.bagusmerta.taskk.presentation.designsystem.theme.commonGray
 import com.bagusmerta.taskk.utils.AlphaDisabled
 import com.bagusmerta.taskk.utils.AlphaMedium
 import com.bagusmerta.taskk.utils.DividerAlpha
+import com.bagusmerta.taskk.utils.extensions.displayTime
 import com.bagusmerta.taskk.utils.extensions.displayable
 import com.bagusmerta.taskk.utils.extensions.dueDateDisplayable
 import com.bagusmerta.taskk.utils.extensions.formatDateTime
 import com.bagusmerta.taskk.utils.extensions.isDueDateSet
 import com.bagusmerta.taskk.utils.extensions.isExpired
 import com.bagusmerta.taskk.utils.extensions.showDatePicker
+import com.bagusmerta.taskk.utils.extensions.showTimePicker
 import com.bagusmerta.taskk.utils.vmutils.HandleEffect
 import com.bagusmerta.taskk.utils.wrapper.DateTimeProviderImpl
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import java.time.LocalTime
 
 @Composable
 fun DetailScreen(
@@ -121,6 +126,7 @@ fun DetailScreen(
         taskk = state.taskk,
         note = state.taskk.note,
         dueDateTitle = state.taskk.dueDate?.formatDateTime() ?: stringResource(R.string.taskk_add_due_date),
+        dueTimeTitle = state.taskk.displayTime() ?: stringResource(R.string.taskk_add_due_time),
         onClickTaskkTitle = { onClickTaskkTitle() },
         onClickDueDate = {
             val dueDateValue = state.taskk.dueDate?.toLocalDate()
@@ -128,6 +134,27 @@ fun DetailScreen(
                 activity.showDatePicker(dueDateValue) { selectedDate ->
                     viewModel.dispatch(DetailEvent.SelectDueDate(selectedDate))
                 }
+            }
+        },
+        onClickDueTime = {
+            val dueTimeValue = state.taskk.dueDate?.toLocalTime()
+            if (dueTimeValue != null) {
+                activity.showTimePicker(dueTimeValue) { selectedTime ->
+                    viewModel.dispatch(DetailEvent.SelectDueTime(selectedTime))
+                }
+            }
+        },
+        onCheckedChangeDueTime = { check ->
+            if (check) {
+                val nextHour = DateTimeProviderImpl().getNowDate().toLocalTime().plusHours(1)
+                val initValue = LocalTime.of(nextHour.hour, 0)
+                activity.showTimePicker(
+                    initValue
+                ) { selectedTime ->
+                    viewModel.dispatch(DetailEvent.SelectDueTime(selectedTime))
+                }
+            } else {
+                viewModel.dispatch(DetailEvent.ResetDueTime)
             }
         },
         onCheckedChangeDueDate = { check ->
@@ -158,9 +185,12 @@ fun DetailTaskkScreen(
     taskk: TaskkToDo,
     note: String,
     dueDateTitle: String,
+    dueTimeTitle: String,
     onClickTaskkTitle: () -> Unit,
+    onClickDueTime: () -> Unit,
     onClickDueDate: () -> Unit,
     onCheckedChangeDueDate: (Boolean) -> Unit,
+    onCheckedChangeDueTime: (Boolean) -> Unit,
     onClickTaskkPriority: () -> Unit,
     onClickTaskkCategory: () -> Unit,
     onClickTaskkStatus: () -> Unit,
@@ -202,7 +232,7 @@ fun DetailTaskkScreen(
                         Row {
                             Text(
                                 text = taskk.taskkPriority.name,
-                                style = MaterialTheme.typography.titleSmall.copy(fontWeight = FontWeight.Normal),
+                                style = MaterialTheme.typography.titleSmall.copy(fontWeight = FontWeight.SemiBold),
                                 color = MaterialTheme.colorScheme.onSurface.copy(alpha = AlphaDisabled)
                             )
                             Spacer(Modifier.width(8.dp))
@@ -224,13 +254,13 @@ fun DetailTaskkScreen(
                     shape = RoundedCornerShape(size = MediumRadius),
                     iconBgColor = MaterialTheme.colorScheme.secondary,
                     leftIcon = Icons.Rounded.LibraryBooks,
-                    showDivider = true,
+                    showDivider = false,
                     onClick = onClickTaskkCategory,
                     trailing = {
                         Row {
                             Text(
                                 text = stringResource(taskk.taskkCategory.displayable()),
-                                style = MaterialTheme.typography.titleSmall.copy(fontWeight = FontWeight.Normal),
+                                style = MaterialTheme.typography.titleSmall.copy(fontWeight = FontWeight.SemiBold),
                                 color = MaterialTheme.colorScheme.onSurface.copy(alpha = AlphaDisabled)
                             )
                             Spacer(Modifier.width(8.dp))
@@ -243,13 +273,14 @@ fun DetailTaskkScreen(
                 )
             }
 
-            item { Spacer(Modifier.height(8.dp)) }
+            item { Spacer(Modifier.height(10.dp)) }
 
             item {
                 // Due Date section
                 ActionCell(
                     title = dueDateTitle,
                     shape = RoundedCornerShape(size = MediumRadius),
+                    backgroundCell = MaterialTheme.colorScheme.tertiaryContainer,
                     iconBgColor = MaterialTheme.colorScheme.error,
                     leftIcon = Icons.Rounded.EditCalendar,
                     showDivider = true,
@@ -267,7 +298,39 @@ fun DetailTaskkScreen(
                         MaterialTheme.colorScheme.error
                     } else {
                         Color.Unspecified
-                    }
+                    },
+                    titleFontWeight = FontWeight.SemiBold
+                )
+            }
+
+            item {
+                ActionCell(
+                    title = dueTimeTitle,
+                    shape = RoundedCornerShape(
+                        bottomStart = MediumRadius,
+                        bottomEnd = MediumRadius
+                    ),
+                    backgroundCell = MaterialTheme.colorScheme.tertiaryContainer,
+                    iconBgColor = MaterialTheme.colorScheme.primary,
+                    leftIcon = Icons.Rounded.Schedule,
+                    showDivider = false,
+                    onClick = if (taskk.isDueDateTimeSet) {
+                        onClickDueTime
+                    } else {
+                        null
+                     },
+                    trailing = {
+                        Switch(
+                            checked = taskk.isDueDateTimeSet,
+                            onCheckedChange = onCheckedChangeDueTime,
+                        )
+                    },
+                    titleColor = if (taskk.isExpired() && taskk.isDueDateTimeSet) {
+                        MaterialTheme.colorScheme.error
+                    } else {
+                        Color.Unspecified
+                    },
+                    titleFontWeight = FontWeight.SemiBold
                 )
             }
 
@@ -380,6 +443,8 @@ fun TskItemWrapper(
 private fun ActionCell(
     title: String,
     titleColor: Color = Color.Unspecified,
+    titleFontWeight: FontWeight = FontWeight.Normal,
+    backgroundCell: Color = MaterialTheme.colorScheme.surface,
     shape: Shape,
     iconBgColor: Color,
     leftIcon: ImageVector,
@@ -395,15 +460,17 @@ private fun ActionCell(
                 .clip(shape)
                 .clickable(onClick = onClick),
             shape = shape,
-            color = MaterialTheme.colorScheme.surface
+            color = backgroundCell
         ) {
             ActionContentCell(
                 title = title,
                 titleColor = titleColor,
+                titleFontWeight = titleFontWeight,
                 iconBgColor = iconBgColor,
                 leftIcon = leftIcon,
                 showDivider = showDivider,
-                trailing = trailing
+                trailing = trailing,
+
             )
         }
     } else {
@@ -413,11 +480,12 @@ private fun ActionCell(
                 .padding(horizontal = 4.dp)
                 .clip(shape),
             shape = shape,
-            color = MaterialTheme.colorScheme.surface
+            color = backgroundCell
         ) {
             ActionContentCell(
                 title = title,
                 titleColor = titleColor,
+                titleFontWeight = titleFontWeight,
                 iconBgColor = iconBgColor,
                 leftIcon = leftIcon,
                 showDivider = showDivider,
@@ -430,6 +498,7 @@ private fun ActionCell(
 @Composable
 private fun ActionContentCell(
     title: String,
+    titleFontWeight: FontWeight,
     titleColor: Color,
     iconBgColor: Color,
     leftIcon: ImageVector,
@@ -458,7 +527,7 @@ private fun ActionContentCell(
             Spacer(Modifier.size(8.dp))
             Text(
                 text = title,
-                style = MaterialTheme.typography.titleSmall,
+                style = MaterialTheme.typography.titleSmall.copy(fontWeight = titleFontWeight),
                 modifier = Modifier
                     .padding(start = 10.dp)
                     .weight(1f),
