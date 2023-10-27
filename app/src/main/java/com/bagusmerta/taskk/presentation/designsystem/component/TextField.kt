@@ -26,6 +26,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.input.VisualTransformation
@@ -162,7 +163,7 @@ fun TskInputText(
                         modifier = Modifier.weight(1F),
                         onClick = onCancelClick,
                     ) {
-                        Text(text = stringResource(R.string.button_cancel_text), color = MaterialTheme.colorScheme.onSecondary)
+                        Text(text = stringResource(R.string.button_cancel_text), color = MaterialTheme.colorScheme.primary, fontWeight = FontWeight.SemiBold)
                     }
 
                     Spacer(Modifier.width(16.dp))
@@ -172,7 +173,7 @@ fun TskInputText(
                         onClick = onSaveClick,
                         enabled = isValidTitle
                     ) {
-                        Text(text = positiveText, color = Color.White)
+                        Text(text = positiveText, color = Color.White, fontWeight = FontWeight.SemiBold)
                     }
                 }
             }
