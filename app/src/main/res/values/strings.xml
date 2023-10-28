@@ -32,12 +32,13 @@
     <string name="taskk_category_study">"Studies  • </string>
     <string name="taskk_category_selfhelp">"Self Help  • </string>
     <string name="taskk_category_gym">"Gym  • </string>
-    <string name="taskk_category_displayable_work">Study</string>
-    <string name="taskk_category_displayable_house">Work Related</string>
-    <string name="taskk_category_displayable_study">Gym / Workout</string>
-    <string name="taskk_category_displayable_selfhelp">House Related</string>
-    <string name="taskk_category_displayable_gym">Self Improvement</string>
+    <string name="taskk_category_displayable_work">Work Related</string>
+    <string name="taskk_category_displayable_house">House Related</string>
+    <string name="taskk_category_displayable_study">Studies</string>
+    <string name="taskk_category_displayable_selfhelp">Self Improvement</string>
+    <string name="taskk_category_displayable_gym">Gym / Workout</string>
     <string name="taskk_priority_displayable_easy">Easy</string>
     <string name="taskk_priority_displayable_mid">Medium</string>
     <string name="taskk_priority_displayable_hard">Hard</string>
+    <string name="taskk_add_due_time">Add Due Time</string>
 </resources>

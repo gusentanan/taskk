@@ -17,6 +17,7 @@ interface IDetailEnvironment {
     suspend fun updateTaskkTitle(taskkId: String, title: String)
     suspend fun updateTaskkDueDate(taskkId: String, date: LocalDateTime)
     suspend fun resetTaskkDueDate(taskkId: String)
+    suspend fun resetTaskkDueTime(taskkId: String, date: LocalDateTime)
     suspend fun updateTaskkPriority(taskkId: String, priority: TaskkPriority)
     suspend fun updateTaskkCategory(taskkId: String, category: TaskkCategory)
     suspend fun updateTaskkNote(taskkId: String, note: String)

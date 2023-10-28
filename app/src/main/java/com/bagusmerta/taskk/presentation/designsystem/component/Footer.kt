@@ -10,6 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 
 @Composable
@@ -45,7 +46,8 @@ fun FooterWithButton(
                 ) {
                     Text(
                         text = textButton,
-                        color = Color.White
+                        color = Color.White,
+                        fontWeight = FontWeight.SemiBold
                     )
                 }
             }

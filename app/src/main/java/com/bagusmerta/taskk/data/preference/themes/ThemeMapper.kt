@@ -11,9 +11,9 @@ fun TaskkTheme.toThemePref() =  when (this) {
     TaskkTheme.LIGHT -> ThemePreference.LIGHT
     TaskkTheme.DARK -> ThemePreference.DARK
 }
-
 /*
-* Mapper to model/enum classes
+*
+ Mapper to model/enum classes
 * */
 fun ThemePreference.toTheme() = when (this) {
     ThemePreference.SYSTEM -> TaskkTheme.SYSTEM

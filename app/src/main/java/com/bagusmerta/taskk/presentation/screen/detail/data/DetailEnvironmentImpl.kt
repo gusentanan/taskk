@@ -47,6 +47,10 @@ class DetailEnvironmentImpl @Inject constructor(
         localDataSource.resetTaskkDueDate(taskkId, dateTimeProvider.getNowDate())
     }
 
+    override suspend fun resetTaskkDueTime(taskkId: String, date: LocalDateTime) {
+        localDataSource.updateTaskkDueDate(taskkId, date, dateTimeProvider.getNowDate(), false)
+    }
+
     override suspend fun updateTaskkPriority(taskkId: String, priority: TaskkPriority) {
         localDataSource.updateTaskkPriority(taskkId, priority, dateTimeProvider.getNowDate())
     }

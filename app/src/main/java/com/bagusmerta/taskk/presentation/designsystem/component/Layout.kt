@@ -49,7 +49,9 @@ fun TskModalLayout(
     TskModalLazyColumn(modifier) {
         item {
             Column(
-                modifier = modifier.fillMaxWidth().padding(top = 8.dp),
+                modifier = modifier
+                    .fillMaxWidth()
+                    .padding(top = 8.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Box(modifier = modifier

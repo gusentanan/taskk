@@ -5,20 +5,22 @@ import androidx.compose.ui.graphics.Color
 /**
  *  Light Color Scheme
  * */
-val lPrimary =  Color(0xFF0067FF)
+val lPrimary =  Color(0xFF1F7AFF)
 val lBackground = Color(0xFFF5F5F5)
-val lItemBackground = Color(0xFFE2E2E2)
+val lItemBackground = Color(0xFFD8D8D8)
 val lOn = Color(0xFF130E0F)
 val lError = Color(0xFFEA6D7E)
+val lTertiary = Color(0xFFEEEEEE)
 
 /**
  *  Dark Color Scheme
  * */
-val dPrimary =  Color(0xFF0067FF)
+val dPrimary =  Color(0xFF2C81FF)
 val dBackground = Color(0xFF130E0F)
 val dItemBackground = Color(0xFF333333)
 val dOn = Color(0xFFF5F5F5)
 val dError = Color(0xFFFF1D3C)
+val dTertiary = Color(0xFF252525)
 
 val commonGray = Color(0xFF919191)
 val gray20 = Color(0xFFC7C7C7)

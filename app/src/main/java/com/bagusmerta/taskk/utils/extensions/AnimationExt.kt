@@ -28,24 +28,3 @@ fun Modifier.onPositionInParentChanged(
         }
     }
 }
-
-fun Modifier.drawGrowingCircle(
-    color: Color,
-    center: Offset,
-    radius: Float
-) = drawWithContent {
-    drawContent()
-    clipRect {
-        drawCircle(
-            color = color,
-            radius = radius,
-            center = center
-        )
-    }
-}
-
-fun lerp(
-    startValue: Float,
-    endValue: Float,
-    fraction: Float
-) = startValue + fraction * (endValue - startValue)
