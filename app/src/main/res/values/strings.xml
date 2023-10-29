@@ -41,4 +41,8 @@
     <string name="taskk_priority_displayable_mid">Medium</string>
     <string name="taskk_priority_displayable_hard">Hard</string>
     <string name="taskk_add_due_time">Add Due Time</string>
+    <string name="taskk_snooze">snooze</string>
+    <string name="taskk_done">done</string>
+    <string name="taskk_channel">taskk_channel</string>
+    <string name="taskk_channel_desc">taskk_channel_description</string>
 </resources>
