@@ -19,8 +19,8 @@ import javax.inject.Singleton
 class AlarmManager @Inject constructor(
     @ApplicationContext private val context: Context
 ){
-    @SuppressLint("ServiceCast")
-    private val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+
+    private val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as? AlarmManager
     private val flags = if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
         PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
     } else {
@@ -67,7 +67,7 @@ class AlarmManager @Inject constructor(
             return
         }
 
-        alarmManager.let {
+        alarmManager?.let {
             AlarmManagerCompat.setAndAllowWhileIdle(it, AlarmManager.RTC_WAKEUP, triggerAtMillis, operation)
         }
     }
@@ -78,7 +78,7 @@ class AlarmManager @Inject constructor(
         if(operation == null){
             return
         }
-        alarmManager.cancel(operation)
+        alarmManager?.cancel(operation)
 
     }
 

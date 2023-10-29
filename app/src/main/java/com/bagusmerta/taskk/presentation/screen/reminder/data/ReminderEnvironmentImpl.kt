@@ -17,12 +17,13 @@ import javax.inject.Inject
 class ReminderEnvironmentImpl @Inject constructor(
     private val dateTimeProvider: DateTimeProvider,
     private val localDataSource: LocalDataSource,
-    private val alarmManager: AlarmManager
+    private val alarmManager: AlarmManager,
+    private val notifyManager: NotifyManager
 ): IReminderEnvironment {
     override fun activateNotification(taskkId: String): Flow<TaskkToDo> {
         return getTaskk(taskkId)
-            .onEach {
-                // TODO("Implement Notification manager related feature")
+            .onEach { tasks ->
+               notifyManager.show(tasks)
             }
     }
 
@@ -30,6 +31,7 @@ class ReminderEnvironmentImpl @Inject constructor(
         return getTaskk(taskkId)
             .onEach { tasks ->
                 alarmManager.scheduleTaskkAlarm(tasks, dateTimeProvider.getNowDate().plusMinutes(10))
+                notifyManager.dismiss(tasks)
             }
     }
 
@@ -47,6 +49,7 @@ class ReminderEnvironmentImpl @Inject constructor(
                     }
                 )
                 alarmManager.cancelTaskkAlarm(tasks)
+                notifyManager.dismiss(tasks)
             }
     }
 

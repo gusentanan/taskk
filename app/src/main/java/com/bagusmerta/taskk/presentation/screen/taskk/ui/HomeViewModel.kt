@@ -8,6 +8,7 @@ import com.bagusmerta.taskk.presentation.screen.taskk.data.IHomeEnvironment
 import com.bagusmerta.taskk.utils.vmutils.StateViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -31,7 +32,14 @@ class HomeViewModel @Inject constructor(
                         }
                     }
             }
+        }
+        initTaskkDiff()
+    }
 
+    private fun initTaskkDiff() {
+        viewModelScope.launch {
+            environment.listenTaskkDiff()
+                .collect()
         }
     }
 
