@@ -64,3 +64,36 @@ fun TaskkToDo.updateTimeOnLocalDate(defaultDate: LocalDate, newLocalTime: LocalT
 fun TaskkToDo.displayTime(): String? {
     return if (isDueDateTimeSet) dueDate?.toLocalTime().toString() else  null
 }
+
+fun TaskkToDo.getNextScheduledDate(currentDate: LocalDateTime): LocalDateTime {
+    require(dueDate != null)
+    val usedDate = if(isExpired(currentDate)){
+        LocalDateTime.of(currentDate.toLocalDate(), dueDate.toLocalTime())
+    } else {
+        dueDate
+    }
+
+    return usedDate
+}
+
+suspend fun TaskkToDo.toggleStatusHandler(
+    currentDate: LocalDateTime,
+    onUpdateStatus: suspend (LocalDateTime?, TaskkStatus) -> Unit,
+    onUpdateDueDate: suspend (LocalDateTime) -> Unit,
+) {
+
+    val newStatus = status.toggle()
+    val completedAt = when (newStatus) {
+        TaskkStatus.IN_PROGRESS -> null
+        TaskkStatus.COMPLETE -> currentDate
+    }
+    onUpdateStatus(completedAt, newStatus)
+
+}
+
+fun TaskkStatus.toggle(): TaskkStatus {
+    return when(this){
+        TaskkStatus.COMPLETE -> TaskkStatus.IN_PROGRESS
+        TaskkStatus.IN_PROGRESS -> TaskkStatus.COMPLETE
+    }
+}

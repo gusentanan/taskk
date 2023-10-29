@@ -5,8 +5,8 @@ import com.bagusmerta.taskk.domain.model.TaskkToDo
 import kotlinx.coroutines.flow.Flow
 
 interface IReminderEnvironment {
-    fun activateNotification(taskkId: String): Flow<TaskkList>
-    fun snoozeAlarm(taskkId: String): Flow<TaskkList>
-    fun finishAlarm(taskkId: String): Flow<TaskkList>
-    fun restartAll(): Flow<TaskkList>
+    fun activateNotification(taskkId: String): Flow<TaskkToDo>
+    fun snoozeAlarm(taskkId: String): Flow<TaskkToDo>
+    fun finishAlarm(taskkId: String): Flow<TaskkToDo>
+    fun restartAll(): Flow<List<TaskkToDo>>
 }
