@@ -38,6 +38,12 @@ class LocalDataSource @Inject constructor(
             .flowOn(dispatcher)
     }
 
+    fun getScheduledTaskk(): Flow<List<TaskkToDo>> {
+        return taskkReadDao.getScheduledTaskk()
+            .map { it.toTaskkTodo() }
+            .flowOn(dispatcher)
+    }
+
     fun getOverallCountTaskk(): Flow<TaskkOverallCount> {
         return taskkReadDao.getOverallCountTaskk()
             .flowOn(dispatcher)

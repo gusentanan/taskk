@@ -17,6 +17,9 @@ interface TaskkReadDao {
     @Query("SELECT * FROM TaskkTodoDb")
     fun getListTaskk(): Flow<List<TaskkTodoDb>>
 
+    @Query("SELECT * FROM TaskkTodoDb WHERE taskk_status = :inCompleteStatus AND due_date IS NOT NULL")
+    fun getScheduledTaskk(inCompleteStatus: TaskkStatus = TaskkStatus.IN_PROGRESS): Flow<List<TaskkTodoDb>>
+
     @Query("SELECT * FROM TaskkTodoDb WHERE taskk_id = :taskkId")
     fun getTaskkById(taskkId: String): Flow<TaskkTodoDb>
 

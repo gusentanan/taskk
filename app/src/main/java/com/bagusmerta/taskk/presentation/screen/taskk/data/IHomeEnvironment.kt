@@ -1,5 +1,6 @@
 package com.bagusmerta.taskk.presentation.screen.taskk.data
 
+import com.bagusmerta.taskk.domain.model.TaskkDiff
 import com.bagusmerta.taskk.domain.model.TaskkList
 import com.bagusmerta.taskk.domain.model.TaskkOverallCount
 import com.bagusmerta.taskk.domain.model.TaskkToDo
@@ -14,6 +15,8 @@ interface IHomeEnvironment {
     fun getOverallCountTaskk(): Flow<TaskkOverallCount>
     suspend fun toggleTaskStatus(task: TaskkToDo)
     suspend fun deleteTask(task: TaskkToDo)
+
+    fun listenTaskkDiff(): Flow<TaskkDiff>
 
 }
 
