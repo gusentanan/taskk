@@ -57,6 +57,24 @@ fun TskSettingsButton(
 }
 
 @Composable
+fun TskInfoButton(
+    onClick: () -> Unit,
+    imageVector: ImageVector = TaskkIcon.Info
+){
+    TskIconButton(
+        onClick = onClick,
+        modifier = Modifier.size(42.dp),
+        shape = CircleShape,
+        color = MaterialTheme.colorScheme.surface
+    ) {
+        TskIcon(
+            imageIcon = imageVector,
+            modifier = Modifier.size(32.dp)
+        )
+    }
+}
+
+@Composable
 fun TskIconButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
@@ -90,6 +108,12 @@ fun previewBackButton(){
 @Composable
 fun previewSettingsButton(){
     TskSettingsButton(onClick = {})
+}
+
+@Preview
+@Composable
+fun previewInfoButton(){
+    TskInfoButton(onClick = {})
 }
 
 @Composable

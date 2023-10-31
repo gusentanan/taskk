@@ -71,6 +71,7 @@ fun HeaderWithSettingsButton(
     dateNow: String,
     taskStatus: String,
     onClickSettings: () -> Unit,
+    onClickInfo: () -> Unit,
     modifier: Modifier = Modifier
 ){
     Column {
@@ -85,6 +86,11 @@ fun HeaderWithSettingsButton(
             ) {
                 TskModalTitleMain(text = dateNow)
                 TskModalSubTitleMain(text = taskStatus)
+            }
+
+            Box(modifier = modifier.padding(end = 20.dp, top = 12.dp)
+            ) {
+                TskInfoButton(onClick = onClickInfo)
             }
 
             Box(modifier = modifier.padding(end = 20.dp, top = 12.dp)
@@ -106,7 +112,8 @@ fun previewHeaderSettings(){
     HeaderWithSettingsButton(
         dateNow = "March 9, 2023",
         taskStatus = "5 Completed, 2 Incomplete",
-        onClickSettings = {}
+        onClickSettings = {},
+        onClickInfo = {},
     )
 }
 
