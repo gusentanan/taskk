@@ -2,6 +2,7 @@ package com.bagusmerta.taskk.presentation.screen.detail.data
 
 import com.bagusmerta.taskk.domain.model.TaskkCategory
 import com.bagusmerta.taskk.domain.model.TaskkPriority
+import com.bagusmerta.taskk.domain.model.TaskkRepeat
 import com.bagusmerta.taskk.domain.model.TaskkToDo
 import com.bagusmerta.taskk.utils.wrapper.DateTimeProvider
 import com.bagusmerta.taskk.utils.wrapper.IdTaskkProvider
@@ -20,6 +21,7 @@ interface IDetailEnvironment {
     suspend fun resetTaskkDueTime(taskkId: String, date: LocalDateTime)
     suspend fun updateTaskkPriority(taskkId: String, priority: TaskkPriority)
     suspend fun updateTaskkCategory(taskkId: String, category: TaskkCategory)
+    suspend fun updateTaskkRepeat(taskkId: String, repeatable: TaskkRepeat)
     suspend fun updateTaskkNote(taskkId: String, note: String)
     suspend fun deleteTaskk(taskk: TaskkToDo)
     suspend fun toggleTaskStatus(taskk: TaskkToDo)

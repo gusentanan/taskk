@@ -54,6 +54,7 @@ class DetailViewModel @Inject constructor(
         taskk = data,
         priorityItems = priorityItems.select(data.taskkPriority),
         categoryItems = categoryItems.select(data.taskkCategory),
+        repeatableItems = repeatableItems.select(data.taskkRepeat)
     )
 
     override fun dispatch(event: DetailEvent) {
@@ -61,6 +62,7 @@ class DetailViewModel @Inject constructor(
            is DetailEvent.TaskkNoteEvent -> handleTaskkNoteEvent(event)
            is DetailEvent.TaskkPriorityEvent -> { handleTaskkPriorityEvent(event) }
            is DetailEvent.TaskkCategoryEvent -> { handleTaskkCategoryEvent(event) }
+           is DetailEvent.TaskkRepeatableEvent -> { handleTaskkRepeatableEvent(event) }
            is DetailEvent.TaskkTitleEvent -> { handleTaskkTitleEvent(event) }
            is DetailEvent.OnToggleStatus -> {
                viewModelScope.launch {
@@ -96,6 +98,21 @@ class DetailViewModel @Inject constructor(
                 }
            }
        }
+    }
+
+    private fun handleTaskkRepeatableEvent(event: DetailEvent.TaskkRepeatableEvent) {
+        when(event){
+            is DetailEvent.TaskkRepeatableEvent.SelectRepeatable -> {
+                viewModelScope.launch {
+                    environment.updateTaskkRepeat(state.value.taskk.id, event.repeat.repeat)
+                }
+            }
+            is DetailEvent.TaskkRepeatableEvent.OnShow -> {
+                viewModelScope.launch {
+                    setState { copy(repeatableItems = repeatableItems) }
+                }
+            }
+        }
     }
 
     private fun handleTaskkCategoryEvent(event: DetailEvent.TaskkCategoryEvent) {

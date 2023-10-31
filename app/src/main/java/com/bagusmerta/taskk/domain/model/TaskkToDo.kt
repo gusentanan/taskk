@@ -13,5 +13,6 @@ data class TaskkToDo(
     val createdAt: LocalDateTime,
     val updatedAt: LocalDateTime,
     val taskkPriority: TaskkPriority = TaskkPriority.EASY,
-    val taskkCategory: TaskkCategory = TaskkCategory.SELF_HELP
+    val taskkCategory: TaskkCategory = TaskkCategory.SELF_HELP,
+    val taskkRepeat: TaskkRepeat = TaskkRepeat.NEVER
 )

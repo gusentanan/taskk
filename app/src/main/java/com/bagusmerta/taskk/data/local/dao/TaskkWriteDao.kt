@@ -6,6 +6,7 @@ import androidx.room.Query
 import com.bagusmerta.taskk.data.local.entity.TaskkTodoDb
 import com.bagusmerta.taskk.domain.model.TaskkCategory
 import com.bagusmerta.taskk.domain.model.TaskkPriority
+import com.bagusmerta.taskk.domain.model.TaskkRepeat
 import com.bagusmerta.taskk.domain.model.TaskkStatus
 import java.time.LocalDateTime
 
@@ -45,5 +46,8 @@ interface TaskkWriteDao {
 
     @Query("UPDATE TaskkTodoDb SET taskk_status = :status, updated_at = :updateAt WHERE taskk_id = :taskkId")
     fun updateTaskkStatus(status: TaskkStatus, taskkId: String, updateAt: LocalDateTime)
+
+    @Query("UPDATE TaskkTodoDb SET taskk_repeat = :repeat, updated_at  = :updateAt WHERE taskk_id = :taskkId")
+    fun updateTaskkRepeat(repeat: TaskkRepeat, updateAt: LocalDateTime, taskkId: String)
 
 }

@@ -8,7 +8,7 @@
     <string name="taskk_due_date_yesterday">Due yesterday</string>
     <string name="taskk_due_date">Due ~ %1$s</string>
     <string name="task_complete_header">Completed</string>
-    <string name="taskk_add_note">Taskk Note</string>
+    <string name="taskk_add_note"> • Note</string>
     <string name="taskk_add_due_date">Add Due Date</string>
     <string name="taskk_add_due_date_empty"> </string>
     <string name="taskk_add_due_date_footer_empty">No due date</string>
@@ -45,4 +45,10 @@
     <string name="taskk_done">done</string>
     <string name="taskk_channel">taskk_channel</string>
     <string name="taskk_channel_desc">taskk_channel_description</string>
+    <string name="taskk_repeat_displayable_never">Never</string>
+    <string name="taskk_repeat_displayable_daily">Daily</string>
+    <string name="taskk_repeat_displayable_weekly">Weekly</string>
+    <string name="taskk_repeat_displayable_monthly">Monthly</string>
+    <string name="taskk_repeat_displayable_yearly">Yearly</string>
+    <string name="detail_taskk_repeatable_text">Repeat</string>
 </resources>

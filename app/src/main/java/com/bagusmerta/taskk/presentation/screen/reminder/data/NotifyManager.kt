@@ -72,7 +72,7 @@ class NotifyManager @Inject constructor(
 
     private fun getDoneEvent(taskId: String): NotificationCompat.Action {
         val actionTitle = context.getString(R.string.taskk_done)
-        val intent = getPendingIntent(taskId, TaskkBroadcastReceiver.EVENT_NOTIFIY_DONE, REQUEST_CODE_EVENT_COMPLETE)
+        val intent = getPendingIntent(taskId, TaskkBroadcastReceiver.EVENT_NOTIFY_DONE, REQUEST_CODE_EVENT_COMPLETE)
         return NotificationCompat.Action(REQUEST_CODE_NO_ICON, actionTitle, intent)
     }
 

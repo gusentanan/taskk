@@ -3,6 +3,7 @@ package com.bagusmerta.taskk.presentation.screen.detail.ui
 import androidx.compose.ui.text.input.TextFieldValue
 import com.bagusmerta.taskk.domain.model.TaskkCategory
 import com.bagusmerta.taskk.domain.model.TaskkPriority
+import com.bagusmerta.taskk.domain.model.TaskkRepeat
 import com.bagusmerta.taskk.domain.model.TaskkToDo
 import com.bagusmerta.taskk.utils.wrapper.DateTimeProviderImpl
 import javax.annotation.concurrent.Immutable
@@ -16,7 +17,8 @@ data class DetailState(
         updatedAt = DateTimeProviderImpl().getNowDate()
     ),
     val categoryItems: List<CategoryItems> = initCategoryItems(),
-    val priorityItems: List<PriorityItems> = initPriorityItems()
+    val priorityItems: List<PriorityItems> = initPriorityItems(),
+    val repeatableItems: List<RepeatableItems> = initRepeatableItems()
 ){
     val validTaskkTitle = editTaskkTitle.text.isNotBlank()
     val validTaskkNote = editTaskkNote.text.isNotBlank()
@@ -55,6 +57,26 @@ data class DetailState(
                 )
             )
         }
+
+        private fun initRepeatableItems(): List<RepeatableItems> {
+            return listOf(
+                RepeatableItems(
+                    TaskkRepeat.NEVER, true
+                ),
+                RepeatableItems(
+                    TaskkRepeat.DAILY, false
+                ),
+                RepeatableItems(
+                    TaskkRepeat.WEEKLY, false
+                ),
+                RepeatableItems(
+                    TaskkRepeat.MONTHLY, false
+                ),
+                RepeatableItems(
+                    TaskkRepeat.YEARLY, false
+                ),
+            )
+        }
     }
 }
 
@@ -65,5 +87,10 @@ data class CategoryItems(
 
 data class PriorityItems(
     val priority: TaskkPriority,
+    val applied: Boolean
+)
+
+data class RepeatableItems(
+    val repeat: TaskkRepeat,
     val applied: Boolean
 )

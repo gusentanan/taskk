@@ -1,5 +1,6 @@
 package com.bagusmerta.taskk.presentation.screen.taskk.data
 
+import android.util.Log
 import com.bagusmerta.taskk.data.local.LocalDataSource
 import com.bagusmerta.taskk.domain.model.TaskkDiff
 import com.bagusmerta.taskk.domain.model.TaskkList
@@ -8,6 +9,7 @@ import com.bagusmerta.taskk.domain.model.TaskkStatus
 import com.bagusmerta.taskk.domain.model.TaskkToDo
 import com.bagusmerta.taskk.presentation.screen.reminder.data.AlarmManager
 import com.bagusmerta.taskk.presentation.screen.reminder.data.NotifyManager
+import com.bagusmerta.taskk.utils.extensions.getCurrentScheduledDate
 import com.bagusmerta.taskk.utils.extensions.getNextScheduledDate
 import com.bagusmerta.taskk.utils.wrapper.DateTimeProvider
 import kotlinx.coroutines.flow.Flow
@@ -15,6 +17,7 @@ import kotlinx.coroutines.flow.distinctUntilChangedBy
 import kotlinx.coroutines.flow.drop
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
+import timber.log.Timber
 import javax.inject.Inject
 
 class HomeEnvironmentImpl @Inject constructor(
@@ -64,16 +67,22 @@ class HomeEnvironmentImpl @Inject constructor(
 
             }
             .drop(1) // Skip initial value
-            .onEach { todoTaskDiff ->
-                todoTaskDiff.addedTaskk.forEach {
-                    alarmManager.scheduleTaskkAlarm(it.value, it.value.getNextScheduledDate(dateTimeProvider.getNowDate()))
+            .onEach { taskkDiff ->
+                taskkDiff.addedTaskk.forEach {
+                    Timber.tag("ALARM_FLOW").d("Added Taskk %s", it)
+                    alarmManager.scheduleTaskkAlarm(
+                        it.value,
+                        it.value.getCurrentScheduledDate(dateTimeProvider.getNowDate())
+                    )
                 }
 
-                todoTaskDiff.modifiedTaskk.forEach {
-                    alarmManager.scheduleTaskkAlarm(it.value, it.value.getNextScheduledDate(dateTimeProvider.getNowDate()))
+                taskkDiff.modifiedTaskk.forEach {
+                    Timber.tag("ALARM_FLOW").d("Modified Taskk %s", it)
+                    alarmManager.scheduleTaskkAlarm(it.value, it.value.getCurrentScheduledDate(dateTimeProvider.getNowDate()))
                 }
 
-                todoTaskDiff.deletedTaskk.forEach {
+                taskkDiff.deletedTaskk.forEach {
+                    Timber.tag("ALARM_FLOW").d("Deleted Taskk %s", it)
                     alarmManager.cancelTaskkAlarm(it.value)
                     notifyManager.dismiss(it.value)
                 }

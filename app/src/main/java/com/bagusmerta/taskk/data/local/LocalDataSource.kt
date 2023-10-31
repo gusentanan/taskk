@@ -5,6 +5,7 @@ import com.bagusmerta.taskk.data.local.dao.TaskkWriteDao
 import com.bagusmerta.taskk.domain.model.TaskkCategory
 import com.bagusmerta.taskk.domain.model.TaskkOverallCount
 import com.bagusmerta.taskk.domain.model.TaskkPriority
+import com.bagusmerta.taskk.domain.model.TaskkRepeat
 import com.bagusmerta.taskk.domain.model.TaskkStatus
 import com.bagusmerta.taskk.domain.model.TaskkToDo
 import com.bagusmerta.taskk.utils.Dispatcher
@@ -100,6 +101,12 @@ class LocalDataSource @Inject constructor(
     suspend fun updateTaskkStatus(id: String, taskkStatus: TaskkStatus,  updateAt: LocalDateTime){
         withContext(dispatcher){
             taskkWriteDao.updateTaskkStatus(taskkStatus, id, updateAt)
+        }
+    }
+
+    suspend fun updateTaskkRepeat(id: String, taskkRepeat: TaskkRepeat, updateAt: LocalDateTime){
+        withContext(dispatcher){
+            taskkWriteDao.updateTaskkRepeat(taskkRepeat, updateAt, id)
         }
     }
 }
