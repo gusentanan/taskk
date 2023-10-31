@@ -26,6 +26,9 @@ import androidx.compose.material.icons.rounded.ChevronRight
 import androidx.compose.material.icons.rounded.EditCalendar
 import androidx.compose.material.icons.rounded.LibraryBooks
 import androidx.compose.material.icons.rounded.PriorityHigh
+import androidx.compose.material.icons.rounded.Recycling
+import androidx.compose.material.icons.rounded.Refresh
+import androidx.compose.material.icons.rounded.Repeat
 import androidx.compose.material.icons.rounded.Schedule
 import androidx.compose.material3.Divider
 import androidx.compose.material3.LocalContentColor
@@ -91,7 +94,8 @@ fun DetailScreen(
     onClickTaskkPriority: () -> Unit,
     onClickTaskkCategory: () -> Unit,
     onClickTaskkNote: () -> Unit,
-    onClickTaskkDelete: () -> Unit
+    onClickTaskkDelete: () -> Unit,
+    onClickTaskkRepeatable: () -> Unit
 ) {
 
     val state by viewModel.state.collectAsStateWithLifecycle()
@@ -174,7 +178,8 @@ fun DetailScreen(
         onClickTaskkPriority = { onClickTaskkPriority() },
         onClickTaskkCategory = { onClickTaskkCategory() },
         listState = listState,
-        onClickTaskkNote = { onClickTaskkNote() }
+        onClickTaskkNote = { onClickTaskkNote() },
+        onClickTaskkRepeatable = { onClickTaskkRepeatable() }
     )
 
 }
@@ -193,6 +198,7 @@ fun DetailTaskkScreen(
     onCheckedChangeDueTime: (Boolean) -> Unit,
     onClickTaskkPriority: () -> Unit,
     onClickTaskkCategory: () -> Unit,
+    onClickTaskkRepeatable: () -> Unit,
     onClickTaskkStatus: () -> Unit,
     onClickTaskkNote: () -> Unit,
     listState: LazyListState
@@ -306,10 +312,7 @@ fun DetailTaskkScreen(
             item {
                 ActionCell(
                     title = dueTimeTitle,
-                    shape = RoundedCornerShape(
-                        bottomStart = MediumRadius,
-                        bottomEnd = MediumRadius
-                    ),
+                    shape = RoundedCornerShape(size = MediumRadius),
                     backgroundCell = MaterialTheme.colorScheme.tertiaryContainer,
                     iconBgColor = MaterialTheme.colorScheme.primary,
                     leftIcon = Icons.Rounded.Schedule,
@@ -332,6 +335,36 @@ fun DetailTaskkScreen(
                     },
                     titleFontWeight = FontWeight.SemiBold
                 )
+            }
+
+            item { Spacer(Modifier.height(10.dp)) }
+
+            if(taskk.isDueDateTimeSet){
+                item {
+                    ActionCell(
+                        title = stringResource(R.string.detail_taskk_repeatable_text),
+                        shape = RoundedCornerShape(size = MediumRadius),
+                        iconBgColor = MaterialTheme.colorScheme.secondary,
+                        backgroundCell = MaterialTheme.colorScheme.tertiaryContainer,
+                        leftIcon = Icons.Rounded.Refresh,
+                        showDivider = false,
+                        onClick = onClickTaskkRepeatable,
+                        trailing = {
+                            Row {
+                                Text(
+                                    text = stringResource(taskk.taskkRepeat.displayable()),
+                                    style = MaterialTheme.typography.titleSmall.copy(fontWeight = FontWeight.SemiBold),
+                                    color = MaterialTheme.colorScheme.onSurface.copy(alpha = AlphaDisabled)
+                                )
+                                Spacer(Modifier.width(8.dp))
+                                TskIcon(
+                                    imageIcon = Icons.Rounded.ChevronRight,
+                                    tintColor = LocalContentColor.current.copy(alpha = AlphaDisabled)
+                                )
+                            }
+                        }
+                    )
+                }
             }
 
             item { Spacer(Modifier.height(10.dp)) }

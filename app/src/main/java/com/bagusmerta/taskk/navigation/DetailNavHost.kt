@@ -11,6 +11,7 @@ import com.bagusmerta.taskk.presentation.screen.detail.ui.DetailViewModel
 import com.bagusmerta.taskk.presentation.screen.detail.ui.bottomsheet.DetailTaskkCategoryScreen
 import com.bagusmerta.taskk.presentation.screen.detail.ui.bottomsheet.DetailTaskkNoteScreen
 import com.bagusmerta.taskk.presentation.screen.detail.ui.bottomsheet.DetailTaskkPriorityScreen
+import com.bagusmerta.taskk.presentation.screen.detail.ui.bottomsheet.DetailTaskkRepeatableScreen
 import com.bagusmerta.taskk.presentation.screen.detail.ui.bottomsheet.DetailTaskkTitleScreen
 import com.bagusmerta.taskk.utils.wrapper.BottomSheetConfiguration
 import com.bagusmerta.taskk.utils.wrapper.DefaultBottomSheet
@@ -47,7 +48,24 @@ fun NavGraphBuilder.DetailNavHost(
                 onClickTaskkCategory = { navController.navigate(DetailFlow.PickTaskkCategory.route) },
                 onClickTaskkNote = { navController.navigate(DetailFlow.EditTaskkNote.route) },
                 onClickTaskkDelete = { navController.navigateUp() },
-                onClosePage = { navController.navigateUp() }
+                onClosePage = { navController.navigateUp() },
+                onClickTaskkRepeatable = { navController.navigate(DetailFlow.PickTaskkRepeatable.route) }
+            )
+        }
+
+        bottomSheet(DetailFlow.PickTaskkRepeatable.route) {
+            val viewModel = if(navController.previousBackStackEntry != null){
+                hiltViewModel<DetailViewModel>(
+                    navController.previousBackStackEntry!!
+                )
+            } else {
+                hiltViewModel()
+            }
+
+            bottomSheetConfig.value = DefaultBottomSheet
+            DetailTaskkRepeatableScreen(
+                viewModel = viewModel,
+                onItemClick = { navController.navigateUp() }
             )
         }
 

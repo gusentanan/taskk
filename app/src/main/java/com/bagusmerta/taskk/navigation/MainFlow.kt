@@ -77,6 +77,10 @@ sealed class DetailFlow(val name: String){
         val route = name
     }
 
+    object PickTaskkRepeatable: DetailFlow("edit-repeat-screen"){
+        val route = name
+    }
+
 }
 
 

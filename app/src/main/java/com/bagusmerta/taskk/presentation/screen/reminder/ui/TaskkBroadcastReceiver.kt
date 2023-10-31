@@ -15,7 +15,7 @@ class TaskkBroadcastReceiver: BroadcastReceiver() {
     override fun onReceive(context: Context?, intent: Intent?) {
 
         when(intent?.action){
-            EVENT_NOTIFIY_DONE -> {
+            EVENT_NOTIFY_DONE -> {
                 reminderViewModel.dispatch(ReminderEvent.NotificationDone(getTaskkId(intent)))
             }
             EVENT_NOTIFY_SNOOZE -> {
@@ -38,7 +38,7 @@ class TaskkBroadcastReceiver: BroadcastReceiver() {
         const val TASKK_ID = "com.bagusmerta.taskk.intent.extra.TASKK_ID"
 
         const val EVENT_SHOW_ALARM = "com.bagusmerta.taskk.intent.action.SHOW_ALARM"
-        const val EVENT_NOTIFIY_DONE = "com.bagusmerta.taskk.intent.action.NOTIFY_DONE"
+        const val EVENT_NOTIFY_DONE = "com.bagusmerta.taskk.intent.action.NOTIFY_DONE"
         const val EVENT_NOTIFY_SNOOZE = "com.bagusmerta.taskk.intent.action.NOTIFY_SNOOZE"
     }
 }

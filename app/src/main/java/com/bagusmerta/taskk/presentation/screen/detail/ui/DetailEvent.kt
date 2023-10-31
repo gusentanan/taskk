@@ -34,6 +34,12 @@ sealed class DetailEvent {
 
     }
 
+    sealed class TaskkRepeatableEvent: DetailEvent() {
+        object OnShow: TaskkRepeatableEvent()
+        data class SelectRepeatable(val repeat: RepeatableItems): TaskkRepeatableEvent()
+
+    }
+
     sealed class TaskkNoteEvent: DetailEvent() {
         object OnClickSave: TaskkNoteEvent()
         object OnShow: TaskkNoteEvent()

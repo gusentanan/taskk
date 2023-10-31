@@ -16,6 +16,7 @@ fun TaskkToDo.toTaskkTodoDb(): TaskkTodoDb {
         createdAt,
         updatedAt,
         taskkPriority,
-        taskkCategory
+        taskkCategory,
+        taskkRepeat
     )
 }

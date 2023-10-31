@@ -3,6 +3,7 @@ package com.bagusmerta.taskk.utils.extensions
 import android.content.res.Resources
 import com.bagusmerta.taskk.R
 import com.bagusmerta.taskk.domain.model.TaskkList
+import com.bagusmerta.taskk.domain.model.TaskkRepeat
 import com.bagusmerta.taskk.domain.model.TaskkStatus
 import com.bagusmerta.taskk.domain.model.TaskkToDo
 import com.bagusmerta.taskk.presentation.screen.taskk.ui.TaskkItem
@@ -67,13 +68,44 @@ fun TaskkToDo.displayTime(): String? {
 
 fun TaskkToDo.getNextScheduledDate(currentDate: LocalDateTime): LocalDateTime {
     require(dueDate != null)
-    val usedDate = if(isExpired(currentDate)){
+    var usedDate = if(isExpired(currentDate)){
         LocalDateTime.of(currentDate.toLocalDate(), dueDate.toLocalTime())
     } else {
         dueDate
     }
 
+    usedDate =  when(taskkRepeat){
+            TaskkRepeat.DAILY -> {
+                dueDate.plusDays(1)
+            }
+            TaskkRepeat.WEEKLY -> {
+                dueDate.plusWeeks(1)
+            }
+            TaskkRepeat.MONTHLY -> {
+                dueDate.plusMonths(1)
+            }
+            TaskkRepeat.YEARLY -> {
+                dueDate.plusYears(1)
+            }
+            TaskkRepeat.NEVER -> {
+                usedDate
+            }
+    }
+
     return usedDate
+}
+
+fun TaskkToDo.getCurrentScheduledDate(currentDate: LocalDateTime): LocalDateTime {
+    require(dueDate != null)
+
+    return if(taskkRepeat != TaskkRepeat.NEVER){
+        if(isExpired(currentDate)){
+           currentDate.plusMinutes(1)
+        } else {
+            dueDate
+        }
+    } else dueDate
+
 }
 
 suspend fun TaskkToDo.toggleStatusHandler(
@@ -81,14 +113,17 @@ suspend fun TaskkToDo.toggleStatusHandler(
     onUpdateStatus: suspend (LocalDateTime?, TaskkStatus) -> Unit,
     onUpdateDueDate: suspend (LocalDateTime) -> Unit,
 ) {
-
-    val newStatus = status.toggle()
-    val completedAt = when (newStatus) {
-        TaskkStatus.IN_PROGRESS -> null
-        TaskkStatus.COMPLETE -> currentDate
+    if(taskkRepeat == TaskkRepeat.NEVER){
+        val newStatus = status.toggle()
+        val completedAt = when (newStatus) {
+            TaskkStatus.IN_PROGRESS -> null
+            TaskkStatus.COMPLETE -> currentDate
+        }
+        onUpdateStatus(completedAt, newStatus)
+    } else {
+        val nextDueDate = getNextScheduledDate(currentDate)
+        onUpdateDueDate(nextDueDate)
     }
-    onUpdateStatus(completedAt, newStatus)
-
 }
 
 fun TaskkStatus.toggle(): TaskkStatus {

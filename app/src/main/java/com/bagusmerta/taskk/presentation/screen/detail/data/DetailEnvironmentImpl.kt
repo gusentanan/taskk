@@ -3,6 +3,7 @@ package com.bagusmerta.taskk.presentation.screen.detail.data
 import com.bagusmerta.taskk.data.local.LocalDataSource
 import com.bagusmerta.taskk.domain.model.TaskkCategory
 import com.bagusmerta.taskk.domain.model.TaskkPriority
+import com.bagusmerta.taskk.domain.model.TaskkRepeat
 import com.bagusmerta.taskk.domain.model.TaskkStatus
 import com.bagusmerta.taskk.domain.model.TaskkToDo
 import com.bagusmerta.taskk.utils.wrapper.DateTimeProvider
@@ -57,6 +58,10 @@ class DetailEnvironmentImpl @Inject constructor(
 
     override suspend fun updateTaskkCategory(taskkId: String, category: TaskkCategory) {
         localDataSource.updateTaskkCategory(taskkId, category, dateTimeProvider.getNowDate())
+    }
+
+    override suspend fun updateTaskkRepeat(taskkId: String, repeatable: TaskkRepeat) {
+        localDataSource.updateTaskkRepeat(taskkId, repeatable, dateTimeProvider.getNowDate())
     }
 
     override suspend fun updateTaskkNote(taskkId: String, note: String) {

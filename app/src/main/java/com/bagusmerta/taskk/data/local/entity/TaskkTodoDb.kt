@@ -6,6 +6,7 @@ import androidx.room.Index
 import androidx.room.PrimaryKey
 import com.bagusmerta.taskk.domain.model.TaskkCategory
 import com.bagusmerta.taskk.domain.model.TaskkPriority
+import com.bagusmerta.taskk.domain.model.TaskkRepeat
 import com.bagusmerta.taskk.domain.model.TaskkStatus
 import java.time.LocalDateTime
 
@@ -47,5 +48,8 @@ data class TaskkTodoDb(
     val taskkPriority: TaskkPriority = TaskkPriority.EASY,
 
     @ColumnInfo("taskk_category")
-    val taskkCategory: TaskkCategory = TaskkCategory.SELF_HELP
+    val taskkCategory: TaskkCategory = TaskkCategory.SELF_HELP,
+
+    @ColumnInfo("taskk_repeat")
+    val taskkRepeat: TaskkRepeat = TaskkRepeat.NEVER
 )

@@ -21,6 +21,11 @@ class HomeViewModel @Inject constructor(
     private val listId = savedStateHandle.get<String>(ARG_LIST_ID)
 
     init {
+        initAllState()
+        initTaskkDiff()
+    }
+
+    private fun initAllState(){
         viewModelScope.launch {
             if (listId != null) {
                 environment.getOverallCountTaskk()
@@ -33,7 +38,6 @@ class HomeViewModel @Inject constructor(
                     }
             }
         }
-        initTaskkDiff()
     }
 
     private fun initTaskkDiff() {

@@ -45,4 +45,10 @@
     <string name="taskk_done">done</string>
     <string name="taskk_channel">taskk_channel</string>
     <string name="taskk_channel_desc">taskk_channel_description</string>
+    <string name="taskk_repeat_displayable_never">Never</string>
+    <string name="taskk_repeat_displayable_daily">Daily</string>
+    <string name="taskk_repeat_displayable_weekly">Weekly</string>
+    <string name="taskk_repeat_displayable_monthly">Monthly</string>
+    <string name="taskk_repeat_displayable_yearly">Yearly</string>
+    <string name="detail_taskk_repeatable_text">Repeat</string>
 </resources>

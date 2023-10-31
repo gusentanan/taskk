@@ -1,5 +1,6 @@
 package com.bagusmerta.taskk.presentation.screen.reminder.data
 
+import android.util.Log
 import com.bagusmerta.taskk.data.local.LocalDataSource
 import com.bagusmerta.taskk.domain.model.TaskkList
 import com.bagusmerta.taskk.domain.model.TaskkStatus
@@ -12,6 +13,7 @@ import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.take
+import timber.log.Timber
 import javax.inject.Inject
 
 class ReminderEnvironmentImpl @Inject constructor(
@@ -23,7 +25,8 @@ class ReminderEnvironmentImpl @Inject constructor(
     override fun activateNotification(taskkId: String): Flow<TaskkToDo> {
         return getTaskk(taskkId)
             .onEach { tasks ->
-               notifyManager.show(tasks)
+                Timber.tag("ALARM_FLOW").d("Activate Notify $tasks")
+                notifyManager.show(tasks)
             }
     }
 
