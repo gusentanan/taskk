@@ -2,6 +2,7 @@ package com.bagusmerta.taskk.presentation.screen.detail.ui
 
 
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -57,6 +58,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.bagusmerta.taskk.R
 import com.bagusmerta.taskk.domain.model.TaskkStatus
 import com.bagusmerta.taskk.domain.model.TaskkToDo
+import com.bagusmerta.taskk.presentation.designsystem.component.DashedDivider
 import com.bagusmerta.taskk.presentation.designsystem.component.FooterWithText
 import com.bagusmerta.taskk.presentation.designsystem.component.HeaderWithBackButton
 import com.bagusmerta.taskk.presentation.designsystem.component.TskIcon
@@ -367,7 +369,7 @@ fun DetailTaskkScreen(
                 }
             }
 
-            item { Spacer(Modifier.height(10.dp)) }
+            item { Spacer(Modifier.height(20.dp)) }
 
             item {
                 // Taskk Note section
@@ -379,7 +381,8 @@ fun DetailTaskkScreen(
                         .clip(shape)
                         .clickable(onClick = onClickTaskkNote),
                     shape = shape,
-                    color = MaterialTheme.colorScheme.secondary
+                    color = MaterialTheme.colorScheme.background,
+                    border = BorderStroke(width = 1.dp, color = MaterialTheme.colorScheme.primary)
                 ) {
                     Column(
                         modifier = Modifier.padding(all = 16.dp)
@@ -573,13 +576,9 @@ private fun ActionContentCell(
 
         if (showDivider) {
             Row {
-                Spacer(
-                    Modifier
-                        .width(52.dp)
-                        .height(1.dp)
-                        .background(color = MaterialTheme.colorScheme.secondary)
-                )
-                Divider(color = MaterialTheme.colorScheme.onSurface.copy(alpha = DividerAlpha))
+               DashedDivider(thickness = 4.dp, modifier = Modifier
+                   .fillMaxWidth()
+               )
             }
         }
     }
