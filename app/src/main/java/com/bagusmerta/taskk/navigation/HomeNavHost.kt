@@ -1,11 +1,14 @@
 package com.bagusmerta.taskk.navigation
 
 import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
+import com.bagusmerta.taskk.presentation.designsystem.component.TaskkDialog
 import com.bagusmerta.taskk.presentation.screen.setting.ui.SettingScreen
 import com.bagusmerta.taskk.presentation.screen.setting.ui.SettingViewModel
 import com.bagusmerta.taskk.presentation.screen.taskk.ui.HomeScreen
@@ -29,6 +32,17 @@ fun NavGraphBuilder.HomeNavHost(
             arguments = HomeFlow.HomeScreen.arguments
         ){
             val viewModel = hiltViewModel<HomeViewModel>()
+            val showDialog = remember { mutableStateOf(false) }
+
+            // Dialog section
+            if(showDialog.value){
+                TaskkDialog(
+                    headerValue = "Apps Permission",
+                    description =
+                    "To ensure the Taskk app functions correctly, please grant notification permissions.",
+                    setShowDialog = { showDialog.value = it }
+                )
+            }
 
             HomeScreen(
                 viewModel = viewModel,
@@ -38,6 +52,9 @@ fun NavGraphBuilder.HomeNavHost(
                     navController.navigate(DetailFlow.Root.route(taskkId, listId))
                 },
                 onClickSettings = { navController.navigate(HomeFlow.SettingScreen.route) },
+                onClickInfo = {
+                    showDialog.value = true
+                }
             )
         }
 

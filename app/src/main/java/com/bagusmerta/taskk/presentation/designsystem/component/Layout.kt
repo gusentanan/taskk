@@ -19,6 +19,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.unit.dp
@@ -44,32 +45,37 @@ fun TskLayout(
 @Composable
 fun TskModalLayout(
     modifier: Modifier = Modifier,
-    content: LazyListScope.() -> Unit
+    color: Color = MaterialTheme.colorScheme.background,
+    content: LazyListScope.() -> Unit,
 ) {
-    TskModalLazyColumn(modifier) {
+    TskModalLazyColumn(modifier, color) {
+//        item {
+//            Column(
+//                modifier = modifier
+//                    .fillMaxWidth()
+//                    .padding(top = 8.dp),
+//                horizontalAlignment = Alignment.CenterHorizontally
+//            ) {
+//                Box(modifier = modifier
+//                    .width(80.dp)
+//                    .height(8.dp)
+//                    .background(
+//                        color = gray20,
+//                        shape = MaterialTheme.shapes.large
+//                    )
+//                )
+//            }
+//            Spacer(Modifier.height(24.dp))
+//        }
+
         item {
-            Column(
-                modifier = modifier
-                    .fillMaxWidth()
-                    .padding(top = 8.dp),
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                Box(modifier = modifier
-                    .width(80.dp)
-                    .height(8.dp)
-                    .background(
-                        color = gray20,
-                        shape = MaterialTheme.shapes.large
-                    )
-                )
-            }
-            Spacer(Modifier.height(24.dp))
+            Spacer(Modifier.height(20.dp))
         }
 
         content()
 
         item {
-            Spacer(Modifier.height(8.dp))
+            Spacer(Modifier.height(20.dp))
         }
     }
 }
@@ -77,12 +83,13 @@ fun TskModalLayout(
 @Composable
 fun TskModalLazyColumn(
     modifier: Modifier = Modifier,
+    color: Color = MaterialTheme.colorScheme.background,
     shape: Shape = RectangleShape,
-    content: LazyListScope.() -> Unit
+    content: LazyListScope.() -> Unit,
 ) {
     Box(
         modifier = Modifier.background(
-            color = MaterialTheme.colorScheme.background,
+            color = color,
             shape = shape
         )
     ) {
