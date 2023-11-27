@@ -31,7 +31,6 @@ Download the .apk or Clone this repository and make sure you're using the latest
 
 ## What comes next ?
 - Group list of task based on user needs 
-- Add time picker so we can set a reminder?
 
 There's still plenty of room for improvement, but I'll definitely get in touch when I'm feeling more energized! 😄
   
