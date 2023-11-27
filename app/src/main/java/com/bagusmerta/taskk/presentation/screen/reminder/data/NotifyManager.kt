@@ -12,7 +12,7 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.core.net.toUri
 import com.bagusmerta.taskk.R
 import com.bagusmerta.taskk.data.local.db.toMillis
-import com.bagusmerta.taskk.domain.model.TaskkToDo
+import com.bagusmerta.taskk.model.TaskkToDo
 import com.bagusmerta.taskk.navigation.DetailFlow
 import com.bagusmerta.taskk.presentation.screen.reminder.ui.TaskkBroadcastReceiver
 import dagger.hilt.android.qualifiers.ApplicationContext

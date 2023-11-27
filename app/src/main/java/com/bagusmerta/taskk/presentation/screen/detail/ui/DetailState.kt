@@ -1,10 +1,10 @@
 package com.bagusmerta.taskk.presentation.screen.detail.ui
 
 import androidx.compose.ui.text.input.TextFieldValue
-import com.bagusmerta.taskk.domain.model.TaskkCategory
-import com.bagusmerta.taskk.domain.model.TaskkPriority
-import com.bagusmerta.taskk.domain.model.TaskkRepeat
-import com.bagusmerta.taskk.domain.model.TaskkToDo
+import com.bagusmerta.taskk.model.TaskkCategory
+import com.bagusmerta.taskk.model.TaskkPriority
+import com.bagusmerta.taskk.model.TaskkRepeat
+import com.bagusmerta.taskk.model.TaskkToDo
 import com.bagusmerta.taskk.utils.wrapper.DateTimeProviderImpl
 import javax.annotation.concurrent.Immutable
 

@@ -14,7 +14,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.bagusmerta.taskk.R
-import com.bagusmerta.taskk.domain.model.TaskkToDo
+import com.bagusmerta.taskk.model.TaskkToDo
 import com.bagusmerta.taskk.presentation.designsystem.component.FooterWithButton
 import com.bagusmerta.taskk.presentation.designsystem.component.HeaderWithSettingsButton
 import com.bagusmerta.taskk.presentation.designsystem.component.TskLayout

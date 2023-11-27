@@ -46,36 +46,39 @@ fun TskLayout(
 fun TskModalLayout(
     modifier: Modifier = Modifier,
     color: Color = MaterialTheme.colorScheme.background,
+    flag: Boolean = true,
     content: LazyListScope.() -> Unit,
 ) {
     TskModalLazyColumn(modifier, color) {
-//        item {
-//            Column(
-//                modifier = modifier
-//                    .fillMaxWidth()
-//                    .padding(top = 8.dp),
-//                horizontalAlignment = Alignment.CenterHorizontally
-//            ) {
-//                Box(modifier = modifier
-//                    .width(80.dp)
-//                    .height(8.dp)
-//                    .background(
-//                        color = gray20,
-//                        shape = MaterialTheme.shapes.large
-//                    )
-//                )
-//            }
-//            Spacer(Modifier.height(24.dp))
-//        }
+        if(flag){
+            item {
+                Column(
+                    modifier = modifier
+                        .fillMaxWidth()
+                        .padding(top = 8.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Box(modifier = modifier
+                        .width(80.dp)
+                        .height(8.dp)
+                        .background(
+                            color = gray20,
+                            shape = MaterialTheme.shapes.large
+                        )
+                    )
+                }
+                Spacer(Modifier.height(24.dp))
+            }
+        }
 
         item {
-            Spacer(Modifier.height(20.dp))
+            Spacer(Modifier.height(10.dp))
         }
 
         content()
 
         item {
-            Spacer(Modifier.height(20.dp))
+            Spacer(Modifier.height(10.dp))
         }
     }
 }

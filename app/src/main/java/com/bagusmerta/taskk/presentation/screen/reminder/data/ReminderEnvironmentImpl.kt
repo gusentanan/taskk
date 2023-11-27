@@ -1,16 +1,13 @@
 package com.bagusmerta.taskk.presentation.screen.reminder.data
 
-import android.util.Log
 import com.bagusmerta.taskk.data.local.LocalDataSource
-import com.bagusmerta.taskk.domain.model.TaskkList
-import com.bagusmerta.taskk.domain.model.TaskkStatus
-import com.bagusmerta.taskk.domain.model.TaskkToDo
+import com.bagusmerta.taskk.model.TaskkStatus
+import com.bagusmerta.taskk.model.TaskkToDo
 import com.bagusmerta.taskk.utils.extensions.getNextScheduledDate
 import com.bagusmerta.taskk.utils.extensions.toggleStatusHandler
 import com.bagusmerta.taskk.utils.wrapper.DateTimeProvider
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.filter
-import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.take
 import timber.log.Timber

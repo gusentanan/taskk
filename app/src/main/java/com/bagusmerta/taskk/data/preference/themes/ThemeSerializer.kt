@@ -11,6 +11,10 @@ object ThemeSerializer : Serializer<ThemePreference> {
 
     override val defaultValue: ThemePreference = ThemePreference.SYSTEM
 
+    /**
+     * Read data from proto-datastore
+     * @return saved theme set by user or system
+     */
     @Suppress("BlockingMethodInNonBlockingContext")
     override suspend fun readFrom(input: InputStream): ThemePreference {
         try {
@@ -20,6 +24,9 @@ object ThemeSerializer : Serializer<ThemePreference> {
         }
     }
 
+    /**
+     * write data into proto-datastore
+     */
     @Suppress("BlockingMethodInNonBlockingContext")
     override suspend fun writeTo(t: ThemePreference, output: OutputStream) {
         ThemePreference.ADAPTER.encode(output, t)

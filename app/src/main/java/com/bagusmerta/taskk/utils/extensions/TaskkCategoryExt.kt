@@ -1,7 +1,7 @@
 package com.bagusmerta.taskk.utils.extensions
 
 import com.bagusmerta.taskk.R
-import com.bagusmerta.taskk.domain.model.TaskkCategory
+import com.bagusmerta.taskk.model.TaskkCategory
 import com.bagusmerta.taskk.presentation.screen.detail.ui.CategoryItems
 
 fun List<CategoryItems>.select(item: TaskkCategory): List<CategoryItems> {

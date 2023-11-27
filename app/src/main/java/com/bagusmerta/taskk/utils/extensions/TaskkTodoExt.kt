@@ -2,10 +2,10 @@ package com.bagusmerta.taskk.utils.extensions
 
 import android.content.res.Resources
 import com.bagusmerta.taskk.R
-import com.bagusmerta.taskk.domain.model.TaskkList
-import com.bagusmerta.taskk.domain.model.TaskkRepeat
-import com.bagusmerta.taskk.domain.model.TaskkStatus
-import com.bagusmerta.taskk.domain.model.TaskkToDo
+import com.bagusmerta.taskk.model.TaskkList
+import com.bagusmerta.taskk.model.TaskkRepeat
+import com.bagusmerta.taskk.model.TaskkStatus
+import com.bagusmerta.taskk.model.TaskkToDo
 import com.bagusmerta.taskk.presentation.screen.taskk.ui.TaskkItem
 import com.bagusmerta.taskk.presentation.screen.taskk.ui.TaskkListState
 import com.bagusmerta.taskk.utils.wrapper.DateTimeProviderImpl

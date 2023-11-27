@@ -1,16 +1,14 @@
 package com.bagusmerta.taskk.presentation.screen.taskk.data
 
-import android.util.Log
 import com.bagusmerta.taskk.data.local.LocalDataSource
-import com.bagusmerta.taskk.domain.model.TaskkDiff
-import com.bagusmerta.taskk.domain.model.TaskkList
-import com.bagusmerta.taskk.domain.model.TaskkOverallCount
-import com.bagusmerta.taskk.domain.model.TaskkStatus
-import com.bagusmerta.taskk.domain.model.TaskkToDo
+import com.bagusmerta.taskk.model.TaskkDiff
+import com.bagusmerta.taskk.model.TaskkList
+import com.bagusmerta.taskk.model.TaskkOverallCount
+import com.bagusmerta.taskk.model.TaskkStatus
+import com.bagusmerta.taskk.model.TaskkToDo
 import com.bagusmerta.taskk.presentation.screen.reminder.data.AlarmManager
 import com.bagusmerta.taskk.presentation.screen.reminder.data.NotifyManager
 import com.bagusmerta.taskk.utils.extensions.getCurrentScheduledDate
-import com.bagusmerta.taskk.utils.extensions.getNextScheduledDate
 import com.bagusmerta.taskk.utils.wrapper.DateTimeProvider
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.distinctUntilChangedBy

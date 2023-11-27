@@ -31,7 +31,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.bagusmerta.taskk.domain.model.TaskkPriority
+import com.bagusmerta.taskk.model.TaskkPriority
 import com.bagusmerta.taskk.presentation.designsystem.icon.TaskkIcon
 import com.bagusmerta.taskk.presentation.designsystem.theme.commonGray
 import com.bagusmerta.taskk.presentation.designsystem.theme.gray20

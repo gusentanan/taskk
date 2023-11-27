@@ -1,11 +1,11 @@
 package com.bagusmerta.taskk.presentation.screen.detail.data
 
 import com.bagusmerta.taskk.data.local.LocalDataSource
-import com.bagusmerta.taskk.domain.model.TaskkCategory
-import com.bagusmerta.taskk.domain.model.TaskkPriority
-import com.bagusmerta.taskk.domain.model.TaskkRepeat
-import com.bagusmerta.taskk.domain.model.TaskkStatus
-import com.bagusmerta.taskk.domain.model.TaskkToDo
+import com.bagusmerta.taskk.model.TaskkCategory
+import com.bagusmerta.taskk.model.TaskkPriority
+import com.bagusmerta.taskk.model.TaskkRepeat
+import com.bagusmerta.taskk.model.TaskkStatus
+import com.bagusmerta.taskk.model.TaskkToDo
 import com.bagusmerta.taskk.utils.wrapper.DateTimeProvider
 import com.bagusmerta.taskk.utils.wrapper.IdTaskkProvider
 import kotlinx.coroutines.flow.Flow

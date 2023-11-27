@@ -1,7 +1,7 @@
 package com.bagusmerta.taskk.utils.extensions
 
 import com.bagusmerta.taskk.R
-import com.bagusmerta.taskk.domain.model.TaskkPriority
+import com.bagusmerta.taskk.model.TaskkPriority
 import com.bagusmerta.taskk.presentation.screen.detail.ui.PriorityItems
 
 fun List<PriorityItems>.select(item: TaskkPriority): List<PriorityItems> {

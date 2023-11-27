@@ -4,7 +4,7 @@ import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
-import com.bagusmerta.taskk.domain.model.TaskkToDo
+import com.bagusmerta.taskk.model.TaskkToDo
 import com.bagusmerta.taskk.navigation.ARG_LIST_ID
 import com.bagusmerta.taskk.navigation.ARG_TASKK_ID
 import com.bagusmerta.taskk.presentation.screen.detail.data.IDetailEnvironment
@@ -16,7 +16,6 @@ import com.bagusmerta.taskk.utils.vmutils.StateViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch
-import java.time.LocalTime
 import javax.inject.Inject
 
 @HiltViewModel

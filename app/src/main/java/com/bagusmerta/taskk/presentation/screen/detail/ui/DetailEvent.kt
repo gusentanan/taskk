@@ -1,7 +1,7 @@
 package com.bagusmerta.taskk.presentation.screen.detail.ui
 
 import androidx.compose.ui.text.input.TextFieldValue
-import com.bagusmerta.taskk.domain.model.TaskkToDo
+import com.bagusmerta.taskk.model.TaskkToDo
 import java.time.LocalDate
 import java.time.LocalTime
 

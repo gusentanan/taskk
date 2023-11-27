@@ -51,4 +51,7 @@
     <string name="taskk_repeat_displayable_monthly">Monthly</string>
     <string name="taskk_repeat_displayable_yearly">Yearly</string>
     <string name="detail_taskk_repeatable_text">Repeat</string>
+    <string name="dialog_header">Apps Permission</string>
+    <string name="dialog_description">To ensure the Taskk app functions correctly, please grant notification permissions.</string>
+    <string name="toast_add_taskk_name">Please add a task name first</string>
 </resources>

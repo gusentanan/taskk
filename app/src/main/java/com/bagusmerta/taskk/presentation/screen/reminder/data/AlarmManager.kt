@@ -1,14 +1,13 @@
 package com.bagusmerta.taskk.presentation.screen.reminder.data
 
-import android.annotation.SuppressLint
+import android.app.AlarmManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.os.Build
-import android.app.AlarmManager
 import androidx.core.app.AlarmManagerCompat
 import com.bagusmerta.taskk.data.local.db.toMillis
-import com.bagusmerta.taskk.domain.model.TaskkToDo
+import com.bagusmerta.taskk.model.TaskkToDo
 import com.bagusmerta.taskk.presentation.screen.reminder.ui.TaskkBroadcastReceiver
 import dagger.hilt.android.qualifiers.ApplicationContext
 import java.time.LocalDateTime

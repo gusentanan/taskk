@@ -1,7 +1,7 @@
 package com.bagusmerta.taskk.extension
 
 import com.bagusmerta.taskk.R
-import com.bagusmerta.taskk.domain.model.TaskkCategory
+import com.bagusmerta.taskk.model.TaskkCategory
 import com.bagusmerta.taskk.utils.extensions.displayable
 import org.junit.Assert
 import org.junit.Test

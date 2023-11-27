@@ -27,11 +27,8 @@ import androidx.compose.material.icons.rounded.ChevronRight
 import androidx.compose.material.icons.rounded.EditCalendar
 import androidx.compose.material.icons.rounded.LibraryBooks
 import androidx.compose.material.icons.rounded.PriorityHigh
-import androidx.compose.material.icons.rounded.Recycling
 import androidx.compose.material.icons.rounded.Refresh
-import androidx.compose.material.icons.rounded.Repeat
 import androidx.compose.material.icons.rounded.Schedule
-import androidx.compose.material3.Divider
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -56,8 +53,8 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.bagusmerta.taskk.R
-import com.bagusmerta.taskk.domain.model.TaskkStatus
-import com.bagusmerta.taskk.domain.model.TaskkToDo
+import com.bagusmerta.taskk.model.TaskkStatus
+import com.bagusmerta.taskk.model.TaskkToDo
 import com.bagusmerta.taskk.presentation.designsystem.component.DashedDivider
 import com.bagusmerta.taskk.presentation.designsystem.component.FooterWithText
 import com.bagusmerta.taskk.presentation.designsystem.component.HeaderWithBackButton
@@ -66,10 +63,8 @@ import com.bagusmerta.taskk.presentation.designsystem.component.TskItemDetail
 import com.bagusmerta.taskk.presentation.designsystem.component.TskLayout
 import com.bagusmerta.taskk.presentation.designsystem.icon.TaskkIcon
 import com.bagusmerta.taskk.presentation.designsystem.theme.MediumRadius
-import com.bagusmerta.taskk.presentation.designsystem.theme.commonGray
 import com.bagusmerta.taskk.utils.AlphaDisabled
 import com.bagusmerta.taskk.utils.AlphaMedium
-import com.bagusmerta.taskk.utils.DividerAlpha
 import com.bagusmerta.taskk.utils.extensions.displayTime
 import com.bagusmerta.taskk.utils.extensions.displayable
 import com.bagusmerta.taskk.utils.extensions.dueDateDisplayable
@@ -78,6 +73,7 @@ import com.bagusmerta.taskk.utils.extensions.isDueDateSet
 import com.bagusmerta.taskk.utils.extensions.isExpired
 import com.bagusmerta.taskk.utils.extensions.showDatePicker
 import com.bagusmerta.taskk.utils.extensions.showTimePicker
+import com.bagusmerta.taskk.utils.extensions.showToast
 import com.bagusmerta.taskk.utils.vmutils.HandleEffect
 import com.bagusmerta.taskk.utils.wrapper.DateTimeProviderImpl
 import kotlinx.coroutines.Job
@@ -103,6 +99,7 @@ fun DetailScreen(
     val state by viewModel.state.collectAsStateWithLifecycle()
     val activity = LocalContext.current as AppCompatActivity
     val listState = rememberLazyListState()
+    val isTaskkNameFilled = state.taskk.name != ""
 
     HandleEffect(viewModel = viewModel) {
         when (it) {
@@ -135,23 +132,27 @@ fun DetailScreen(
         dueTimeTitle = state.taskk.displayTime() ?: stringResource(R.string.taskk_add_due_time),
         onClickTaskkTitle = { onClickTaskkTitle() },
         onClickDueDate = {
-            val dueDateValue = state.taskk.dueDate?.toLocalDate()
-            if (dueDateValue != null) {
-                activity.showDatePicker(dueDateValue) { selectedDate ->
-                    viewModel.dispatch(DetailEvent.SelectDueDate(selectedDate))
+            if(isTaskkNameFilled){
+                val dueDateValue = state.taskk.dueDate?.toLocalDate()
+                if (dueDateValue != null) {
+                    activity.showDatePicker(dueDateValue) { selectedDate ->
+                        viewModel.dispatch(DetailEvent.SelectDueDate(selectedDate))
+                    }
                 }
             }
         },
         onClickDueTime = {
-            val dueTimeValue = state.taskk.dueDate?.toLocalTime()
-            if (dueTimeValue != null) {
-                activity.showTimePicker(dueTimeValue) { selectedTime ->
-                    viewModel.dispatch(DetailEvent.SelectDueTime(selectedTime))
+            if(isTaskkNameFilled){
+                val dueTimeValue = state.taskk.dueDate?.toLocalTime()
+                if (dueTimeValue != null) {
+                    activity.showTimePicker(dueTimeValue) { selectedTime ->
+                        viewModel.dispatch(DetailEvent.SelectDueTime(selectedTime))
+                    }
                 }
             }
         },
         onCheckedChangeDueTime = { check ->
-            if (check) {
+            if (check && isTaskkNameFilled) {
                 val nextHour = DateTimeProviderImpl().getNowDate().toLocalTime().plusHours(1)
                 val initValue = LocalTime.of(nextHour.hour, 0)
                 activity.showTimePicker(
@@ -164,7 +165,7 @@ fun DetailScreen(
             }
         },
         onCheckedChangeDueDate = { check ->
-            if (check) {
+            if (check && isTaskkNameFilled) {
                 activity.showDatePicker(
                     DateTimeProviderImpl().getNowDate().toLocalDate()
                 ) { selectedDate ->
@@ -175,13 +176,25 @@ fun DetailScreen(
             }
         },
         onClickTaskkStatus = {
-            viewModel.dispatch(DetailEvent.OnToggleStatus(state.taskk))
+            if(isTaskkNameFilled) {
+                viewModel.dispatch(DetailEvent.OnToggleStatus(state.taskk))
+            } else {
+                activity.showToast(R.string.toast_add_taskk_name)
+            }
         },
-        onClickTaskkPriority = { onClickTaskkPriority() },
-        onClickTaskkCategory = { onClickTaskkCategory() },
+        onClickTaskkPriority = {
+            if(isTaskkNameFilled) onClickTaskkPriority() else activity.showToast(R.string.toast_add_taskk_name)
+        },
+        onClickTaskkCategory = {
+            if(isTaskkNameFilled) onClickTaskkCategory() else activity.showToast(R.string.toast_add_taskk_name)
+        },
         listState = listState,
-        onClickTaskkNote = { onClickTaskkNote() },
-        onClickTaskkRepeatable = { onClickTaskkRepeatable() }
+        onClickTaskkNote = {
+            if(isTaskkNameFilled) onClickTaskkNote() else activity.showToast(R.string.toast_add_taskk_name)
+        },
+        onClickTaskkRepeatable = {
+            if(isTaskkNameFilled) onClickTaskkRepeatable() else activity.showToast(R.string.toast_add_taskk_name)
+        }
     )
 
 }

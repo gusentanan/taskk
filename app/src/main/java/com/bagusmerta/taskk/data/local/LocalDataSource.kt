@@ -2,12 +2,12 @@ package com.bagusmerta.taskk.data.local
 
 import com.bagusmerta.taskk.data.local.dao.TaskkReadDao
 import com.bagusmerta.taskk.data.local.dao.TaskkWriteDao
-import com.bagusmerta.taskk.domain.model.TaskkCategory
-import com.bagusmerta.taskk.domain.model.TaskkOverallCount
-import com.bagusmerta.taskk.domain.model.TaskkPriority
-import com.bagusmerta.taskk.domain.model.TaskkRepeat
-import com.bagusmerta.taskk.domain.model.TaskkStatus
-import com.bagusmerta.taskk.domain.model.TaskkToDo
+import com.bagusmerta.taskk.model.TaskkCategory
+import com.bagusmerta.taskk.model.TaskkOverallCount
+import com.bagusmerta.taskk.model.TaskkPriority
+import com.bagusmerta.taskk.model.TaskkRepeat
+import com.bagusmerta.taskk.model.TaskkStatus
+import com.bagusmerta.taskk.model.TaskkToDo
 import com.bagusmerta.taskk.utils.Dispatcher
 import com.bagusmerta.taskk.utils.mapper.toTaskkTodo
 import com.bagusmerta.taskk.utils.mapper.toTaskkTodoDb
@@ -21,6 +21,9 @@ import java.time.LocalDateTime
 import javax.inject.Inject
 import javax.inject.Named
 
+/**
+ * Single data source to provides task data from DB
+ */
 class LocalDataSource @Inject constructor(
     @Named(Dispatcher.DISPATCHER_IO) private val dispatcher: CoroutineDispatcher,
     private val taskkReadDao: TaskkReadDao,
@@ -98,7 +101,7 @@ class LocalDataSource @Inject constructor(
         }
     }
 
-    suspend fun updateTaskkStatus(id: String, taskkStatus: TaskkStatus,  updateAt: LocalDateTime){
+    suspend fun updateTaskkStatus(id: String, taskkStatus: TaskkStatus, updateAt: LocalDateTime){
         withContext(dispatcher){
             taskkWriteDao.updateTaskkStatus(taskkStatus, id, updateAt)
         }

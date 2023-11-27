@@ -6,10 +6,10 @@ import com.bagusmerta.taskk.DateFactory
 import com.bagusmerta.taskk.data.local.dao.TaskkReadDao
 import com.bagusmerta.taskk.data.local.dao.TaskkWriteDao
 import com.bagusmerta.taskk.data.local.db.TaskkDatabase
-import com.bagusmerta.taskk.domain.model.TaskkOverallCount
-import com.bagusmerta.taskk.domain.model.TaskkStatus
-import com.bagusmerta.taskk.domain.model.TaskkToDo
 import com.bagusmerta.taskk.expect
+import com.bagusmerta.taskk.model.TaskkOverallCount
+import com.bagusmerta.taskk.model.TaskkStatus
+import com.bagusmerta.taskk.model.TaskkToDo
 import com.bagusmerta.taskk.utils.mapper.toTaskkTodoDb
 import kotlinx.coroutines.runBlocking
 import org.junit.After
@@ -49,13 +49,13 @@ class TaskkReadDaoTest {
 
     @Test
     fun `getListTaskk() should return list of taskk`() = runBlocking {
-        val expectedValue1 =TaskkToDo(
+        val expectedValue1 = TaskkToDo(
             id = "1",
             name = "Do something",
             createdAt = DateFactory.constantDate,
             updatedAt = DateFactory.constantDate
         )
-        val expectedValue2 =TaskkToDo(
+        val expectedValue2 = TaskkToDo(
             id = "2",
             name = "Do Nothing",
             createdAt = DateFactory.constantDate,
@@ -74,7 +74,7 @@ class TaskkReadDaoTest {
 
     @Test
     fun `getTaskkById() should return single taskk`() = runBlocking {
-        val expectedValue1 =TaskkToDo(
+        val expectedValue1 = TaskkToDo(
             id = "1",
             name = "Do something",
             createdAt = DateFactory.constantDate,
@@ -90,14 +90,14 @@ class TaskkReadDaoTest {
 
     @Test
     fun `getOverallCountTaskk() success`() = runBlocking {
-        val expectedValue1 =TaskkToDo(
+        val expectedValue1 = TaskkToDo(
             id = "1",
             name = "Do something",
             createdAt = DateFactory.constantDate,
             updatedAt = DateFactory.constantDate,
             status = TaskkStatus.COMPLETE
         )
-        val expectedValue2 =TaskkToDo(
+        val expectedValue2 = TaskkToDo(
             id = "2",
             name = "Do Nothing",
             createdAt = DateFactory.constantDate,

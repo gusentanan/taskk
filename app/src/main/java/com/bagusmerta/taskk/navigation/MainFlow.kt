@@ -21,7 +21,7 @@ sealed class HomeFlow(val name: String){
         val route = name
         val arguments = listOf(
             navArgument(ARG_LIST_ID) {
-                // TODO: For now set 1 for default, might change later
+                // For now set 1 for default, might change later
                 defaultValue = "1"
             }
         )

@@ -6,11 +6,11 @@ import com.bagusmerta.taskk.DateFactory
 import com.bagusmerta.taskk.data.local.dao.TaskkReadDao
 import com.bagusmerta.taskk.data.local.dao.TaskkWriteDao
 import com.bagusmerta.taskk.data.local.db.TaskkDatabase
-import com.bagusmerta.taskk.domain.model.TaskkCategory
-import com.bagusmerta.taskk.domain.model.TaskkPriority
-import com.bagusmerta.taskk.domain.model.TaskkStatus
-import com.bagusmerta.taskk.domain.model.TaskkToDo
 import com.bagusmerta.taskk.expect
+import com.bagusmerta.taskk.model.TaskkCategory
+import com.bagusmerta.taskk.model.TaskkPriority
+import com.bagusmerta.taskk.model.TaskkStatus
+import com.bagusmerta.taskk.model.TaskkToDo
 import com.bagusmerta.taskk.utils.mapper.toTaskkTodoDb
 import kotlinx.coroutines.runBlocking
 import org.junit.After

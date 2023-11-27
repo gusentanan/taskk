@@ -1,10 +1,10 @@
 package com.bagusmerta.taskk.utils
 
-import com.bagusmerta.taskk.domain.model.TaskkCategory
-import com.bagusmerta.taskk.domain.model.TaskkList
-import com.bagusmerta.taskk.domain.model.TaskkPriority
-import com.bagusmerta.taskk.domain.model.TaskkStatus
-import com.bagusmerta.taskk.domain.model.TaskkToDo
+import com.bagusmerta.taskk.model.TaskkCategory
+import com.bagusmerta.taskk.model.TaskkList
+import com.bagusmerta.taskk.model.TaskkPriority
+import com.bagusmerta.taskk.model.TaskkStatus
+import com.bagusmerta.taskk.model.TaskkToDo
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flow

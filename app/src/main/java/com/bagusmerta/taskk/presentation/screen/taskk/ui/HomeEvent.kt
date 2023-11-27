@@ -1,6 +1,6 @@
 package com.bagusmerta.taskk.presentation.screen.taskk.ui
 
-import com.bagusmerta.taskk.domain.model.TaskkToDo
+import com.bagusmerta.taskk.model.TaskkToDo
 
 sealed class HomeEvent {
 

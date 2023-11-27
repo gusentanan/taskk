@@ -1,9 +1,7 @@
 package com.bagusmerta.taskk.utils.extensions
 
 import com.bagusmerta.taskk.R
-import com.bagusmerta.taskk.domain.model.TaskkPriority
-import com.bagusmerta.taskk.domain.model.TaskkRepeat
-import com.bagusmerta.taskk.presentation.screen.detail.ui.PriorityItems
+import com.bagusmerta.taskk.model.TaskkRepeat
 import com.bagusmerta.taskk.presentation.screen.detail.ui.RepeatableItems
 
 fun List<RepeatableItems>.select(item: TaskkRepeat): List<RepeatableItems> {

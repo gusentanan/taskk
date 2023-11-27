@@ -1,8 +1,8 @@
 package com.bagusmerta.taskk.presentation.screen.taskk.ui
 
 import androidx.compose.runtime.Immutable
-import com.bagusmerta.taskk.domain.model.TaskkList
-import com.bagusmerta.taskk.domain.model.TaskkToDo
+import com.bagusmerta.taskk.model.TaskkList
+import com.bagusmerta.taskk.model.TaskkToDo
 import com.bagusmerta.taskk.utils.extensions.toTaskkListState
 import com.bagusmerta.taskk.utils.wrapper.DateTimeProviderImpl
 

@@ -15,7 +15,6 @@ import com.bagusmerta.taskk.presentation.designsystem.component.TskIcon
 import com.bagusmerta.taskk.presentation.designsystem.component.TskModalCell
 import com.bagusmerta.taskk.presentation.designsystem.component.TskModalLayout
 import com.bagusmerta.taskk.presentation.designsystem.icon.TaskkIcon
-import com.bagusmerta.taskk.presentation.screen.detail.ui.CategoryItems
 import com.bagusmerta.taskk.presentation.screen.detail.ui.DetailEvent
 import com.bagusmerta.taskk.presentation.screen.detail.ui.DetailViewModel
 import com.bagusmerta.taskk.presentation.screen.detail.ui.RepeatableItems

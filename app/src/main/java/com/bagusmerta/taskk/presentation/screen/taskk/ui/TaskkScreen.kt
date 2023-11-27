@@ -24,7 +24,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.bagusmerta.taskk.R
-import com.bagusmerta.taskk.domain.model.TaskkToDo
+import com.bagusmerta.taskk.model.TaskkToDo
 import com.bagusmerta.taskk.presentation.designsystem.component.TskEmpty
 import com.bagusmerta.taskk.presentation.designsystem.component.TskItem
 import com.bagusmerta.taskk.presentation.designsystem.icon.TaskkIcon

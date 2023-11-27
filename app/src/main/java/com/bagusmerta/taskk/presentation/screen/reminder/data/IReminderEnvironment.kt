@@ -1,7 +1,6 @@
 package com.bagusmerta.taskk.presentation.screen.reminder.data
 
-import com.bagusmerta.taskk.domain.model.TaskkList
-import com.bagusmerta.taskk.domain.model.TaskkToDo
+import com.bagusmerta.taskk.model.TaskkToDo
 import kotlinx.coroutines.flow.Flow
 
 interface IReminderEnvironment {

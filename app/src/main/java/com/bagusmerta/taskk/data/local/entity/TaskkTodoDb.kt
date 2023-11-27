@@ -4,12 +4,15 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.Index
 import androidx.room.PrimaryKey
-import com.bagusmerta.taskk.domain.model.TaskkCategory
-import com.bagusmerta.taskk.domain.model.TaskkPriority
-import com.bagusmerta.taskk.domain.model.TaskkRepeat
-import com.bagusmerta.taskk.domain.model.TaskkStatus
+import com.bagusmerta.taskk.model.TaskkCategory
+import com.bagusmerta.taskk.model.TaskkPriority
+import com.bagusmerta.taskk.model.TaskkRepeat
+import com.bagusmerta.taskk.model.TaskkStatus
 import java.time.LocalDateTime
 
+/**
+ * Entity that represent taskk data for DB transaction
+ */
 @Entity(
     indices = [
         Index("taskk_name", unique = true)
