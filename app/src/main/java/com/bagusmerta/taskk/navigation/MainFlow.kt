@@ -26,8 +26,17 @@ sealed class HomeFlow(val name: String){
             }
         )
     }
+}
 
-    object SettingScreen: HomeFlow("setting-screen"){
+sealed class SettingsFlow(val name: String){
+    object Root: SettingsFlow("setting-root") {
+        val route = name
+    }
+
+    object SettingScreen: SettingsFlow("setting-screen"){
+        val route = name
+    }
+    object ChangeThemeScreen: SettingsFlow("theme-screen"){
         val route = name
     }
 }

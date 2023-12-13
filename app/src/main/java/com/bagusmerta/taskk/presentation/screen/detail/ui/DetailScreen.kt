@@ -55,9 +55,8 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.bagusmerta.taskk.R
 import com.bagusmerta.taskk.model.TaskkStatus
 import com.bagusmerta.taskk.model.TaskkToDo
-import com.bagusmerta.taskk.presentation.designsystem.component.DashedDivider
 import com.bagusmerta.taskk.presentation.designsystem.component.FooterWithText
-import com.bagusmerta.taskk.presentation.designsystem.component.HeaderWithBackButton
+import com.bagusmerta.taskk.presentation.designsystem.component.HeaderWithNavAction
 import com.bagusmerta.taskk.presentation.designsystem.component.TskIcon
 import com.bagusmerta.taskk.presentation.designsystem.component.TskItemDetail
 import com.bagusmerta.taskk.presentation.designsystem.component.TskLayout
@@ -80,6 +79,7 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.time.LocalTime
+import androidx.compose.material3.Divider as MaterialDivider
 
 @Composable
 fun DetailScreen(
@@ -117,7 +117,7 @@ fun DetailScreen(
 
     DetailTaskkScreen(
         header = {
-            HeaderWithBackButton(
+            HeaderWithNavAction(
                 text = stringResource(R.string.detail_taskk_header),
                 onClickBack = onBackPress,
                 onClickDelete = {
@@ -220,7 +220,7 @@ fun DetailTaskkScreen(
 ){
     TskLayout {
         header()
-        Spacer(Modifier.height(20.dp))
+        Spacer(Modifier.height(10.dp))
 
         LazyColumn(
             modifier = Modifier
@@ -246,6 +246,7 @@ fun DetailTaskkScreen(
                     title = stringResource(R.string.detail_taskk_add_priority_text),
                     shape = RoundedCornerShape(size = MediumRadius),
                     iconBgColor = MaterialTheme.colorScheme.secondary,
+                    backgroundCell = MaterialTheme.colorScheme.tertiaryContainer,
                     leftIcon = Icons.Rounded.PriorityHigh,
                     showDivider = true,
                     onClick = onClickTaskkPriority,
@@ -253,8 +254,8 @@ fun DetailTaskkScreen(
                         Row {
                             Text(
                                 text = taskk.taskkPriority.name,
-                                style = MaterialTheme.typography.titleSmall.copy(fontWeight = FontWeight.SemiBold),
-                                color = MaterialTheme.colorScheme.onSurface.copy(alpha = AlphaDisabled)
+                                style = MaterialTheme.typography.titleSmall.copy(fontWeight = FontWeight.Normal),
+                                color = MaterialTheme.colorScheme.onSurface.copy(alpha = AlphaMedium)
                             )
                             Spacer(Modifier.width(8.dp))
                             TskIcon(
@@ -266,14 +267,13 @@ fun DetailTaskkScreen(
                 )
             }
 
-            item { Spacer(Modifier.height(8.dp)) }
-
             item {
                 //Taskk Category section
                 ActionCell(
                     title = stringResource(R.string.detail_taskk_add_category_text),
                     shape = RoundedCornerShape(size = MediumRadius),
                     iconBgColor = MaterialTheme.colorScheme.secondary,
+                    backgroundCell = MaterialTheme.colorScheme.tertiaryContainer,
                     leftIcon = Icons.Rounded.LibraryBooks,
                     showDivider = false,
                     onClick = onClickTaskkCategory,
@@ -281,8 +281,8 @@ fun DetailTaskkScreen(
                         Row {
                             Text(
                                 text = stringResource(taskk.taskkCategory.displayable()),
-                                style = MaterialTheme.typography.titleSmall.copy(fontWeight = FontWeight.SemiBold),
-                                color = MaterialTheme.colorScheme.onSurface.copy(alpha = AlphaDisabled)
+                                style = MaterialTheme.typography.titleSmall.copy(fontWeight = FontWeight.Normal),
+                                color = MaterialTheme.colorScheme.onSurface.copy(alpha = AlphaMedium)
                             )
                             Spacer(Modifier.width(8.dp))
                             TskIcon(
@@ -369,7 +369,7 @@ fun DetailTaskkScreen(
                                 Text(
                                     text = stringResource(taskk.taskkRepeat.displayable()),
                                     style = MaterialTheme.typography.titleSmall.copy(fontWeight = FontWeight.SemiBold),
-                                    color = MaterialTheme.colorScheme.onSurface.copy(alpha = AlphaDisabled)
+                                    color = MaterialTheme.colorScheme.onSurface.copy(alpha = AlphaMedium)
                                 )
                                 Spacer(Modifier.width(8.dp))
                                 TskIcon(
@@ -588,11 +588,12 @@ private fun ActionContentCell(
         }
 
         if (showDivider) {
-            Row {
-               DashedDivider(thickness = 4.dp, modifier = Modifier
-                   .fillMaxWidth()
-               )
-            }
+            MaterialDivider(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .align(Alignment.Start),
+                color = MaterialTheme.colorScheme.inversePrimary
+            )
         }
     }
 }

@@ -11,7 +11,7 @@ val lItemBackground = Color(0xFFCFCFCF)
 val lOn = Color(0xFF130E0F)
 val lError = Color(0xFFEA6D7E)
 val lTertiary = Color(0xFFEEEEEE)
-val linversePrimary = Color(0xFFFFFFFF)
+val linversePrimary = Color(0xFFE2E7E6)
 
 /**
  *  Dark Color Scheme
@@ -21,8 +21,8 @@ val dBackground = Color(0xFF130E0F)
 val dItemBackground = Color(0xFF333333)
 val dOn = Color(0xFFF5F5F5)
 val dError = Color(0xFFFF1D3C)
-val dTertiary = Color(0xFF252525)
-val dinversePrimary = Color(0xFF181313)
+val dTertiary = Color(0xFF111214)
+val dinversePrimary = Color(0xFF1D201F)
 
 
 val commonGray = Color(0xFF919191)

@@ -37,7 +37,7 @@ fun FooterWithButton(
     textButton: String
 ) {
     TskModalLayout(
-        color = MaterialTheme.colorScheme.inversePrimary,
+        color = MaterialTheme.colorScheme.tertiaryContainer,
         flag = false,
         content = {
             item {

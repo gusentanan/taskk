@@ -46,6 +46,7 @@ fun MainScreen(
     bottomSheetConfig: MutableState<BottomSheetConfiguration>
 ){
     val navController = rememberNavController(bottomSheetNavigator)
+
     NavHost(
         navController = navController,
         startDestination = MainFlow.Root.route
@@ -55,7 +56,8 @@ fun MainScreen(
             SplashScreen(navController, viewModel)
         }
 
-        HomeNavHost(navController, bottomSheetConfig)
+        HomeNavHost(navController)
         DetailNavHost(navController, bottomSheetConfig)
+        SettingNavHost(navController, bottomSheetConfig)
     }
 }

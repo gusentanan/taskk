@@ -13,7 +13,6 @@ import androidx.compose.ui.platform.LocalContext
 import com.bagusmerta.taskk.R
 import com.bagusmerta.taskk.data.preference.themes.TaskkTheme
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
-import timber.log.Timber
 
 /**
  *  Dark Theme
@@ -92,12 +91,11 @@ fun TaskkTheme(
     val systemUiController = rememberSystemUiController()
 
     val activity = LocalContext.current as AppCompatActivity
-    Timber.tag("THEMEE").d(activity.toString())
 
 
     SideEffect {
         systemUiController.setSystemBarsColor(
-            color = colorScheme.background,
+            color = colorScheme.tertiaryContainer,
             darkIcons = darkIcons,
             isNavigationBarContrastEnforced = false
         )

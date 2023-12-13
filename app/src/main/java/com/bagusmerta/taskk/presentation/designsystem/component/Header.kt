@@ -1,5 +1,6 @@
 package com.bagusmerta.taskk.presentation.designsystem.component
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -8,9 +9,15 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material3.Divider
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.ArrowBack
+import androidx.compose.material3.CenterAlignedTopAppBar
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -20,46 +27,97 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.bagusmerta.taskk.presentation.designsystem.icon.TaskkIcon
 import com.bagusmerta.taskk.presentation.designsystem.theme.commonGray
+import androidx.compose.material3.Divider as MaterialDivider
 
-
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HeaderWithBackButton(
+fun HeaderWithNav(
+    text: String,
+    onClickBack: () -> Unit,
+    modifier: Modifier = Modifier
+){
+    Box {
+        CenterAlignedTopAppBar(
+            modifier = Modifier.padding(start = 4.dp),
+            title = { TskModalTitle(text = text) },
+            navigationIcon = {
+                IconButton(
+                    onClick = { onClickBack() }
+                ) {
+                    Icon(Icons.Rounded.ArrowBack, contentDescription = null)
+                }
+            },
+            colors = TopAppBarDefaults.topAppBarColors(
+                containerColor = MaterialTheme.colorScheme.tertiaryContainer,
+                navigationIconContentColor = MaterialTheme.colorScheme.onSurface,
+                titleContentColor = MaterialTheme.colorScheme.onSurface,
+                actionIconContentColor = MaterialTheme.colorScheme.onSurface
+            ),
+        )
+        MaterialDivider(
+            modifier = Modifier
+                .fillMaxWidth()
+                .align(Alignment.BottomStart),
+            color = MaterialTheme.colorScheme.inversePrimary
+        )
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun HeaderWithNavAction(
     text: String,
     onClickBack: () -> Unit,
     onClickDelete: () -> Unit,
     modifier: Modifier = Modifier
 ){
-    Row(modifier = modifier.padding(top = 10.dp)) {
-        Box(modifier = modifier
-            .padding(start = 16.dp)
-            .weight(0.2F)
-            ){
-                TskBackButton(onClick = onClickBack)
-            }
-        TskModalTitle(
-            text = text,
-            modifier = modifier.weight(0.6F).padding(top = 6.dp)
+    Box {
+        CenterAlignedTopAppBar(
+            modifier = Modifier.padding(start = 4.dp, end = 4.dp),
+            title = {
+                TskModalTitle(
+                    text = text,
+                )
+            },
+            navigationIcon = {
+                IconButton(
+                    onClick = { onClickBack() }
+                ) {
+                    Icon(Icons.Rounded.ArrowBack, contentDescription = null)
+                }
+            },
+            actions = {
+                TskIconButton(
+                    onClick = onClickDelete,
+                    color = Color.Transparent,
+                    shape = CircleShape
+                ) {
+                    TskIcon(
+                        imageIcon = TaskkIcon.Trash,
+                        modifier = Modifier.size(30.dp)
+                    )
+                }
+            },
+            colors = TopAppBarDefaults.topAppBarColors(
+                containerColor = MaterialTheme.colorScheme.tertiaryContainer,
+                navigationIconContentColor = MaterialTheme.colorScheme.onSurface,
+                titleContentColor = MaterialTheme.colorScheme.onSurface,
+                actionIconContentColor = MaterialTheme.colorScheme.onSurface
+            ),
         )
-        TskIconButton(
-            onClick = onClickDelete,
-            color = Color.Transparent,
+        MaterialDivider(
             modifier = Modifier
-                .size(42.dp)
-                .weight(0.2F),
-            shape = CircleShape
-        ) {
-            TskIcon(
-                imageIcon = TaskkIcon.Trash,
-                modifier = Modifier.size(30.dp)
-            )
-        }
+                .fillMaxWidth()
+                .align(Alignment.BottomStart),
+            color = MaterialTheme.colorScheme.inversePrimary
+        )
     }
 }
 
 @Preview
 @Composable
 fun previewHeaderBack(){
-    HeaderWithBackButton(
+    HeaderWithNavAction(
         text = "Detail Task",
         onClickBack = {},
         onClickDelete = {}
@@ -71,13 +129,15 @@ fun HeaderWithSettingsButton(
     dateNow: String,
     taskStatus: String,
     onClickSettings: () -> Unit,
-    onClickInfo: () -> Unit,
     modifier: Modifier = Modifier
 ){
-    Column {
+    Column(
+        modifier = Modifier.background(color = MaterialTheme.colorScheme.tertiaryContainer)
+    ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.End
+            horizontalArrangement = Arrangement.End,
+            modifier = Modifier.padding(bottom = 10.dp)
         ){
             Column(
                 modifier = modifier
@@ -88,20 +148,17 @@ fun HeaderWithSettingsButton(
                 TskModalSubTitleMain(text = taskStatus)
             }
 
-            Box(modifier = modifier.padding(end = 20.dp, top = 12.dp)
-            ) {
-                TskInfoButton(onClick = onClickInfo)
-            }
-
-            Box(modifier = modifier.padding(end = 20.dp, top = 12.dp)
-            ) {
-                TskSettingsButton(onClick = onClickSettings)
+            Box(modifier = modifier.padding(end = 12.dp, top = 12.dp)){
+                TskOverflowMenu {
+                    onClickSettings()
+                }
             }
         }
-        Divider(
-            color = commonGray,
-            thickness = 1.dp,
-            modifier = Modifier.padding(start = 14.dp, end =14.dp, top = 10.dp)
+        MaterialDivider(
+            modifier = Modifier
+                .fillMaxWidth()
+                .align(Alignment.Start),
+            color = MaterialTheme.colorScheme.inversePrimary
         )
     }
 }
@@ -113,7 +170,6 @@ fun previewHeaderSettings(){
         dateNow = "March 9, 2023",
         taskStatus = "5 Completed, 2 Incomplete",
         onClickSettings = {},
-        onClickInfo = {},
     )
 }
 

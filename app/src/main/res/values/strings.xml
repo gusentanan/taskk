@@ -17,7 +17,7 @@
     <string name="system_theme_text">System Theme</string>
     <string name="light_theme_text">Light Theme</string>
     <string name="dark_theme_text">Dark Theme</string>
-    <string name="detail_taskk_header">Detail Taskk</string>
+    <string name="detail_taskk_header">Detail</string>
     <string name="detail_taskk_add_priority_text">Add Priority</string>
     <string name="detail_taskk_add_category_text">Add Category</string>
     <string name="detail_taskk_add_note_text">Add Note</string>
@@ -51,7 +51,19 @@
     <string name="taskk_repeat_displayable_monthly">Monthly</string>
     <string name="taskk_repeat_displayable_yearly">Yearly</string>
     <string name="detail_taskk_repeatable_text">Repeat</string>
-    <string name="dialog_header">Apps Permission</string>
+    <string name="dialog_header">App Permission</string>
     <string name="dialog_description">To ensure the Taskk app functions correctly, please grant notification permissions.</string>
     <string name="toast_add_taskk_name">Please add a task name first</string>
+    <string name="ic_more_description">More Icon</string>
+    <string name="headline_settings">Settings</string>
+    <string name="ic_settings_description">Setting Icon</string>
+    <string name="headline_behaviour">Behaviour</string>
+    <string name="subline_about_notify">About App Notification</string>
+    <string name="headline_feedback"><![CDATA[Feedback & reports]]></string>
+    <string name="haedline_more_about">More About</string>
+    <string name="subline_theme_picker">Choose App Theme</string>
+    <string name="desc_theme_picker">Pick theme that best suits your preferences. There are three different options available for you to consider</string>
+    <string name="subline_report_issue">Report an issue</string>
+    <string name="subline_more_about">About Taskk App</string>
+    <string name="desc_more_about">Get to know the creators</string>
 </resources>

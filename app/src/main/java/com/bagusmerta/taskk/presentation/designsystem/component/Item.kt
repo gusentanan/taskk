@@ -15,7 +15,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.material3.Divider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -34,12 +33,12 @@ import androidx.compose.ui.unit.sp
 import com.bagusmerta.taskk.model.TaskkPriority
 import com.bagusmerta.taskk.presentation.designsystem.icon.TaskkIcon
 import com.bagusmerta.taskk.presentation.designsystem.theme.commonGray
-import com.bagusmerta.taskk.presentation.designsystem.theme.gray20
 import com.bagusmerta.taskk.presentation.designsystem.theme.softGreen
 import com.bagusmerta.taskk.presentation.designsystem.theme.softRed
 import com.bagusmerta.taskk.presentation.designsystem.theme.softYellow
 import com.bagusmerta.taskk.utils.AlphaDisabled
 import com.bagusmerta.taskk.utils.AlphaHigh
+import androidx.compose.material3.Divider as MaterialDivider
 
 @Composable
 fun TskModalCell(
@@ -67,7 +66,7 @@ fun TskModalCell(
         null
     }
 
-    val shape = MaterialTheme.shapes.medium
+    val shape = MaterialTheme.shapes.large
     Surface(
         modifier = Modifier
             .fillMaxWidth()
@@ -173,10 +172,11 @@ fun TskItem(
                         Spacer(Modifier.width(10.dp))
                         TskPriority(priority = taskkPriority)
                     }
-                    Divider(
-                        color = gray20,
-                        thickness = 1.dp,
-                        modifier = Modifier.padding(start = 16.dp, end = 16.dp)
+                    MaterialDivider(
+                        modifier = Modifier
+                            .padding(start = 16.dp, end = 16.dp, bottom = 10.dp)
+                            .align(Alignment.Start),
+                        color = MaterialTheme.colorScheme.inversePrimary
                     )
                 }
             }
@@ -227,11 +227,6 @@ fun TskItemDetail(
                 Spacer(Modifier.width(10.dp))
                 TskPriority(priority = taskkPriority)
             }
-            Divider(
-                color = gray20,
-                thickness = 1.dp,
-                modifier = Modifier.padding(start = 16.dp, end = 16.dp, bottom = 10.dp)
-            )
         }
     }
 }
