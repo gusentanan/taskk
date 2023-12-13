@@ -12,9 +12,21 @@
 </table>
 <table>
 
+<table>
+  <tr>
+     <td>Home</td>
+     <td>Detail</td>
+     <td>Setting</td>
+  </tr>
+  <tr>
+    <td><img src="arts/Home.jpg" width=280 ></td>
+    <td><img src="arts/Detail.jpg" width=280 ></td>
+    <td><img src="arts/Setting.jpg" width=280 ></td>
+  </tr>
+</table>
+
 ## More About
 100% build using Jetpack Compose 
-- You can see the App preview [here](https://github.com/gusentanan/taskk/blob/main/arts/taskk_preview.md)
 - You can see the dependencies that I used [here](https://github.com/gusentanan/taskk/blob/main/app/build.gradle.kts)
 ```
 I haven't programmed this app to collect any personal information. All data,
@@ -31,7 +43,6 @@ Download the .apk or Clone this repository and make sure you're using the latest
 
 ## What comes next ?
 - Group list of task based on user needs 
-- Add time picker so we can set a reminder?
 
 There's still plenty of room for improvement, but I'll definitely get in touch when I'm feeling more energized! 😄
   
